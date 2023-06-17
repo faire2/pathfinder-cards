@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'goodCondensedBold';
+  src: url('/fonts/FFGoodProXCond-Bold.ttf') format('truetype'),
+
+}
+
+@font-face {
+  font-family: 'goodCondensedMedium';
+  src: url('/fonts/FFGoodProXCond-Medium.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'goodProRegular';
+  src: url('/fonts/FFGoodPro-Regular.ttf') format('truetype'),
+}
