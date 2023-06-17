@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"object-curly-spacing": ["warn", "always"],
+		"quotes": ["error", "single"],
+		"indent": ["error", "tab"]
+	}
 }
