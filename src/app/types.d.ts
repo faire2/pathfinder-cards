@@ -4,21 +4,19 @@ interface CardData {
 	type: string
 	level: number | string
 	traits: string
-	actions: Actions
+	actions: string
 	body: string
 	tags?: string[]
 	plain?: number
 	meta?: Meta
 }
 
-type Actions = 'a' | 'aa' | 'aaa' | 'r' | 'f' | ''
-
 interface Meta {
 	public: number
 	url: string
 }
 
-interface CardDimension {
+interface CardDimensions {
 	width: number
 	height: number
 }
