@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react'
 import { CardDimensionsCtx } from '../Card/cardContexts'
 import * as S from './styles'
-import Input from './components/Input'
+import Input from '../Input'
 
 interface Props {
 	cardData: CardData
