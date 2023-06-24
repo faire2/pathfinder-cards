@@ -1,11 +1,17 @@
 export const keywords = [
 	'Activate',
 	'Capacity',
+	'Cast',
+	'Duration',
 	'Effect',
 	'Frequency',
+	'Heightened',
 	'Perception',
 	'Price',
+	'Range',
+	'Saving Throw',
 	'Skills',
+	'Targets',
 	'Type',
 	'Usage',
 
@@ -38,4 +44,24 @@ export const keywords = [
 
 export const numericKeywords = [
 	'Bulk',
+	'Cast',
+
+]
+
+export const czechKeywords = [
+	'Dosah',
+	'Tradice',
+	'Trvání',
+	'Zvýšení',
+	'Cíle',
+	'Úspěch',
+	'Neúspěch',
+	'Kritický',
+	'úspěch',
+	'neúspěch',
+	'Úspěch',
+]
+
+export const czechNumericKeywords = [
+	'Seslání'
 ]

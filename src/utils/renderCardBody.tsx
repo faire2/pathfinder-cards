@@ -1,4 +1,4 @@
-import { keywords, numericKeywords } from '@/data/keyWords'
+import { czechKeywords, czechNumericKeywords, keywords, numericKeywords } from '@/data/keyWords'
 import Image from 'next/image'
 import { styled } from 'styled-components'
 
@@ -17,6 +17,11 @@ export default function renderCardBody(body: string, cardWidth: number) {
 					// together with a number
 					// TODO Bulk should be emphasized also when followed by "L"
 					numericKeywords.includes(word ) &&
+					!isNaN(Number(words[index + 1]))
+				) || (
+					czechKeywords.includes(word)
+				) || (
+					czechNumericKeywords.includes(word ) &&
 					!isNaN(Number(words[index + 1]))
 				)
 			)
@@ -67,10 +72,4 @@ const actionIconsRefs: Record<string, string[]> = {
 
 const Paragraph = styled.div`
 	padding-bottom: 1%;
-
-	&:last-child {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
 `
