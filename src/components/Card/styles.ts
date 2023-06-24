@@ -1,11 +1,11 @@
-import { traitStyle } from '@/styles/commonStyles'
+import { fontGoodCondensed, fontGoodRegular, traitStyle } from '@/styles/commonStyles'
 import styled from 'styled-components'
 
 interface StyledBodyProps {
 	width: number
 }
 
-export const Card = styled.div<CardDimension>`
+export const Card = styled.div<CardDimensions>`
 	width: ${(props) => props.width}mm;
 	height: ${(props) => props.height}mm;
 	background-color: antiquewhite;
@@ -15,7 +15,7 @@ export const Card = styled.div<CardDimension>`
 `
 
 export const Body = styled.div<StyledBodyProps>`
-	font-family: 'goodProRegular', 'Arial', sans-serif;
+	${fontGoodRegular}
 	font-size: 100%;
 
 	display: flex;
@@ -44,7 +44,7 @@ export const TypeLevel = styled(ElipsisHeadline)`
 `
 
 export const CardHeader = styled.div`
-	font-family: 'goodCondensedMedium', 'Arial', sans-serif;
+	${fontGoodCondensed}
 	font-size: 80%;
 	text-transform: uppercase;
 

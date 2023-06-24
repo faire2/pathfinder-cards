@@ -10,7 +10,23 @@ export const doNotPrint = css`
 	}
 `
 
+export const fontGoodRegular = css`
+	font-family: 'goodProRegular', 'Arial', sans-serif;
+`
+
+export const fontGoodCondensed = css`
+	font-family: 'goodCondensedMedium', 'Arial', sans-serif;
+`
+
+export const fontgoodCondensedBold = css`
+	font-family: 'goodCondensedBold', 'Arial', sans-serif;
+`
+
 export const GlobalStyle = createGlobalStyle`
+	body {
+		${fontGoodRegular}
+	}
+
 	@page {
 		margin: 50cm;
 	}
@@ -18,8 +34,8 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const traitStyle = css`
+	${fontGoodCondensed}
 	font-size: 100%;
-	font-family: 'goodCondensedMedium', 'Arial', sans-serif;
 	text-transform: uppercase;
 	line-height: 1;
 	font-weight: bold;
