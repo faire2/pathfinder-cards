@@ -1,48 +1,66 @@
-import { ChangeEvent, useContext, useState } from 'react'
-import { CardDimensionsCtx } from '../Card/cardContexts'
+import { ChangeEvent } from 'react'
 import * as S from './styles'
 import Input from '../Input'
 
+
 interface Props {
-	cardData: CardData
+	cardData: CardData | undefined
+	onSaveCard: (cardData: CardData) => void
 }
 
-export default function CardEdit({ cardData }: Props) {
-	const { width } = useContext(CardDimensionsCtx)
-	const [editData, setEditData] = useState<CardData>(cardData)
-
+export default function CardEdit({ cardData, onSaveCard }: Props) {
 	const handleNameChange = (value: string) => {
-		setEditData({ ...editData, name: value })
+		cardData && onSaveCard({ ...cardData, name: value })
 	}
 
 	const handleTraitsChange = (value: string) => {
-		setEditData({ ...editData, traits: value })
+		cardData && onSaveCard({ ...cardData, traits: value })
 	}
 
 	const handleActionsChange = (value: string) => {
-		setEditData({ ...editData, actions: value })
+		cardData && onSaveCard({ ...cardData, actions: value })
 	}
 
 	const handleTypeChange = (value: string) => {
-		setEditData({ ...editData, type: value })
+		cardData && onSaveCard({ ...cardData, type: value })
 	}
 
 	const handleLevelChange = (value: string) => {
-		setEditData({ ...editData, level: value })
+		cardData && onSaveCard({ ...cardData, level: value })
 	}
 
 	const handleBodyChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		setEditData({ ...editData, body: event.target.value })
+		cardData && onSaveCard({ ...cardData, body: event.target.value })
 	}
 
 	return (
-		<S.CardEdit width={width}>
-			<Input label="Name:" value={editData.name} onChange={handleNameChange} />
-			<Input label="Traits:" value={editData.traits} onChange={handleTraitsChange} />
-			<Input label="Actions:" value={editData.actions} onChange={handleActionsChange} />
-			<Input label="Type:" value={editData.type} onChange={handleTypeChange} />
-			<Input label="Level:" value={editData.level.toString()} onChange={handleLevelChange} />
-			<S.TextArea value={editData.body} onChange={handleBodyChange} />
+		<S.CardEdit>
+			<Input
+				label="Name:"
+				value={cardData?.name ?? ''}
+				onChange={handleNameChange}
+			/>
+			<Input
+				label="Traits:"
+				value={cardData?.traits ?? ''}
+				onChange={handleTraitsChange}
+			/>
+			<Input
+				label="Actions:"
+				value={cardData?.actions ?? ''}
+				onChange={handleActionsChange}
+			/>
+			<Input
+				label="Type:"
+				value={cardData?.type ?? ''}
+				onChange={handleTypeChange}
+			/>
+			<Input
+				label="Level:"
+				value={cardData?.level.toString() ?? ''}
+				onChange={handleLevelChange}
+			/>
+			<S.TextArea value={cardData?.body ?? ''} onChange={handleBodyChange} />
 		</S.CardEdit>
 	)
 }

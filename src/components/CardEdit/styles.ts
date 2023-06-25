@@ -1,13 +1,11 @@
-import { PrimaryButton } from '@/styles/homePageStyles'
 import styled from 'styled-components'
 
 
-interface CardWidth {
-	width: number
-}
-
-export const CardEdit = styled.div<CardWidth>`
-	width: ${(props) => props.width}mm;
+export const CardEdit = styled.div`
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	width: 300px;
 `
 
 export const TextArea = styled.textarea`

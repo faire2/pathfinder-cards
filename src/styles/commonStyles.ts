@@ -25,10 +25,10 @@ export const fontgoodCondensedBold = css`
 export const GlobalStyle = createGlobalStyle`
 	body {
 		${fontGoodRegular}
+		margin: 0;
 	}
 
 	@page {
-		margin: 50cm;
 	}
 
 `

@@ -2,7 +2,9 @@ import { PrimaryButton } from '@/styles/homePageStyles'
 import styled from 'styled-components'
 
 export const InputGroup = styled.div`
-	margin-top: 10px;
+	&:not(:first-child) {
+		margin-top: 10px;
+	}
 `
 
 export const InputLine = styled.div`

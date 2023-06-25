@@ -20,3 +20,10 @@ interface CardDimensions {
 	width: number
 	height: number
 }
+
+interface Project {
+	projectName: string
+	cards: CardData[]
+}
+
+type View = 'cardImport' | 'projectView'
