@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { PrimaryButton } from '@/styles/homePageStyles'
+
+import { emptyCard } from '@/data/emptyCard'
+import { PrimaryButton } from '@/styles/commonComponentStyles'
 
 import * as S from './styles'
 import CardEdit from '../CardEdit'
 import { Label } from '../Input/styles'
 import Card from '../Card'
-import { emptyCard } from '@/data/emptyCard'
 
 
 interface Props {

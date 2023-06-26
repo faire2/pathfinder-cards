@@ -1,5 +1,6 @@
-import { PrimaryButton } from '@/styles/homePageStyles'
+import { PrimaryButton } from '@/styles/commonComponentStyles'
 import styled from 'styled-components'
+
 
 export const InputGroup = styled.div`
 	&:not(:first-child) {

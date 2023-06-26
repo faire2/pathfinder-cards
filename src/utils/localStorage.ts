@@ -3,7 +3,7 @@ const currentProjectNameKey = 'rpgCards_currentProject'
 
 export function saveProject(project: Project) {
 	try {
-		const serializedData = JSON.stringify(project.cards)
+		const serializedData = JSON.stringify(project)
 		localStorage.setItem(projectPrefix + project.projectName, serializedData)
 	} catch (error) {
 		console.error('Error saving cards to local storage:', error)

@@ -5,32 +5,32 @@ import Input from '../Input'
 
 interface Props {
 	cardData: CardData | undefined
-	onSaveCard: (cardData: CardData) => void
+	onSaveCardData: (cardData: CardData) => void
 }
 
-export default function CardEdit({ cardData, onSaveCard }: Props) {
+export default function CardEdit({ cardData, onSaveCardData }: Props) {
 	const handleNameChange = (value: string) => {
-		cardData && onSaveCard({ ...cardData, name: value })
+		cardData && onSaveCardData({ ...cardData, name: value })
 	}
 
 	const handleTraitsChange = (value: string) => {
-		cardData && onSaveCard({ ...cardData, traits: value })
+		cardData && onSaveCardData({ ...cardData, traits: value })
 	}
 
 	const handleActionsChange = (value: string) => {
-		cardData && onSaveCard({ ...cardData, actions: value })
+		cardData && onSaveCardData({ ...cardData, actions: value })
 	}
 
 	const handleTypeChange = (value: string) => {
-		cardData && onSaveCard({ ...cardData, type: value })
+		cardData && onSaveCardData({ ...cardData, type: value })
 	}
 
 	const handleLevelChange = (value: string) => {
-		cardData && onSaveCard({ ...cardData, level: value })
+		cardData && onSaveCardData({ ...cardData, level: value })
 	}
 
 	const handleBodyChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		cardData && onSaveCard({ ...cardData, body: event.target.value })
+		cardData && onSaveCardData({ ...cardData, body: event.target.value })
 	}
 
 	return (

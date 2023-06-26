@@ -10,18 +10,28 @@ import {
 	loadProject,
 	loadCurrentProjectName,
 	saveCurrentProjectName,
+	saveProject,
 } from '@/utils/localStorage'
 import * as S from '../styles/homePageStyles'
+import LeftMenu from '@/components/LeftMenu'
+
 
 export default function Home() {
 	const [view, setView] = useState<View>('cardImport')
-	const [currentProjectName, setCurrentProjectName] = useState<string>(
+	const [projectName, setCurrentProjectName] = useState<string>(
 		loadCurrentProjectName() ?? '',
 	)
 
-	const [cards, setCards] = useState<CardData[]>(
-		loadProject(currentProjectName)?.cards ?? [],
+	const [project, setProject] = useState<Project>(
+		loadProject(projectName) ?? {
+			projectName: projectName,
+			cards: [],
+		},
 	)
+	const cards = project.cards ?? []
+	const [cardIndex, setCardIndex] = useState<number>(0)
+	console.log(project.projectName)
+	console.log(project.cards)
 
 	const handleNewProjectName = (newProjectName: string) => {
 		saveCurrentProjectName(newProjectName)
@@ -29,25 +39,34 @@ export default function Home() {
 	}
 
 	const handleCardImport = (cardData: CardData) => {
-		setCards([...cards, cardData])
+		const newCards = [...project.cards, cardData]
+		setProject({ ...project, cards: newCards })
+	}
+
+	const handleCardRemoval = () => {
+		if (cards.length === 0) {
+			return
+		}
+
+		const newCards = cards.filter((_, index) => index !== cardIndex)
+		setProject({ ...project, cards: newCards })
 	}
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			{!currentProjectName && (
-				<WelcomeScreen onFinished={handleNewProjectName} />
-			)}
-			<S.ProjectName>{currentProjectName}</S.ProjectName>
+			{!projectName && <WelcomeScreen onFinished={handleNewProjectName} />}
+			<S.ProjectName>{projectName}</S.ProjectName>
 			<S.Home>
 				<GlobalStyle />
-				<S.MainButtons>
-					<S.PrimaryButton onClick={() => setView('cardImport')}>
-						Import a new card
-					</S.PrimaryButton>
-					<S.PrimaryButton>Remove current card</S.PrimaryButton>
-					<S.PrimaryButton>Save project</S.PrimaryButton>
-					<S.PrimaryButton>LoadProject</S.PrimaryButton>
-				</S.MainButtons>
+				<LeftMenu
+					hasCards={cards.length > 0}
+					projectNameExists={!!projectName}
+
+					handleCardRemoval={handleCardRemoval}
+					loadProject={() => loadProject(projectName)}
+					saveProject={() => saveProject(project)}
+					setView={setView}
+				/>
 
 				{view === 'cardImport' && (
 					<CardImportView onCardImport={handleCardImport} />
