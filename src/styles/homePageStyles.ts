@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { fontGoodRegular } from './commonStyles'
+import { doNotPrint, fontGoodRegular } from './commonStyles'
 
 
 export const Home = styled.div`
@@ -7,8 +7,9 @@ export const Home = styled.div`
 `
 
 export const ProjectName = styled.h1`
-	text-align: center;
+	${doNotPrint}
 	${fontGoodRegular}
+	text-align: center;
 	font-weight: bold;
 	color: #5d0000;
 	letter-spacing: 1px;

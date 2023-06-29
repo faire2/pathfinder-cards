@@ -1,20 +1,21 @@
 'use client'
 
 import { useState } from 'react'
+
 import { GlobalStyle } from '@/styles/commonStyles'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import WelcomeScreen from '@/components/WelcomeScreen'
-import CardImportView from '@/views/ImportCardView'
+import LeftMenu from '@/components/LeftMenu'
+import View from '@/views/MainView'
 import {
 	loadProject,
 	loadCurrentProjectName,
 	saveCurrentProjectName,
 	saveProject,
 } from '@/utils/localStorage'
+
 import * as S from '../styles/homePageStyles'
-import LeftMenu from '@/components/LeftMenu'
-import View from '@/views/View'
 
 
 export default function Home() {
@@ -66,7 +67,7 @@ export default function Home() {
 					setView={setView}
 				/>
 
-				<View view={view} onAddCard={handleAddCard} />
+				<View project={project} view={view} onAddCard={handleAddCard} />
 			</S.Home>
 		</CardDimensionsCtx.Provider>
 	)

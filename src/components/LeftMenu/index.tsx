@@ -52,6 +52,13 @@ export default function LeftMenu({
 			<PrimaryButton disabled={!projectNameExists} onClick={loadProject}>
 				Load project
 			</PrimaryButton>
+
+			<PrimaryButton
+				disabled={!projectNameExists}
+				onClick={() => setView('projectView')}
+			>
+				Display project
+			</PrimaryButton>
 		</S.LeftMenu>
 	)
 }
