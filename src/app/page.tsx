@@ -30,8 +30,6 @@ export default function Home() {
 	)
 	const cards = project.cards ?? []
 	const [cardIndex, setCardIndex] = useState<number>(0)
-	console.log(project.projectName)
-	console.log(project.cards)
 
 	const handleNewProjectName = (newProjectName: string) => {
 		saveCurrentProjectName(newProjectName)

@@ -22,31 +22,32 @@ export default function LeftMenu({
 	saveProject,
 	setView,
 }: Props) {
+
 	return (
 		<S.LeftMenu>
 			<PrimaryButton
-				disabled={projectNameExists}
+				disabled={!projectNameExists}
 				onClick={() => setView('cardImport')}
 			>
 				Import a new card
 			</PrimaryButton>
 
 			<PrimaryButton
-				disabled={projectNameExists || hasCards}
+				disabled={!projectNameExists || !hasCards}
 				onClick={handleCardRemoval}
 			>
 				Remove current card
 			</PrimaryButton>
 
 			<PrimaryButton
-				disabled={projectNameExists}
+				disabled={!projectNameExists}
 				onClick={saveProject}
 			>
 				Save project
 			</PrimaryButton>
 
 			<PrimaryButton
-				disabled={projectNameExists}
+				disabled={!projectNameExists}
 				onClick={loadProject}
 			>
 				Load project
