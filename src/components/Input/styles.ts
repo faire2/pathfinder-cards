@@ -1,4 +1,4 @@
-import { PrimaryButton } from '@/styles/commonComponentStyles'
+import { PrimaryButton } from '@/styles/commonStyledComponents'
 import styled from 'styled-components'
 
 

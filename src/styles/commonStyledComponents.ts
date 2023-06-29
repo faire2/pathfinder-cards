@@ -12,3 +12,10 @@ export const PrimaryButton = styled.button`
 		background-color: #bda0a0;
 	}
 `
+
+export const ViewColumn = styled.div`
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	margin-right: 30px;
+`

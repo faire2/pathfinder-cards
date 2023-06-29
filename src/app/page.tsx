@@ -5,7 +5,7 @@ import { GlobalStyle } from '@/styles/commonStyles'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import WelcomeScreen from '@/components/WelcomeScreen'
-import CardImportView from '@/views/CardImportView'
+import CardImportView from '@/views/ImportCardView'
 import {
 	loadProject,
 	loadCurrentProjectName,
@@ -14,10 +14,11 @@ import {
 } from '@/utils/localStorage'
 import * as S from '../styles/homePageStyles'
 import LeftMenu from '@/components/LeftMenu'
+import View from '@/views/View'
 
 
 export default function Home() {
-	const [view, setView] = useState<View>('cardImport')
+	const [view, setView] = useState<View>('importCard')
 	const [projectName, setCurrentProjectName] = useState<string>(
 		loadCurrentProjectName() ?? '',
 	)
@@ -36,7 +37,7 @@ export default function Home() {
 		setCurrentProjectName(newProjectName)
 	}
 
-	const handleCardImport = (cardData: CardData) => {
+	const handleAddCard = (cardData: CardData) => {
 		const newCards = [...project.cards, cardData]
 		setProject({ ...project, cards: newCards })
 	}
@@ -59,16 +60,13 @@ export default function Home() {
 				<LeftMenu
 					hasCards={cards.length > 0}
 					projectNameExists={!!projectName}
-
 					handleCardRemoval={handleCardRemoval}
 					loadProject={() => loadProject(projectName)}
 					saveProject={() => saveProject(project)}
 					setView={setView}
 				/>
 
-				{view === 'cardImport' && (
-					<CardImportView onCardImport={handleCardImport} />
-				)}
+				<View view={view} onAddCard={handleAddCard} />
 			</S.Home>
 		</CardDimensionsCtx.Provider>
 	)

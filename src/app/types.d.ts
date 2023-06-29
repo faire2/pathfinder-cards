@@ -26,4 +26,4 @@ interface Project {
 	cards: CardData[]
 }
 
-type View = 'cardImport' | 'projectView'
+type View = 'importCard' | 'createCard' | 'projectView'

@@ -1,5 +1,4 @@
-import { PrimaryButton } from '@/styles/commonComponentStyles'
-import { saveProject, loadProject } from '@/utils/localStorage'
+import { PrimaryButton } from '@/styles/commonStyledComponents'
 import * as S from './styles'
 
 
@@ -27,7 +26,14 @@ export default function LeftMenu({
 		<S.LeftMenu>
 			<PrimaryButton
 				disabled={!projectNameExists}
-				onClick={() => setView('cardImport')}
+				onClick={() => setView('createCard')}
+			>
+				Create a new card
+			</PrimaryButton>
+
+			<PrimaryButton
+				disabled={!projectNameExists}
+				onClick={() => setView('importCard')}
 			>
 				Import a new card
 			</PrimaryButton>
@@ -39,17 +45,11 @@ export default function LeftMenu({
 				Remove current card
 			</PrimaryButton>
 
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={saveProject}
-			>
+			<PrimaryButton disabled={!projectNameExists} onClick={saveProject}>
 				Save project
 			</PrimaryButton>
 
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={loadProject}
-			>
+			<PrimaryButton disabled={!projectNameExists} onClick={loadProject}>
 				Load project
 			</PrimaryButton>
 		</S.LeftMenu>

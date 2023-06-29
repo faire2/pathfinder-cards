@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { emptyCard } from '@/data/emptyCard'
-import { PrimaryButton } from '@/styles/commonComponentStyles'
+import { PrimaryButton, ViewColumn } from '@/styles/commonStyledComponents'
 
 import * as S from './styles'
 import CardEdit from '../../components/CardEdit'
@@ -39,22 +39,22 @@ export default function CardImportView({ onCardImport }: Props) {
 
 	return (
 		<S.CardImport>
-			<S.ImportColumn>
+			<ViewColumn>
 				<Label>Paste data in correct format:</Label>
 				<S.CardImportTextArea
 					value={jsonValue}
 					onChange={(event) => transformData(event.target.value)}
 				/>
-			</S.ImportColumn>
-			<S.ImportColumn>
-				<CardEdit cardData={newCardData} onCreateNewCard={setNewCardData} />
-			</S.ImportColumn>
-			<S.ImportColumn>
+			</ViewColumn>
+			<ViewColumn>
+				<CardEdit cardData={newCardData} onSaveCardData={setNewCardData} />
+			</ViewColumn>
+			<ViewColumn>
 				<Card cardData={newCardData} />
 				<PrimaryButton disabled={!newCardData} onClick={handleOnImportClick}>
 					Import Card
 				</PrimaryButton>
-			</S.ImportColumn>
+			</ViewColumn>
 		</S.CardImport>
 	)
 }

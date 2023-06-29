@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import CardEdit from '@/components/CardEdit'
+import Card from '@/components/Card'
 import { emptyCard } from '@/data/emptyCard'
+import { ViewColumn, PrimaryButton } from '@/styles/commonStyledComponents'
 
 import * as S from './styles'
-import SingleCardView from '../SingleCardView'
-import Card from '@/components/Card'
 
 
 interface Props {
@@ -16,8 +16,15 @@ export default function CreateCardView({ onSaveCard }: Props) {
 
 	return (
 		<S.CreateCardView>
-			<CardEdit cardData={cardData} onSaveCardData={setCardData} />
-			<Card cardData={cardData} />
+			<ViewColumn>
+				<CardEdit cardData={cardData} onSaveCardData={setCardData} />
+			</ViewColumn>
+			<ViewColumn>
+				<Card cardData={cardData} />
+				<PrimaryButton onClick={() => onSaveCard(cardData)}>
+					Save card
+				</PrimaryButton>
+			</ViewColumn>
 		</S.CreateCardView>
 	)
 }

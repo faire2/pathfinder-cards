@@ -1,6 +1,6 @@
 import Card from '@/components/Card'
+import { PrimaryButton } from '@/styles/commonStyledComponents'
 import * as S from './styles'
-import { PrimaryButton } from '@/styles/commonComponentStyles'
 
 
 interface Props {
