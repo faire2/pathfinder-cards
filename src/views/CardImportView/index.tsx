@@ -4,9 +4,9 @@ import { emptyCard } from '@/data/emptyCard'
 import { PrimaryButton } from '@/styles/commonComponentStyles'
 
 import * as S from './styles'
-import CardEdit from '../CardEdit'
-import { Label } from '../Input/styles'
-import Card from '../Card'
+import CardEdit from '../../components/CardEdit'
+import { Label } from '../../components/Input/styles'
+import Card from '../../components/Card'
 
 
 interface Props {
@@ -47,7 +47,7 @@ export default function CardImportView({ onCardImport }: Props) {
 				/>
 			</S.ImportColumn>
 			<S.ImportColumn>
-				<CardEdit cardData={newCardData} onSaveCard={setNewCardData} />
+				<CardEdit cardData={newCardData} onCreateNewCard={setNewCardData} />
 			</S.ImportColumn>
 			<S.ImportColumn>
 				<Card cardData={newCardData} />

@@ -5,7 +5,7 @@ import { GlobalStyle } from '@/styles/commonStyles'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import WelcomeScreen from '@/components/WelcomeScreen'
-import CardImportView from '@/components/CardImportView'
+import CardImportView from '@/views/CardImportView'
 import {
 	loadProject,
 	loadCurrentProjectName,
