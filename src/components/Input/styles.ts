@@ -6,6 +6,7 @@ export const InputGroup = styled.div`
 	&:not(:first-child) {
 		margin-top: 10px;
 	}
+	width: 300px
 `
 
 export const InputLine = styled.div`
@@ -16,6 +17,7 @@ export const InputLine = styled.div`
 export const Input = styled.input`
 	border: 1px solid #5d0000;
 	padding: 5px;
+	width: 100%
 `
 
 export const Label = styled.label`
