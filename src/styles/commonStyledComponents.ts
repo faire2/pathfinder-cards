@@ -19,3 +19,13 @@ export const ViewColumn = styled.div`
 	justify-content: center;
 	margin-right: 30px;
 `
+
+export const Overlay = styled.div`
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+`

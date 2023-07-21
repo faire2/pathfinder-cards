@@ -27,3 +27,10 @@ interface Project {
 }
 
 type View = 'importCard' | 'createCard' | 'projectView'
+
+interface OverlayData {
+	inputLabel: string
+	onClick: (value: string) => void
+}
+
+type InputFunction = (value: string) => void

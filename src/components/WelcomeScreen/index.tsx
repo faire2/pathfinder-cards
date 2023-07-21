@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import { FlexRow } from '@/styles/commonStyles'
+import { Overlay } from '@/styles/commonStyledComponents'
 
 import Input from '../Input'
 import * as S from './styles'
+
 
 interface Props {
 	onFinished: (newProjectName: string) => void
 }
 
+
 export default function WelcomeScreen({ onFinished }: Props) {
 	const [newProjectName, setNewProjectName] = useState<string>('')
 
 	return (
-		<S.WelcomeScreen>
+		<Overlay>
 			<S.Message>{welcomeMessage}</S.Message>
 			<FlexRow>
 				<Input
@@ -23,7 +26,7 @@ export default function WelcomeScreen({ onFinished }: Props) {
 					onChange={setNewProjectName}
 				/>
 			</FlexRow>
-		</S.WelcomeScreen>
+		</Overlay>
 	)
 }
 

@@ -1,5 +1,6 @@
 import { PrimaryButton } from '@/styles/commonStyledComponents'
 import * as S from './styles'
+import { getSaveProjectAsOverlay } from '../InputOverlay/overlays'
 
 
 interface Props {
@@ -9,8 +10,11 @@ interface Props {
 	handleCardRemoval: () => void
 	loadProject: () => void
 	saveProject: () => void
+	saveProjectAs: InputFunction
+	setOverlay: (overlay: OverlayData) => void
 	setView: (view: View) => void
 }
+
 
 export default function LeftMenu({
 	hasCards,
@@ -19,8 +23,11 @@ export default function LeftMenu({
 	handleCardRemoval,
 	loadProject,
 	saveProject,
+	saveProjectAs,
+	setOverlay,
 	setView,
 }: Props) {
+	const overlay = getSaveProjectAsOverlay(saveProjectAs)
 
 	return (
 		<S.LeftMenu>
@@ -47,6 +54,13 @@ export default function LeftMenu({
 
 			<PrimaryButton disabled={!projectNameExists} onClick={saveProject}>
 				Save project
+			</PrimaryButton>
+
+			<PrimaryButton
+				disabled={!projectNameExists}
+				onClick={() => setOverlay(getSaveProjectAsOverlay(saveProjectAs))}
+			>
+				Save project as
 			</PrimaryButton>
 
 			<PrimaryButton disabled={!projectNameExists} onClick={loadProject}>

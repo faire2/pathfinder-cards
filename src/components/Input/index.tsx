@@ -29,7 +29,12 @@ export default function Input({
 					onChange={(event) => onChange(event.target.value)}
 				/>
 				{buttonText && (
-					<S.InputButton onClick={onButtonClick}>{buttonText}</S.InputButton>
+					<S.InputButton
+						disabled={!value}
+						onClick={onButtonClick}
+					>
+						{buttonText}
+					</S.InputButton>
 				)}
 			</S.InputLine>
 		</S.InputGroup>

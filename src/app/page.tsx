@@ -8,6 +8,7 @@ import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import WelcomeScreen from '@/components/WelcomeScreen'
 import LeftMenu from '@/components/LeftMenu'
 import View from '@/views/MainView'
+import InputOverlay from '@/components/InputOverlay'
 import {
 	loadProject,
 	loadCurrentProjectName,
@@ -20,6 +21,7 @@ import * as S from '../styles/homePageStyles'
 
 export default function Home() {
 	const [view, setView] = useState<View>('importCard')
+	const [overlay, setOverlay] = useState<OverlayData | null>()
 	const [projectName, setCurrentProjectName] = useState<string>(
 		loadCurrentProjectName() ?? '',
 	)
@@ -36,6 +38,7 @@ export default function Home() {
 	const handleNewProjectName = (newProjectName: string) => {
 		saveCurrentProjectName(newProjectName)
 		setCurrentProjectName(newProjectName)
+		setOverlay(null)
 	}
 
 	const handleAddCard = (cardData: CardData) => {
@@ -55,6 +58,12 @@ export default function Home() {
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
 			{!projectName && <WelcomeScreen onFinished={handleNewProjectName} />}
+			{!!overlay && (
+				<InputOverlay
+					inputLabel={overlay.inputLabel}
+					onClick={overlay.onClick}
+				/>
+			)}
 			<S.ProjectName>{projectName}</S.ProjectName>
 			<S.Home>
 				<GlobalStyle />
@@ -64,6 +73,8 @@ export default function Home() {
 					handleCardRemoval={handleCardRemoval}
 					loadProject={() => loadProject(projectName)}
 					saveProject={() => saveProject(project)}
+					saveProjectAs={handleNewProjectName}
+					setOverlay={setOverlay}
 					setView={setView}
 				/>
 
