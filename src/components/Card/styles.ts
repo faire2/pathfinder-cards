@@ -25,6 +25,7 @@ export const Body = styled.div<StyledBodyProps>`
 	overflow: hidden;
 	// TODO not working?
 	//margin-bottom: ${(props) => props.width * 100}mm;
+	margin-top: 2%;
 `
 
 export const ElipsisHeadline = styled.h1`
@@ -37,6 +38,11 @@ export const ElipsisHeadline = styled.h1`
 
 export const CardName = styled(ElipsisHeadline)`
 	max-width: 75%;
+`
+
+export const ActionIcon = styled.img`
+	width: 15%;
+	height: 15%;
 `
 
 export const TypeLevel = styled(ElipsisHeadline)`

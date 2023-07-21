@@ -29,3 +29,10 @@ export const Overlay = styled.div`
 	justify-content: center;
 	align-items: center;
 `
+export const Paragraph = styled.div`
+	padding-bottom: 1%;
+`
+export const Hr = styled.hr`
+	width: 100%;
+	border-top: 2px;
+`
