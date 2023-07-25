@@ -15,7 +15,6 @@ export default function Overlay({
 	const [inputValue, setInputValue] = useState('')
 
 	const handleOnClick = (value: string): void => {
-		console.log(value)
 		onFinish(value)
 		hideOverlay()
 	}

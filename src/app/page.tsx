@@ -26,6 +26,7 @@ export default function Home() {
 	const [projectName, setCurrentProjectName] = useState<string>(
 		loadCurrentProjectNameFromLs() ?? '',
 	)
+	const [editingCard, setEditingCard] = useState(false)
 
 	const [project, setProject] = useState<Project>(
 		loadProjectFromLs(projectName) ?? {
@@ -73,23 +74,41 @@ export default function Home() {
 		const loadedProject = loadProjectFromLs(projectName)
 		if (projectName) {
 			setProject(loadedProject as Project)
-			setCurrentProjectName((loadedProject as Project).projectName)
+			handleNewProjectName((loadedProject as Project).projectName)
 		}
 	}
 
-	const handleAddCard = (cardData: CardData) => {
-		const newCards = [...project.cards, cardData]
+	const handleSaveCard = (cardData: CardData, cardIndex?: number) => {
+		const newCards = [...project.cards]
+		if (typeof cardIndex === 'number') {
+			newCards.splice(cardIndex, 1, cardData)
+		} else {
+			newCards.push(cardData)
+		}
 		setProject({ ...project, cards: newCards })
 		saveProjectToLs(project)
+		setEditingCard(false)
 	}
 
-	const handleCardRemoval = (): void => {
+	const handleCardRemoval = (removeIndex?: number): void => {
 		if (cards.length === 0) {
 			return
 		}
 
-		const newCards = cards.filter((_, index) => index !== cardIndex)
+		const indexToRemove = removeIndex || cardIndex
+		const newCards = cards.filter(
+			(_, index) => index !== indexToRemove
+		)
+
 		setProject({ ...project, cards: newCards })
+		saveProjectToLs({...project, cards: newCards})
+		setView('projectView')
+	}
+
+	const handleChangeViewToCardEdit = (cardIndex: number): void => {
+		setView('editCard')
+		setCardIndex(cardIndex)
+		setEditingCard(true)
 	}
 
 	return (
@@ -117,7 +136,15 @@ export default function Home() {
 					setView={setView}
 				/>
 
-				<View project={project} view={view} onAddCard={handleAddCard} />
+				<View
+					project={project}
+					view={view}
+					cardData={editingCard ? cards[cardIndex] : null}
+					cardIndex={editingCard ? cardIndex : null}
+					onSaveCard={handleSaveCard}
+					onCardRemoval={handleCardRemoval}
+					onChangeViewToCardEdit={handleChangeViewToCardEdit}
+				/>
 			</S.Home>
 		</CardDimensionsCtx.Provider>
 	)

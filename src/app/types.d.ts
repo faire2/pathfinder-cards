@@ -26,7 +26,7 @@ interface Project {
 	cards: CardData[]
 }
 
-type View = 'importCard' | 'createCard' | 'projectView'
+type View = 'editCard' | 'createCard' | 'projectView'
 type Overlay = 'inputData' | 'listChoice' | 'noOverlay'
 
 interface OverlayData {

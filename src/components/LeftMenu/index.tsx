@@ -36,7 +36,7 @@ export default function LeftMenu({
 
 			<PrimaryButton
 				disabled={!projectNameExists}
-				onClick={() => setView('importCard')}
+				onClick={() => setView('editCard')}
 			>
 				Import a new card
 			</PrimaryButton>

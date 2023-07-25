@@ -9,13 +9,23 @@ import Card from '../../components/Card'
 
 
 interface Props {
-	onCardImport: (newCard: CardData) => void
+	card: CardData | null
+	cardIndex: number | null
+	onSaveCard: (cardData: CardData, cardIndex: number | null) => void
+	onCardRemoval: (cardIndex?: number) => void
 }
 
-export default function CardImportView({ onCardImport }: Props) {
-	const [newCardData, setNewCardData] = useState<CardData>(emptyCard)
+export default function CardEditView({
+	card,
+	cardIndex,
+	onSaveCard,
+	onCardRemoval,
+}: Props) {
+	const [cardData, setCardData] = useState<CardData>(
+		card ? card :emptyCard
+	)
 
-	const jsonValue = JSON.stringify(newCardData)
+	const jsonValue = JSON.stringify(cardData)
 	const transformData = (stringifiedNewCard: string) => {
 		let transformedCard
 		try {
@@ -25,14 +35,14 @@ export default function CardImportView({ onCardImport }: Props) {
 		}
 
 		if (isCardData(transformedCard)) {
-			setNewCardData(transformedCard)
+			setCardData(transformedCard)
 		}
 	}
 
-	const handleOnImportClick = () => {
-		if (newCardData) {
-			onCardImport(newCardData)
-			setNewCardData(emptyCard)
+	const handleOnSaveClick = () => {
+		if (cardData) {
+			onSaveCard(cardData, typeof cardIndex === 'number' ? cardIndex : null)
+			setCardData(emptyCard)
 		}
 	}
 
@@ -46,13 +56,21 @@ export default function CardImportView({ onCardImport }: Props) {
 				/>
 			</ViewColumn>
 			<ViewColumn>
-				<CardEdit cardData={newCardData} onSaveCardData={setNewCardData} />
+				<CardEdit cardData={cardData} onSaveCardData={setCardData} />
 			</ViewColumn>
 			<ViewColumn>
-				<Card cardData={newCardData} />
-				<PrimaryButton disabled={!newCardData} onClick={handleOnImportClick}>
-					Import Card
+				<Card cardData={cardData} />
+				<PrimaryButton
+					disabled={!cardData}
+					onClick={handleOnSaveClick}
+				>
+					Save Card
 				</PrimaryButton>
+				{typeof cardIndex === 'number' &&
+					<PrimaryButton onClick={() => onCardRemoval(cardIndex)}>
+						Remove Card
+					</PrimaryButton>
+				}
 			</ViewColumn>
 		</S.CardImport>
 	)
