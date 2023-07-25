@@ -25,7 +25,7 @@ export default function renderCardBody(body: string, cardWidth: number) {
 					!isNaN(Number(words[index + 1]))
 				)
 			)
-			const icon = createActionIcon(word, index, cardWidth)
+			const icon = createActionIcon(word, cardWidth, index)
 			return icon ? (
 				icon
 			) : shouldBeEmphesized ? (

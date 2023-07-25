@@ -49,19 +49,25 @@ export const numericKeywords = [
 ]
 
 export const czechKeywords = [
-	'Dosah',
-	'Tradice',
-	'Trvání',
-	'Zvýšení',
 	'Cíle',
-	'Úspěch',
-	'Neúspěch',
+	'Dosah',
+	'Efekt',
 	'Kritický',
-	'úspěch',
+	'Kritický zásah',
 	'neúspěch',
+	'Neúspěch',
+	'Oblast',
+	'Seslání',
+	'Spuštění',
+	'Stav',
+	'Tradice',
+	'úspěch',
 	'Úspěch',
+	'Záchrana',
+	'Záchranný hod',
+	'Zvýšení',
 ]
 
 export const czechNumericKeywords = [
-	'Seslání'
+	'Trvání',
 ]
