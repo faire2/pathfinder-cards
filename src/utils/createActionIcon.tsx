@@ -34,6 +34,7 @@ export const createActionIcon = (
 			width={15}
 			height={15}
 			alt={actionIconData[2]}
+			key={index}
 		/>
 	)
 

@@ -1,7 +1,7 @@
-const projectPrefix = 'rpgCards_project_'
+export const projectPrefix = 'rpgCards_project_'
 const currentProjectNameKey = 'rpgCards_currentProject'
 
-export function saveProject(project: Project) {
+export function saveProjectToLs(project: Project) {
 	try {
 		const serializedData = JSON.stringify(project)
 		localStorage.setItem(projectPrefix + project.projectName, serializedData)
@@ -10,7 +10,7 @@ export function saveProject(project: Project) {
 	}
 }
 
-export function loadProject(projectName: string): Project | undefined {
+export function loadProjectFromLs(projectName: string): Project | undefined {
 	const storedCards = localStorage.getItem(projectPrefix + projectName)
 	if (storedCards) {
 		return JSON.parse(storedCards)
@@ -19,11 +19,11 @@ export function loadProject(projectName: string): Project | undefined {
 	console.error(`Cards could not have been loaded from local storage with ${projectName}.`)
 }
 
-export function loadCurrentProjectName(): string | null {
+export function loadCurrentProjectNameFromLs(): string | null {
 	return localStorage.getItem(currentProjectNameKey)
 }
 
-export function saveCurrentProjectName(currentProjectName: string): void {
+export function saveCurrentProjectNameToLs(currentProjectName: string): void {
 	try {
 		localStorage.setItem(currentProjectNameKey, currentProjectName)
 	} catch (error) {

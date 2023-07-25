@@ -8,26 +8,27 @@ import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import WelcomeScreen from '@/components/WelcomeScreen'
 import LeftMenu from '@/components/LeftMenu'
 import View from '@/views/MainView'
-import InputOverlay from '@/components/InputOverlay'
+import Overlay from '@/components/Overlay'
 import {
-	loadProject,
-	loadCurrentProjectName,
-	saveCurrentProjectName,
-	saveProject,
+	loadProjectFromLs,
+	loadCurrentProjectNameFromLs,
+	saveCurrentProjectNameToLs,
+	projectPrefix,
+	saveProjectToLs,
 } from '@/utils/localStorage'
 
 import * as S from '../styles/homePageStyles'
 
 
 export default function Home() {
-	const [view, setView] = useState<View>('importCard')
+	const [view, setView] = useState<View>('projectView')
 	const [overlay, setOverlay] = useState<OverlayData | null>()
 	const [projectName, setCurrentProjectName] = useState<string>(
-		loadCurrentProjectName() ?? '',
+		loadCurrentProjectNameFromLs() ?? '',
 	)
 
 	const [project, setProject] = useState<Project>(
-		loadProject(projectName) ?? {
+		loadProjectFromLs(projectName) ?? {
 			projectName: projectName,
 			cards: [],
 		},
@@ -35,18 +36,54 @@ export default function Home() {
 	const cards = project.cards ?? []
 	const [cardIndex, setCardIndex] = useState<number>(0)
 
+	const hideOverlay = (): void => setOverlay(null)
+
 	const handleNewProjectName = (newProjectName: string) => {
-		saveCurrentProjectName(newProjectName)
+		saveCurrentProjectNameToLs(newProjectName)
 		setCurrentProjectName(newProjectName)
-		setOverlay(null)
+	}
+
+	const saveProjectAs = ():void => {
+		setOverlay({
+			overlay: 'inputData',
+			label: 'Save project as',
+			data: '',
+			hideOverlay: hideOverlay,
+			onFinish: handleNewProjectName,
+		})
+	}
+
+	const handleLoadProject = (): void => {
+		const items = { ...localStorage }
+		const projects = Object.keys(items).filter(
+			(key) => key.slice(0, 17) === projectPrefix,
+		)
+		const projectNames = projects.map((project) => project.slice(17))
+
+		setOverlay({
+			overlay: 'listChoice',
+			label: 'Load Project',
+			data: projectNames,
+			hideOverlay: hideOverlay,
+			onFinish: loadProject,
+		})
+	}
+
+	const loadProject = (projectName: string): void => {
+		const loadedProject = loadProjectFromLs(projectName)
+		if (projectName) {
+			setProject(loadedProject as Project)
+			setCurrentProjectName((loadedProject as Project).projectName)
+		}
 	}
 
 	const handleAddCard = (cardData: CardData) => {
 		const newCards = [...project.cards, cardData]
 		setProject({ ...project, cards: newCards })
+		saveProjectToLs(project)
 	}
 
-	const handleCardRemoval = () => {
+	const handleCardRemoval = (): void => {
 		if (cards.length === 0) {
 			return
 		}
@@ -59,9 +96,12 @@ export default function Home() {
 		<CardDimensionsCtx.Provider value={standardFFG}>
 			{!projectName && <WelcomeScreen onFinished={handleNewProjectName} />}
 			{!!overlay && (
-				<InputOverlay
-					inputLabel={overlay.inputLabel}
-					onClick={overlay.onClick}
+				<Overlay
+					overlay={overlay.overlay}
+					label={overlay.label}
+					data={overlay.data}
+					hideOverlay={overlay.hideOverlay}
+					onFinish={overlay.onFinish}
 				/>
 			)}
 			<S.ProjectName>{projectName}</S.ProjectName>
@@ -71,10 +111,9 @@ export default function Home() {
 					hasCards={cards.length > 0}
 					projectNameExists={!!projectName}
 					handleCardRemoval={handleCardRemoval}
-					loadProject={() => loadProject(projectName)}
-					saveProject={() => saveProject(project)}
-					saveProjectAs={handleNewProjectName}
-					setOverlay={setOverlay}
+					loadProject={handleLoadProject}
+					saveProject={() => saveProjectToLs(project)}
+					saveProjectAs={saveProjectAs}
 					setView={setView}
 				/>
 

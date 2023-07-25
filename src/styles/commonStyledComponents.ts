@@ -20,7 +20,7 @@ export const ViewColumn = styled.div`
 	margin-right: 30px;
 `
 
-export const Overlay = styled.div`
+export const OverlayWrapper = styled.div`
 	width: 100vw;
 	height: 100vh;
 	position: absolute;
@@ -35,4 +35,10 @@ export const Paragraph = styled.div`
 export const Hr = styled.hr`
 	width: 100%;
 	border-top: 2px;
+`
+
+export const Label = styled.label`
+	color: #5d0000;
+	font-size: 90%;
+	font-weight: bold;
 `

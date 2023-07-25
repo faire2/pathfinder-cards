@@ -27,10 +27,24 @@ interface Project {
 }
 
 type View = 'importCard' | 'createCard' | 'projectView'
+type Overlay = 'inputData' | 'listChoice' | 'noOverlay'
 
 interface OverlayData {
+	overlay: Overlay
+	label: string
+	data: string | string[]
+	hideOverlay: () => void
+	onFinish: Function
+}
+
+interface OverlayInputData {
 	inputLabel: string
 	onClick: (value: string) => void
 }
 
 type InputFunction = (value: string) => void
+
+interface OverlayListChoiceData {
+	items: string[]
+	onClick: (value: any) => void
+}

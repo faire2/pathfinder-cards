@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
 import { emptyCard } from '@/data/emptyCard'
-import { PrimaryButton, ViewColumn } from '@/styles/commonStyledComponents'
+import { Label, PrimaryButton, ViewColumn } from '@/styles/commonStyledComponents'
 
 import * as S from './styles'
 import CardEdit from '../../components/CardEdit'
-import { Label } from '../../components/Input/styles'
 import Card from '../../components/Card'
 
 

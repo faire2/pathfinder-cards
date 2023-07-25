@@ -20,12 +20,6 @@ export const Input = styled.input`
 	width: 100%
 `
 
-export const Label = styled.label`
-	color: #5d0000;
-	font-size: 90%;
-	font-weight: bold;
-`
-
 export const InputButton = styled(PrimaryButton)`
 	margin: 0 10px;
 	padding: 5px;

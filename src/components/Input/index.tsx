@@ -1,7 +1,8 @@
+import { Label } from '@/styles/commonStyledComponents'
 import * as S from './styles'
 
 interface Props {
-	label: string
+	label?: string
 	value: string
 	inputId?: string
 	buttonText?: string
@@ -21,7 +22,7 @@ export default function Input({
 
 	return (
 		<S.InputGroup>
-			<S.Label htmlFor={finalId}>{label}</S.Label>
+			{label && <Label htmlFor={finalId}>{label}</Label>}
 			<S.InputLine>
 				<S.Input
 					id={finalId}
