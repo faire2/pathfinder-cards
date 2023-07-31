@@ -1,42 +1,35 @@
 import { ReactElement } from 'react'
-import Image from 'next/image'
+import { ActionIcon } from '@/components/Card/styles'
 
 
 export const actionIcons: Record<string, string[]> = {
 	'(a)': ['/a1.png', 'one action'],
 	'(aa)': ['/a2.png', 'two actions'],
 	'(aaa)': ['/a3.png', 'three actions'],
+	'(r)': ['/reaction.png', 'variable actions'],
+	'(na)': ['/no_action.png', 'noaction'],
+
 }
 
 export const createActionIcon = (
 	word: string,
-	cardWidth: number = 63.5,
+	height: number,
 	index?: number,
 ): ReactElement | undefined => {
 	const actionIconData = actionIcons[word]
 
 	if (!actionIconData) {
+		console.log('no data')
 		return undefined
 	}
 
-	const actionIcon = index ? (
-		<span key={index}>
-			<Image
-				src={actionIconData[0]}
-				width={cardWidth / 6}
-				height={cardWidth / 6}
-				alt={actionIconData[2]}
-			/>{' '}
-		</span>
-	) : (
-		<Image
+	const actionIcon =
+		<ActionIcon
 			src={actionIconData[0]}
-			width={15}
-			height={15}
 			alt={actionIconData[2]}
+			height={height}
 			key={index}
 		/>
-	)
 
 	return actionIcon
 }

@@ -2,7 +2,7 @@ import { czechKeywords, czechNumericKeywords, keywords, numericKeywords } from '
 import { Hr, Paragraph } from '@/styles/commonStyledComponents'
 import { actionIcons, createActionIcon } from './createActionIcon'
 
-export default function renderCardBody(body: string, cardWidth: number) {
+export default function renderEnrichedText(text: string, cardWidth?: number) {
 	const emphasizeWords = (paragraph: string) => {
 		const words = paragraph.split(' ')
 		const actionIndex = words.findIndex((word) =>
@@ -25,7 +25,7 @@ export default function renderCardBody(body: string, cardWidth: number) {
 					!isNaN(Number(words[index + 1]))
 				)
 			)
-			const icon = createActionIcon(word, cardWidth, index)
+			const icon = createActionIcon(word, 10, index)
 			return icon ? (
 				icon
 			) : shouldBeEmphesized ? (
@@ -38,7 +38,7 @@ export default function renderCardBody(body: string, cardWidth: number) {
 
 
 	const createParagrahps = () => {
-		const paragraphs = body.split('\n')
+		const paragraphs = text.split('\n')
 
 		return paragraphs.map((paragraph, index) => {
 			return paragraph === '-' && index < paragraphs.length ? (

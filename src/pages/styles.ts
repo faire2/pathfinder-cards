@@ -5,7 +5,12 @@ export const PrintPage = styled.div`
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 
-	@media print {
+	background-color: red;
 
+	> div {
+		background-color: red;
+	}
+
+	@media print {
 	}
 `
