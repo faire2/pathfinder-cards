@@ -12,6 +12,10 @@ export const Card = styled.div<CardDimensions>`
 	padding: ${(props) => props.width / 30}mm;
 	font-size: ${(props) => props.width / 25}mm;
 	margin: 10px;
+
+	@media print {
+		margin: 1px;
+	}
 `
 
 export const Body = styled.div<StyledBodyProps>`
@@ -37,12 +41,21 @@ export const ElipsisHeadline = styled.h1`
 `
 
 export const CardName = styled(ElipsisHeadline)`
+	display: flex;
 	max-width: 75%;
+	> div > img {
+		height: 12px;
+		margin-bottom: 0px;
+	}
+
+	> div {
+		margin-left: 5px;
+	}
 `
 
 export const ActionIcon = styled.img`
-	width: 15%;
-	height: 15%;
+	height: ${props => props.height}; // TODO change to relative size corresponding to font-size
+	margin-bottom: -2px;
 `
 
 export const TypeLevel = styled(ElipsisHeadline)`
