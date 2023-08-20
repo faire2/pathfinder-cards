@@ -19,7 +19,6 @@ export const createActionIcon = (
 	const actionIconData = actionIcons[word]
 
 	if (!actionIconData) {
-		console.log('no data')
 		return undefined
 	}
 

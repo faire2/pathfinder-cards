@@ -101,7 +101,7 @@ export default function Home() {
 		)
 
 		setProject({ ...project, cards: newCards })
-		saveProjectToLs({...project, cards: newCards})
+		saveProjectToLs({ ...project, cards: newCards })
 		setView('projectView')
 	}
 
