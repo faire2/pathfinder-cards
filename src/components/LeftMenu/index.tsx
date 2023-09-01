@@ -1,74 +1,46 @@
-import { PrimaryButton } from '@/styles/commonStyledComponents'
+import { PrimaryButton, PrimaryLink } from '@/styles/commonStyledComponents'
+import { Pages } from '@/enums/pages'
+import { useProjectActions, useProjectName } from '@/stores/projectStore'
+import { useOverlayActions } from '@/stores/overlayStore'
+
 import * as S from './styles'
 
 
-interface Props {
-	hasCards: boolean
-	projectNameExists: boolean
+export default function LeftMenu() {
+	const projectNameExists = !!useProjectName()
 
-	handleCardRemoval: () => void
-	loadProject: () => void
-	saveProject: () => void
-	saveProjectAs: () => void
-	setView: (view: View) => void
-}
-
-
-export default function LeftMenu({
-	hasCards,
-	projectNameExists,
-
-	handleCardRemoval,
-	loadProject,
-	saveProject,
-	saveProjectAs,
-	setView,
-}: Props) {
+	const { saveProject } = useProjectActions()
+	const { showLoadProjectOverlay, showSaveProjectAsOverlay } = useOverlayActions()
 
 	return (
 		<S.LeftMenu>
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={() => setView('createCard')}
-			>
-				Create a new card
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryLink href={Pages.home}>Display project</PrimaryLink>
+			)}
 
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={() => setView('editCard')}
-			>
-				Import a new card
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
+			)}
 
-			<PrimaryButton
-				disabled={!projectNameExists || !hasCards}
-				onClick={handleCardRemoval}
-			>
-				Remove current card
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
+			)}
 
-			<PrimaryButton disabled={!projectNameExists} onClick={saveProject}>
-				Save project
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryButton onClick={saveProject}>Save project</PrimaryButton>
+			)}
 
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={saveProjectAs}
-			>
-				Save project as
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryButton onClick={() => showSaveProjectAsOverlay()}>
+					Save project as
+				</PrimaryButton>
+			)}
 
-			<PrimaryButton disabled={!projectNameExists} onClick={loadProject}>
-				Load project
-			</PrimaryButton>
-
-			<PrimaryButton
-				disabled={!projectNameExists}
-				onClick={() => setView('projectView')}
-			>
-				Display project
-			</PrimaryButton>
+			{projectNameExists && (
+				<PrimaryButton onClick={() => showLoadProjectOverlay()}>
+					Load project
+				</PrimaryButton>
+			)}
 		</S.LeftMenu>
 	)
 }

@@ -1,3 +1,8 @@
+interface Project {
+	projectName: string
+	cards: CardData[]
+}
+
 interface CardData {
 	id: string
 	name: string
@@ -21,20 +26,13 @@ interface CardDimensions {
 	height: number
 }
 
-interface Project {
-	projectName: string
-	cards: CardData[]
-}
-
-type View = 'editCard' | 'createCard' | 'projectView'
-type Overlay = 'inputData' | 'listChoice' | 'noOverlay'
+type OverlayType = 'input' | 'listChoice'
 
 interface OverlayData {
-	overlay: Overlay
-	label: string
-	data: string | string[]
-	hideOverlay: () => void
-	onFinish: Function
+	label: string | null
+	data: string | string[] | null
+	overlayType: OverlayType | null
+	onFinish: Function | null
 }
 
 interface OverlayInputData {

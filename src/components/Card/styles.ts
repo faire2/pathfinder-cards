@@ -12,6 +12,7 @@ export const Card = styled.div<CardDimensions>`
 	padding: ${(props) => props.width / 30}mm;
 	font-size: ${(props) => props.width / 25}mm;
 	margin: 10px;
+	border: 1px solid #e1e1e1;
 
 	@media print {
 		margin: 1px;

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import * as S from './styles'
-import Input from '../Input'
+import Input from '../../Input'
 
 
 interface Props {
@@ -8,7 +8,8 @@ interface Props {
 	onSaveCardData: (cardData: CardData) => void
 }
 
-export default function CardEdit({ cardData, onSaveCardData }: Props) {
+
+export default function CardEditFields({ cardData, onSaveCardData }: Props) {
 	const handleNameChange = (value: string) => {
 		cardData && onSaveCardData({ ...cardData, name: value })
 	}

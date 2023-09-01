@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { traitStyle } from './commonStyles'
+import Link from 'next/link'
 
 
 export const PrimaryButton = styled.button`
@@ -13,7 +14,18 @@ export const PrimaryButton = styled.button`
 	}
 `
 
-export const ViewColumn = styled.div`
+export const PrimaryLink = styled(Link)`
+	${traitStyle}
+	padding: 5px;
+	margin: 10px;
+	cursor: pointer;
+
+	&:disabled {
+		background-color: #bda0a0;
+	}
+`
+
+export const PageColumn = styled.div`
 	display: flex;
 	flex-flow: column;
 	justify-content: center;

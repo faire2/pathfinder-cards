@@ -1,15 +1,12 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 
-export const CardEdit = styled.div`
+export const CardImport = styled.div`
 	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	width: 300px;
+	align-items: start;
 `
 
-export const TextArea = styled.textarea`
-	width: 99%;
-	margin-top: 10px;
-	height: 400px;
+export const CardImportTextArea = styled.textarea`
+	min-width: 300px;
+	min-height: 665px;
 `
