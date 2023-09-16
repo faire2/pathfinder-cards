@@ -3,13 +3,11 @@
 import { useRouter } from 'next/navigation'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
-import WelcomeScreen from '@/components/WelcomeScreen'
 import {
 	useCards,
 	useProjectActions,
 	useProjectName,
 } from '@/stores/projectStore'
-import { useShowOverlay } from '@/stores/overlayStore'
 import Card from '@/components/Card'
 import { Pages } from '@/enums/pages'
 
@@ -24,7 +22,6 @@ export default function Home() {
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
 			<S.Home>
 				{cards.map((card, index) => (
 					<S.CardWrapper onClick={() => router.push(`${Pages.editCard}/${index}`)} key={index}>

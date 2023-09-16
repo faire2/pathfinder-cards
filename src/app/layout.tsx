@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useProjectActions, useProjectName } from '@/stores/projectStore'
 import Overlay from '@/components/Overlay'
 import { useShowOverlay } from '@/stores/overlayStore'
+import WelcomeScreen from '@/components/WelcomeScreen'
 
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 
 export default function RootLayout({ children }: Props) {
 	const [hasInitializedStore, setHasInitializedStore] = useState(false)
-	const { loadCurrentProject } = useProjectActions()
+	const { loadCurrentProject, saveProjectAs } = useProjectActions()
 	const projectName = useProjectName()
 	const showOverlay = useShowOverlay()
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Props) {
 			<body>
 				<StyledComponentsRegistry>
 					<S.ProjectName>{projectName}</S.ProjectName>
+					{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
 					{!!showOverlay && <Overlay />}
 					<S.MenuWrapper>
 						<LeftMenu />
