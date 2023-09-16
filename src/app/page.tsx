@@ -25,7 +25,6 @@ export default function Home() {
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
 			{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
-			<S.ProjectName>{projectName}</S.ProjectName>
 			<S.Home>
 				{cards.map((card, index) => (
 					<S.CardWrapper onClick={() => router.push(`${Pages.editCard}/${index}`)} key={index}>

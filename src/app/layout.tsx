@@ -6,7 +6,7 @@ import LeftMenu from '@/components/LeftMenu'
 import * as S from './styles'
 import '../styles/fonts.css'
 import { useEffect, useState } from 'react'
-import { useProjectActions } from '@/stores/projectStore'
+import { useProjectActions, useProjectName } from '@/stores/projectStore'
 import Overlay from '@/components/Overlay'
 import { useShowOverlay } from '@/stores/overlayStore'
 
@@ -19,6 +19,7 @@ interface Props {
 export default function RootLayout({ children }: Props) {
 	const [hasInitializedStore, setHasInitializedStore] = useState(false)
 	const { loadCurrentProject } = useProjectActions()
+	const projectName = useProjectName()
 	const showOverlay = useShowOverlay()
 
 	/* Page is initially rendered on the server, where local storage is not
@@ -37,8 +38,9 @@ export default function RootLayout({ children }: Props) {
 		<html lang="en">
 			<body>
 				<StyledComponentsRegistry>
+					<S.ProjectName>{projectName}</S.ProjectName>
+					{!!showOverlay && <Overlay />}
 					<S.MenuWrapper>
-						{!!showOverlay && <Overlay />}
 						<LeftMenu />
 						<div>{children}</div>
 					</S.MenuWrapper>

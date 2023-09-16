@@ -6,6 +6,6 @@ export const LeftMenu = styled.div`
 	${doNotPrint}
 	display: flex;
 	flex-flow: column;
-	margin: 80px 10px;
+	margin: 10px;
 	width: 170px;
 `
