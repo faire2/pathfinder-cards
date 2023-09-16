@@ -19,6 +19,7 @@ export const PrimaryLink = styled(Link)`
 	padding: 5px;
 	margin: 10px;
 	cursor: pointer;
+	text-decoration: none;
 
 	&:disabled {
 		background-color: #bda0a0;
