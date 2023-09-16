@@ -35,6 +35,7 @@ export const ProjectName = styled.h1`
 `
 
 export const CardWrapper = styled.div`
+	cursor: pointer;
 	transition: all 1s;
 
 	&:hover {
