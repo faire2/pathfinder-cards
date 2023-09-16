@@ -1,4 +1,4 @@
-import { doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
+import { Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
 import { styled } from 'styled-components'
 
 export const PrintPage = styled.div`
@@ -30,7 +30,7 @@ export const ProjectName = styled.h1`
 	${fontGoodRegular}
 	text-align: center;
 	font-weight: bold;
-	color: #5d0000;
+	color: ${Colors.DarkRed};
 	letter-spacing: 1px;
 `
 

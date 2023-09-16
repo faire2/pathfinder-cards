@@ -1,5 +1,14 @@
 import { createGlobalStyle, css, styled } from 'styled-components'
 
+
+/* COLORS */
+export const Colors = {
+	DarkRed: '#5d0000',
+	DarkRedDisabled: '#bda0a0',
+} as const
+
+
+/* COMPONENTS */
 export const FlexRow = styled.div`
 	display: flex;
 `
@@ -43,6 +52,6 @@ export const traitStyle = css`
 	color: #fff;
 	text-shadow: 0 0 0 #fff;
 	text-align: center;
-	background: #5d0000;
+	background: ${Colors.DarkRed};
 	border: 2px solid #d8c384;
 `

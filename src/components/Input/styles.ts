@@ -1,4 +1,5 @@
 import { PrimaryButton } from '@/styles/commonStyledComponents'
+import { Colors } from '@/styles/commonStyles'
 import styled from 'styled-components'
 
 
@@ -15,7 +16,7 @@ export const InputLine = styled.div`
 `
 
 export const Input = styled.input`
-	border: 1px solid #5d0000;
+	border: 1px solid ${Colors.DarkRed};
 	padding: 5px;
 	width: 100%
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { traitStyle } from './commonStyles'
+import { Colors, traitStyle } from './commonStyles'
 import Link from 'next/link'
 
 
@@ -10,7 +10,7 @@ export const PrimaryButton = styled.button`
 	cursor: pointer;
 
 	&:disabled {
-		background-color: #bda0a0;
+		background-color: ${Colors.DarkRedDisabled};
 	}
 `
 
@@ -22,7 +22,7 @@ export const PrimaryLink = styled(Link)`
 	text-decoration: none;
 
 	&:disabled {
-		background-color: #bda0a0;
+		background-color: ${Colors.DarkRedDisabled};
 	}
 `
 
@@ -51,7 +51,7 @@ export const Hr = styled.hr`
 `
 
 export const Label = styled.label`
-	color: #5d0000;
+	color: ${Colors.DarkRed};
 	font-size: 90%;
 	font-weight: bold;
 `

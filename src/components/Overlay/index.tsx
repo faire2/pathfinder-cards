@@ -24,7 +24,10 @@ export default function Overlay() {
 	return (
 		<OverlayWrapper>
 			<S.InputWrapper>
-				{label && <Label>{label}</Label>}
+				<S.Header>
+					{label && <Label>{label}</Label>}
+					<S.CancelButton onClick={hideOverlay} />
+				</S.Header>
 				{overlayType === 'input' ? (
 					<Input
 						value={inputValue}
