@@ -55,8 +55,8 @@ export const CardName = styled(ElipsisHeadline)`
 `
 
 export const ActionIcon = styled.img`
-	height: ${props => props.height}; // TODO change to relative size corresponding to font-size
-	margin-bottom: -2px;
+	height: ${props => props.height}px; // TODO change to relative size corresponding to font-size
+	margin: 0 2px -2px 0;
 `
 
 export const TypeLevel = styled(ElipsisHeadline)`
