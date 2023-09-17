@@ -6,4 +6,5 @@ export const emptyCard: CardData = {
 	traits: '',
 	actions: '',
 	body: '',
+	numberToPrint: 1,
 }

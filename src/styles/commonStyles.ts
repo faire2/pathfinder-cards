@@ -13,6 +13,11 @@ export const FlexRow = styled.div`
 	display: flex;
 `
 
+export const FlexColumn = styled.div`
+	display: flex;
+	flex-flow: column;
+`
+
 export const doNotPrint = css`
 	@media print {
 		display: none;

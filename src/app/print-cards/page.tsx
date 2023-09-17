@@ -4,23 +4,25 @@ import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 import { useCards } from '@/stores/projectStore'
 import Card from '@/components/Card'
-import { CardControlWrapper } from '@/components/CardControlsWrapper'
 
 import * as S from './styles'
 
-
 export default function Home() {
-	const cards = useCards()
+	const cardsToPrint = useCards().reduce<CardData[]>((collection, card) => {
+		for (let i = 0; i < card.numberToPrint; i++) {
+			collection.push(card)
+		}
+
+		return collection
+	}, [])
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			<S.Project>
-				{cards.map((card, index) => (
-					<CardControlWrapper cardIndex={index} key={index}>
-						<Card cardData={card} />
-					</CardControlWrapper>
+			<S.PrintView>
+				{cardsToPrint.map((card, index) => (
+					<Card cardData={card} key={index} />
 				))}
-			</S.Project>
+			</S.PrintView>
 		</CardDimensionsCtx.Provider>
 	)
 }

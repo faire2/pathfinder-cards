@@ -8,7 +8,7 @@ import {
 } from '@/styles/commonStyledComponents'
 import { emptyCard } from '@/data/emptyCard'
 import { useProjectActions } from '@/stores/projectStore'
-import { isCardData } from '@/utils/cartUtils'
+import { isCardData } from '@/utils/cardUtils'
 
 import * as S from './styles'
 import Card from '../Card'

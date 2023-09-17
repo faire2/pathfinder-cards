@@ -26,6 +26,16 @@ export const PrimaryLink = styled(Link)`
 	}
 `
 
+export const PrimaryButtonRound = styled(PrimaryButton)`
+	height: 25px;
+	width: 25px;
+	border-radius: 12.5px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
 export const PageColumn = styled.div`
 	display: flex;
 	flex-flow: column;

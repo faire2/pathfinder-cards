@@ -14,6 +14,7 @@ interface CardData {
 	tags?: string[]
 	plain?: number
 	meta?: Meta
+	numberToPrint: number
 }
 
 interface Meta {

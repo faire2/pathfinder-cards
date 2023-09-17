@@ -15,7 +15,7 @@ export default function LeftMenu() {
 	return (
 		<S.LeftMenu>
 			{projectNameExists && (
-				<PrimaryLink href={Pages.home}>Display project</PrimaryLink>
+				<PrimaryLink href={Pages.home}>Project</PrimaryLink>
 			)}
 
 			{projectNameExists && (
@@ -24,6 +24,10 @@ export default function LeftMenu() {
 
 			{projectNameExists && (
 				<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
+			)}
+
+			{projectNameExists && (
+				<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
 			)}
 
 			{projectNameExists && (

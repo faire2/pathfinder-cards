@@ -18,6 +18,8 @@ interface ProjectActions {
 	saveCardByIndex: (card: CardData, cardIndex: number) => void
 	saveProject: () => void
 	saveProjectAs: (newName: string) => void
+	increaseNumberToPrint: (cardIndex: number, number: number) => void
+	decreaseNumberToPrint: (cardIndex: number, number: number) => void
 	removeCardByIndex: (cardIndex: number) => void
 }
 
@@ -84,6 +86,28 @@ const useProjectStore = create<ProjectStore>((set, get) => ({
 			}))
 		},
 
+		increaseNumberToPrint: (cardIndex: number, targetNumber: number) => {
+			const { cards, projectName } = get()
+			const newCards = [...cards]
+			newCards[cardIndex].numberToPrint = targetNumber
+			saveProjectToLs(projectName, newCards)
+			set((state) => ({
+				...state,
+				cards: newCards,
+			}))
+		},
+
+		decreaseNumberToPrint: (cardIndex: number, targetNumber: number) => {
+			const { cards, projectName } = get()
+			const newCards = [...cards]
+			newCards[cardIndex].numberToPrint = targetNumber
+			saveProjectToLs(projectName, newCards)
+			set((state) => ({
+				...state,
+				cards: newCards,
+			}))
+		},
+
 		removeCardByIndex: (cardIndex: number) =>
 			set((state) => {
 				const newState = {
@@ -103,6 +127,9 @@ const useProjectStore = create<ProjectStore>((set, get) => ({
 export const useCards = () => useProjectStore((state) => state.cards)
 export const useProjectName = () =>
 	useProjectStore((state) => state.projectName)
+export const useNumberToPrint = (cardIndex: number) => useProjectStore(
+	(state) => state.cards[cardIndex].numberToPrint
+)
 
 export const useProjectActions = () => useProjectStore((state) => state.actions)
 export const saveProjectAsAction =
