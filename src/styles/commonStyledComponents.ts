@@ -9,6 +9,7 @@ const primaryStyle = css`
 	margin: 10px;
 	cursor: pointer;
 	transition: all 0.3s;
+	text-decoration: none;
 
 	&:disabled {
 		background-color: ${Colors.DarkRedDisabled};
