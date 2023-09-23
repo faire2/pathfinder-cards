@@ -1,29 +1,30 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Colors, traitStyle } from './commonStyles'
 import Link from 'next/link'
 
 
-export const PrimaryButton = styled.button`
+const primaryStyle = css`
 	${traitStyle}
 	padding: 5px;
 	margin: 10px;
 	cursor: pointer;
+	transition: all 0.3s;
 
 	&:disabled {
 		background-color: ${Colors.DarkRedDisabled};
+	}
+
+	&:hover {
+		opacity: 0.7;
 	}
 `
 
-export const PrimaryLink = styled(Link)`
-	${traitStyle}
-	padding: 5px;
-	margin: 10px;
-	cursor: pointer;
-	text-decoration: none;
+export const PrimaryButton = styled.button`
+	${primaryStyle}
+`
 
-	&:disabled {
-		background-color: ${Colors.DarkRedDisabled};
-	}
+export const PrimaryLink = styled(Link)`
+	${primaryStyle}
 `
 
 export const PrimaryButtonRound = styled(PrimaryButton)`
