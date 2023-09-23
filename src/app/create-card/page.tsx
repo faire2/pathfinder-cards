@@ -9,10 +9,14 @@ import { useProjectActions } from '@/stores/projectStore'
 
 import * as S from './styles'
 
-
 export default function CreateCard() {
 	const [cardData, setCardData] = useState<CardData>(emptyCard)
 	const { addCard } = useProjectActions()
+
+	const handleAddCard = () => {
+		addCard(cardData)
+		setCardData(emptyCard)
+	}
 
 	return (
 		<S.CreateCardView>
@@ -21,9 +25,7 @@ export default function CreateCard() {
 			</PageColumn>
 			<PageColumn>
 				<Card cardData={cardData} />
-				<PrimaryButton onClick={() => addCard(cardData)}>
-					Save card
-				</PrimaryButton>
+				<PrimaryButton onClick={handleAddCard}>Add a new card</PrimaryButton>
 			</PageColumn>
 		</S.CreateCardView>
 	)
