@@ -3,8 +3,6 @@ import { Pages } from '@/enums/pages'
 import { useProjectActions, useProjectName } from '@/stores/projectStore'
 import { useOverlayActions } from '@/stores/overlayStore'
 
-import * as S from './styles'
-
 
 export default function LeftMenu() {
 	const projectNameExists = !!useProjectName()
@@ -13,7 +11,7 @@ export default function LeftMenu() {
 	const { showLoadProjectOverlay, showSaveProjectAsOverlay } = useOverlayActions()
 
 	return (
-		<S.LeftMenu>
+		<>
 			{projectNameExists && (
 				<PrimaryLink href={Pages.home}>Project</PrimaryLink>
 			)}
@@ -45,6 +43,6 @@ export default function LeftMenu() {
 					Load project
 				</PrimaryButton>
 			)}
-		</S.LeftMenu>
+		</>
 	)
 }

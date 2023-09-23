@@ -43,8 +43,12 @@ export default function RootLayout({ children }: Props) {
 					{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
 					{!!showOverlay && <Overlay />}
 					<S.MenuWrapper>
-						<LeftMenu />
-						<div>{children}</div>
+						<S.LeftMenuWrapper>
+							<LeftMenu />
+						</S.LeftMenuWrapper>
+						<S.ViewWrapper>
+							<div>{children}</div>
+						</S.ViewWrapper>
 					</S.MenuWrapper>
 				</StyledComponentsRegistry>
 			</body>
