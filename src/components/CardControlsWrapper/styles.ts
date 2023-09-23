@@ -14,6 +14,7 @@ export const CardWrapper = styled.div<DisabledCard>`
 
 	&:hover {
 		transform: scale(120%);
+		opacity: 1;
 	}
 `
 
