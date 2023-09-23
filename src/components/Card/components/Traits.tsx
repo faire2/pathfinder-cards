@@ -9,7 +9,7 @@ export default function Traits() {
 		.split(',')
 		.map((trait, index) => <Trait trait={trait} key={index} />)
 
-	return <S.Traits>{styledTraits}</S.Traits>
+	return <S.Traits>{traits ? styledTraits : null}</S.Traits>
 }
 
 
