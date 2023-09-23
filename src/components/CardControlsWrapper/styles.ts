@@ -21,7 +21,7 @@ export const CardWrapper = styled.div<DisabledCard>`
 export const ButtonsRow = styled.div`
 	${doNotPrint}
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	margin: -15px 0 10px 0;
 `

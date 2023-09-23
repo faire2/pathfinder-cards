@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Label, OverlayWrapper } from '@/styles/commonStyledComponents'
+import { CancelButton, Label, OverlayWrapper } from '@/styles/commonStyledComponents'
 
 import Input from '../Input'
 import * as S from './styles'
@@ -26,7 +26,7 @@ export default function Overlay() {
 			<S.InputWrapper>
 				<S.Header>
 					{label && <Label>{label}</Label>}
-					<S.CancelButton onClick={hideOverlay} />
+					<CancelButton onClick={hideOverlay} />
 				</S.Header>
 				{overlayType === 'input' ? (
 					<Input

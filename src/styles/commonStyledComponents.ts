@@ -67,3 +67,27 @@ export const Label = styled.label`
 	font-size: 90%;
 	font-weight: bold;
 `
+
+export const CancelButton = styled.div`
+	color: ${Colors.DarkRed};
+	width: 20px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	&::before {
+		content: '×';
+	}
+`
+
+export const FlexRow = styled.div`
+	display: flex;
+	align-items: center;
+`
+
+export const FlexColumn = styled.div`
+	display: flex;
+	flex-flow: column;
+`

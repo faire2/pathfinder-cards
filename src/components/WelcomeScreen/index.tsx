@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { FlexRow } from '@/styles/commonStyles'
-import { OverlayWrapper } from '@/styles/commonStyledComponents'
+import { FlexRow, OverlayWrapper } from '@/styles/commonStyledComponents'
 
 import Input from '../Input'
 import * as S from './styles'
