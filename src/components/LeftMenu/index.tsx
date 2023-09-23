@@ -25,10 +25,6 @@ export default function LeftMenu() {
 			)}
 
 			{projectNameExists && (
-				<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
-			)}
-
-			{projectNameExists && (
 				<PrimaryButton onClick={saveProject}>Save project</PrimaryButton>
 			)}
 
@@ -42,6 +38,10 @@ export default function LeftMenu() {
 				<PrimaryButton onClick={() => showLoadProjectOverlay()}>
 					Load project
 				</PrimaryButton>
+			)}
+
+			{projectNameExists && (
+				<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
 			)}
 		</>
 	)
