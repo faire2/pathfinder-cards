@@ -10,6 +10,7 @@ export const CardWrapper = styled.div<DisabledCard>`
 	cursor: pointer;
 	transition: all 1s;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+	transform-origin: center bottom;
 
 	&:hover {
 		transform: scale(120%);
