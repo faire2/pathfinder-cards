@@ -18,7 +18,7 @@ interface Props {
 
 export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 	const router = useRouter()
-	const { increaseNumberToPrint, decreaseNumberToPrint, removeCardByIndex } =
+	const { changeNumberToPrint, removeCardByIndex } =
 		useProjectActions()
 	const numberToPrint = useNumberToPrint(cardIndex)
 
@@ -27,7 +27,7 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 		is the case here, let's follow user's most likely intent and increase
 		the number of prints to 1. */
 		const finalNumber = isNumber(numberToPrint) ? numberToPrint + 1 : 1
-		increaseNumberToPrint(cardIndex, finalNumber)
+		changeNumberToPrint(cardIndex, finalNumber)
 	}
 
 	const handleDecreaseNumber = () => {
@@ -38,7 +38,7 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 			: numberToPrint > 0
 				? numberToPrint - 1
 				: 0
-		decreaseNumberToPrint(cardIndex, finalNumber)
+		changeNumberToPrint(cardIndex, finalNumber)
 	}
 
 	return (

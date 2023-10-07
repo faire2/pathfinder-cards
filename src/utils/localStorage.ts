@@ -1,16 +1,11 @@
 export const projectPrefix = 'rpgCards_project_'
 const currentProjectNameKey = 'rpgCards_currentProject'
 
-export function saveProjectToLs(projectName: string, cards: CardData[]): void {
-	const project: Project = {
-		projectName: projectName,
-		cards: cards,
-	}
-
+export function saveProjectToLs(project: Project): void {
 	try {
 		const serializedData = JSON.stringify(project)
-		localStorage.setItem(projectPrefix + projectName, serializedData)
-		saveCurrentProjectNameToLs(projectName)
+		localStorage.setItem(projectPrefix + project.projectName, serializedData)
+		saveCurrentProjectNameToLs(project.projectName)
 	} catch (error) {
 		console.error('Error saving cards to local storage:', error)
 	}

@@ -11,11 +11,9 @@ import Overlay from '@/components/Overlay'
 import { useShowOverlay } from '@/stores/overlayStore'
 import WelcomeScreen from '@/components/WelcomeScreen'
 
-
 interface Props {
 	children: React.ReactNode
 }
-
 
 export default function RootLayout({ children }: Props) {
 	const [hasInitializedStore, setHasInitializedStore] = useState(false)
@@ -29,7 +27,11 @@ export default function RootLayout({ children }: Props) {
 	https://stackoverflow.com/questions/73853069/solve-referenceerror-localstorage-is-not-defined-in-next-js
 	 */
 	useEffect(() => {
-		if (!hasInitializedStore && typeof window !== 'undefined') {
+		if (
+			!hasInitializedStore &&
+			typeof window !== 'undefined' &&
+			!!loadCurrentProject
+		) {
 			loadCurrentProject()
 			setHasInitializedStore(true)
 		}

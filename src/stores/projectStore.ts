@@ -6,8 +6,9 @@ import {
 } from '../utils/localStorage'
 
 
-interface ProjectStore extends Project {
+interface ProjectStore {
 	actions: ProjectActions
+	project: Project
 }
 
 interface ProjectActions {
@@ -18,10 +19,10 @@ interface ProjectActions {
 	saveCardByIndex: (card: CardData, cardIndex: number) => void
 	saveProject: () => void
 	saveProjectAs: (newName: string) => void
-	increaseNumberToPrint: (cardIndex: number, number: number) => void
-	decreaseNumberToPrint: (cardIndex: number, number: number) => void
+	changeNumberToPrint: (cardIndex: number, number: number) => void
 	removeCardByIndex: (cardIndex: number) => void
 }
+
 
 const getInitialProject = (): Project => {
 	return {
@@ -31,104 +32,94 @@ const getInitialProject = (): Project => {
 }
 
 const useProjectStore = create<ProjectStore>((set, get) => ({
-	...getInitialProject(),
+	project: getInitialProject(),
 
 	actions: {
 		addCard: (card: CardData) =>
 			set((state) => {
-				const newState = {
-					...state,
-					cards: [...state.cards, card],
+				const updatedProject = {
+					...state.project,
+					cards: [...state.project.cards, card],
 				}
-				saveProjectToLs(newState.projectName, newState.cards)
+				saveProjectToLs(updatedProject)
 
-				return newState
+				return { ...state, project: updatedProject }
 			}),
 
-		getCardByIndex: (cardIndex: number) => get().cards?.[cardIndex],
+		getCardByIndex: (cardIndex: number) => get().project.cards?.[cardIndex],
 
 		loadCurrentProject: () =>
-			set(() => {
+			set((state) => {
 				const currentProject = loadCurrentProjectFromLs()
-				return currentProject || getInitialProject()
+				return { ...state, project: currentProject || getInitialProject() }
 			}),
 
 		loadProject: (projectName: string) =>
-			set(() => {
+			set((state) => {
 				const loadedProject = loadProjectFromLs(projectName)
-				return loadedProject || getInitialProject()
+				return { ...state, project: loadedProject || getInitialProject() }
 			}),
 
 		saveCardByIndex: (card: CardData, cardIndex: number) =>
 			set((state) => {
-				const newState = {
-					...state,
-					cards: state.cards.map((currentCard, index) =>
+				const project: Project = {
+					...state.project,
+					cards: state.project.cards.map((currentCard, index) =>
 						cardIndex === index ? card : currentCard
 					),
 				}
-				saveProjectToLs(newState.projectName, newState.cards)
+				saveProjectToLs(project)
 
-				return newState
+				return { ...state, project: project }
 			}),
 
 		saveProject: () => {
-			const { projectName, cards } = get()
-			saveProjectToLs(projectName, cards)
+			saveProjectToLs(get().project)
 		},
 
 		saveProjectAs: (newName: string) => {
-			const { cards } = get()
-			saveProjectToLs(newName, cards)
-			set((state) => ({
-				...state,
-				projectName: newName,
-			}))
-		},
-
-		increaseNumberToPrint: (cardIndex: number, targetNumber: number) => {
-			const { cards, projectName } = get()
-			const newCards = [...cards]
-			newCards[cardIndex].numberToPrint = targetNumber
-			saveProjectToLs(projectName, newCards)
-			set((state) => ({
-				...state,
-				cards: newCards,
-			}))
-		},
-
-		decreaseNumberToPrint: (cardIndex: number, targetNumber: number) => {
-			const { cards, projectName } = get()
-			const newCards = [...cards]
-			newCards[cardIndex].numberToPrint = targetNumber
-			saveProjectToLs(projectName, newCards)
-			set((state) => ({
-				...state,
-				cards: newCards,
-			}))
-		},
-
-		removeCardByIndex: (cardIndex: number) =>
 			set((state) => {
-				const newState = {
-					...state,
+				const updatedProject: Project = {
+					...state.project,
+					projectName: newName,
+				}
+				saveProjectToLs(updatedProject)
+				return { ...state, project: updatedProject }
+			})
+		},
+
+		changeNumberToPrint: (cardIndex: number, targetNumber: number) => {
+			set((state) => {
+				const updatedProject = { ...state.project }
+				const updatedCards = [...updatedProject.cards]
+				updatedCards[cardIndex].numberToPrint = targetNumber
+				saveProjectToLs(updatedProject)
+				return { ...state, project: updatedProject }
+			})
+		},
+
+		removeCardByIndex: (cardIndex: number) => {
+			set((state) => {
+				const updatedProject: Project = {
+					...state.project,
 					cards: [
-						...state.cards.slice(0, cardIndex),
-						...state.cards.slice(cardIndex + 1),
+						...state.project.cards.slice(0, cardIndex),
+						...state.project.cards.slice(cardIndex + 1),
 					],
 				}
-				saveProjectToLs(newState.projectName, newState.cards)
+				saveProjectToLs(updatedProject)
 
-				return newState
-			}),
+				return { ...state, project: updatedProject }
+			})
+		},
 	},
 }))
 
-export const useCards = () => useProjectStore((state) => state.cards)
+export const useCards = () => useProjectStore((state) => state.project.cards)
 export const useProjectName = () =>
-	useProjectStore((state) => state.projectName)
+	useProjectStore((state) => state.project.projectName)
 export const useNumberToPrint = (cardIndex: number) => useProjectStore(
-	(state) => state.cards[cardIndex].numberToPrint
+	(state) => state.project.cards[cardIndex].numberToPrint
 )
 
 export const useProjectActions = () => useProjectStore((state) => state.actions)
