@@ -40,6 +40,9 @@ export const keywords = [
 	'Critical',
 	'Failure',
 	'Critical',
+
+	'Traditions',
+	'Defenses'
 ]
 
 export const numericKeywords = [
