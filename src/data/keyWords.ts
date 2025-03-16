@@ -12,6 +12,7 @@ export const keywords = [
 	'Saving Throw',
 	'Skills',
 	'Targets',
+	'Trigger',
 	'Type',
 	'Usage',
 
