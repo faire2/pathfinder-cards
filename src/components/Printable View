@@ -1,0 +1,61 @@
+import React, { useRef } from 'react';
+import html2pdf from 'html2pdf.js';
+import Card from './Card';  // Adjust this import path if your Card component is elsewhere
+import { cardData } from '../data/cards';  // Adjust import path to your actual data
+
+const PrintableView: React.FC = () => {
+  const printRef = useRef<HTMLDivElement>(null);
+
+  const handleExportPDF = () => {
+    if (!printRef.current) return;
+
+    const opt = {
+      margin:       0.2,
+      filename:     'pathfinder-cards.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().from(printRef.current).set(opt).save();
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <button onClick={handleExportPDF} style={{ marginBottom: '20px' }}>
+        Export to PDF
+      </button>
+      <div ref={printRef} className="print-container">
+        <div className="card-grid">
+          {cardData.map((card, index) => (
+            <div className="card-wrapper" key={index}>
+              <Card {...card} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .card-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .card-wrapper {
+          width: 30%;
+          margin: 0.5%;
+          box-sizing: border-box;
+          page-break-inside: avoid;
+        }
+        @media print {
+          .card-wrapper {
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default PrintableView;
