@@ -23,6 +23,11 @@ export default function renderEnrichedText(text: string, cardWidth?: number) {
 				) || (
 					czechNumericKeywords.includes(word ) &&
 					!isNaN(Number(words[index + 1]))
+				) || (
+					rusKeywords.includes(word ) &&
+				) || (
+					rusNumericKeywords.includes(word ) &&
+					!isNaN(Number(words[index + 1]))
 				)
 			)
 			const icon = createActionIcon(word, 10, index)
