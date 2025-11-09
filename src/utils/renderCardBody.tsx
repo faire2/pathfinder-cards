@@ -1,4 +1,4 @@
-import { czechKeywords, czechNumericKeywords, keywords, numericKeywords } from '@/data/keyWords'
+import { rusKeywords, rusNumericKeywords, czechKeywords, czechNumericKeywords, keywords, numericKeywords } from '@/data/keyWords'
 import { Hr, Paragraph } from '@/styles/commonStyledComponents'
 import { actionIcons, createActionIcon } from './createActionIcon'
 
