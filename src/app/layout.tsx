@@ -10,6 +10,7 @@ import { useProjectActions, useProjectName } from '@/stores/projectStore'
 import Overlay from '@/components/Overlay'
 import { useShowOverlay } from '@/stores/overlayStore'
 import WelcomeScreen from '@/components/WelcomeScreen'
+import { SessionProvider } from 'next-auth/react';
 
 interface Props {
 	children: React.ReactNode
@@ -40,19 +41,21 @@ export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body>
-				<StyledComponentsRegistry>
-					<S.ProjectName>{projectName}</S.ProjectName>
-					{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
-					{!!showOverlay && <Overlay />}
-					<S.MenuWrapper>
-						<S.LeftMenuWrapper>
-							<LeftMenu />
-						</S.LeftMenuWrapper>
-						<S.ViewWrapper>
-							<div>{children}</div>
-						</S.ViewWrapper>
-					</S.MenuWrapper>
-				</StyledComponentsRegistry>
+				<SessionProvider>
+					<StyledComponentsRegistry>
+						<S.ProjectName>{projectName}</S.ProjectName>
+						{!projectName && <WelcomeScreen onFinished={saveProjectAs} />}
+						{showOverlay && <Overlay />}
+						<S.MenuWrapper>
+							<S.LeftMenuWrapper>
+								<LeftMenu />
+							</S.LeftMenuWrapper>
+							<S.ViewWrapper>
+								<div>{children}</div>
+							</S.ViewWrapper>
+						</S.MenuWrapper>
+					</StyledComponentsRegistry>
+				</SessionProvider>
 			</body>
 		</html>
 	)

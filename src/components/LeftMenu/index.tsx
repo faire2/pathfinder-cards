@@ -1,7 +1,10 @@
+'use client'
+
 import { PrimaryButton, PrimaryLink } from '@/styles/commonStyledComponents'
 import { Pages } from '@/enums/pages'
 import { useProjectActions, useProjectName } from '@/stores/projectStore'
 import { useOverlayActions } from '@/stores/overlayStore'
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 
 export default function LeftMenu() {
@@ -10,39 +13,24 @@ export default function LeftMenu() {
 	const { saveProject } = useProjectActions()
 	const { showLoadProjectOverlay, showSaveProjectAsOverlay } = useOverlayActions()
 
-	return (
+	const { data: session } = useSession();
+	const isLoggedIn = !!session;
+
+	const projectButtons = projectNameExists ?
 		<>
-			{projectNameExists && (
-				<PrimaryLink href={Pages.home}>Project</PrimaryLink>
-			)}
+			<PrimaryLink href={Pages.home}>Project</PrimaryLink>
+			<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
+			<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
+			<PrimaryButton onClick={saveProject}>Save project</PrimaryButton>
+			<PrimaryButton onClick={() => showSaveProjectAsOverlay()}>
+				Save project as
+			</PrimaryButton>
+			<PrimaryButton onClick={() => showLoadProjectOverlay()}>
+				Load project
+			</PrimaryButton>
+			<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
+			<PrimaryButton onClick={() => signOut()}>Log out</PrimaryButton>
+		</> : <></>
 
-			{projectNameExists && (
-				<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
-			)}
-
-			{projectNameExists && (
-				<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
-			)}
-
-			{projectNameExists && (
-				<PrimaryButton onClick={saveProject}>Save project</PrimaryButton>
-			)}
-
-			{projectNameExists && (
-				<PrimaryButton onClick={() => showSaveProjectAsOverlay()}>
-					Save project as
-				</PrimaryButton>
-			)}
-
-			{projectNameExists && (
-				<PrimaryButton onClick={() => showLoadProjectOverlay()}>
-					Load project
-				</PrimaryButton>
-			)}
-
-			{projectNameExists && (
-				<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
-			)}
-		</>
-	)
+	return isLoggedIn ? projectButtons : <PrimaryButton onClick={() => signIn()}>Log in</PrimaryButton>
 }

@@ -12,7 +12,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
 	// Use database sessions instead of JWT
 	session: {
-		strategy: "database",
+		strategy: 'database',
 	},
 
 	// Configure authentication providers
