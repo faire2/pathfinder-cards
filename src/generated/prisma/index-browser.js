@@ -157,6 +157,38 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  projectName: 'projectName',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CardScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  level: 'level',
+  traits: 'traits',
+  actions: 'actions',
+  body: 'body',
+  tags: 'tags',
+  plain: 'plain',
+  numberToPrint: 'numberToPrint',
+  public: 'public',
+  url: 'url',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProjectCardScalarFieldEnum = {
+  projectId: 'projectId',
+  cardId: 'cardId',
+  addedAt: 'addedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -177,7 +209,10 @@ exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Project: 'Project',
+  Card: 'Card',
+  ProjectCard: 'ProjectCard'
 };
 
 /**

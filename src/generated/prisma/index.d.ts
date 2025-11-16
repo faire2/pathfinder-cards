@@ -33,6 +33,21 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  * 
  */
 export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
+/**
+ * Model Project
+ * 
+ */
+export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
+/**
+ * Model Card
+ * 
+ */
+export type Card = $Result.DefaultSelection<Prisma.$CardPayload>
+/**
+ * Model ProjectCard
+ * 
+ */
+export type ProjectCard = $Result.DefaultSelection<Prisma.$ProjectCardPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +213,36 @@ export class PrismaClient<
     * ```
     */
   get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.project`: Exposes CRUD operations for the **Project** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Projects
+    * const projects = await prisma.project.findMany()
+    * ```
+    */
+  get project(): Prisma.ProjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.card`: Exposes CRUD operations for the **Card** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Cards
+    * const cards = await prisma.card.findMany()
+    * ```
+    */
+  get card(): Prisma.CardDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectCard`: Exposes CRUD operations for the **ProjectCard** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectCards
+    * const projectCards = await prisma.projectCard.findMany()
+    * ```
+    */
+  get projectCard(): Prisma.ProjectCardDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +686,10 @@ export namespace Prisma {
     User: 'User',
     Account: 'Account',
     Session: 'Session',
-    VerificationToken: 'VerificationToken'
+    VerificationToken: 'VerificationToken',
+    Project: 'Project',
+    Card: 'Card',
+    ProjectCard: 'ProjectCard'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "project" | "card" | "projectCard"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +1008,228 @@ export namespace Prisma {
           }
         }
       }
+      Project: {
+        payload: Prisma.$ProjectPayload<ExtArgs>
+        fields: Prisma.ProjectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          update: {
+            args: Prisma.ProjectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProject>
+          }
+          groupBy: {
+            args: Prisma.ProjectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectCountAggregateOutputType> | number
+          }
+        }
+      }
+      Card: {
+        payload: Prisma.$CardPayload<ExtArgs>
+        fields: Prisma.CardFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CardFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CardFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          findFirst: {
+            args: Prisma.CardFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CardFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          findMany: {
+            args: Prisma.CardFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>[]
+          }
+          create: {
+            args: Prisma.CardCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          createMany: {
+            args: Prisma.CardCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CardCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>[]
+          }
+          delete: {
+            args: Prisma.CardDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          update: {
+            args: Prisma.CardUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          deleteMany: {
+            args: Prisma.CardDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CardUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CardUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>[]
+          }
+          upsert: {
+            args: Prisma.CardUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CardPayload>
+          }
+          aggregate: {
+            args: Prisma.CardAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCard>
+          }
+          groupBy: {
+            args: Prisma.CardGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CardGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CardCountArgs<ExtArgs>
+            result: $Utils.Optional<CardCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectCard: {
+        payload: Prisma.$ProjectCardPayload<ExtArgs>
+        fields: Prisma.ProjectCardFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectCardFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectCardFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectCardFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectCardFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectCardFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectCardCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectCardCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectCardCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectCardDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          update: {
+            args: Prisma.ProjectCardUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectCardDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectCardUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectCardUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectCardUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectCardPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectCardAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectCard>
+          }
+          groupBy: {
+            args: Prisma.ProjectCardGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectCardGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectCardCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectCardCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1318,9 @@ export namespace Prisma {
     account?: AccountOmit
     session?: SessionOmit
     verificationToken?: VerificationTokenOmit
+    project?: ProjectOmit
+    card?: CardOmit
+    projectCard?: ProjectCardOmit
   }
 
   /* Types for Logging */
@@ -1144,11 +1417,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     accounts: number
     sessions: number
+    projects: number
+    cards: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    projects?: boolean | UserCountOutputTypeCountProjectsArgs
+    cards?: boolean | UserCountOutputTypeCountCardsArgs
   }
 
   // Custom InputTypes
@@ -1174,6 +1451,82 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CardWhereInput
+  }
+
+
+  /**
+   * Count Type ProjectCountOutputType
+   */
+
+  export type ProjectCountOutputType = {
+    cards: number
+  }
+
+  export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cards?: boolean | ProjectCountOutputTypeCountCardsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCountOutputType
+     */
+    select?: ProjectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountCardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectCardWhereInput
+  }
+
+
+  /**
+   * Count Type CardCountOutputType
+   */
+
+  export type CardCountOutputType = {
+    projects: number
+  }
+
+  export type CardCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    projects?: boolean | CardCountOutputTypeCountProjectsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CardCountOutputType without action
+   */
+  export type CardCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CardCountOutputType
+     */
+    select?: CardCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CardCountOutputType without action
+   */
+  export type CardCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectCardWhereInput
   }
 
 
@@ -1363,6 +1716,8 @@ export namespace Prisma {
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
+    cards?: boolean | User$cardsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1400,6 +1755,8 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
+    cards?: boolean | User$cardsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1410,6 +1767,8 @@ export namespace Prisma {
     objects: {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
+      cards: Prisma.$CardPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1815,6 +2174,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cards<T extends User$cardsArgs<ExtArgs> = {}>(args?: Subset<T, User$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2284,6 +2645,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * User.projects
+   */
+  export type User$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * User.cards
+   */
+  export type User$cardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    where?: CardWhereInput
+    orderBy?: CardOrderByWithRelationInput | CardOrderByWithRelationInput[]
+    cursor?: CardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CardScalarFieldEnum | CardScalarFieldEnum[]
   }
 
   /**
@@ -5529,6 +5938,3390 @@ export namespace Prisma {
 
 
   /**
+   * Model Project
+   */
+
+  export type AggregateProject = {
+    _count: ProjectCountAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  export type ProjectMinAggregateOutputType = {
+    id: string | null
+    projectName: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectMaxAggregateOutputType = {
+    id: string | null
+    projectName: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProjectCountAggregateOutputType = {
+    id: number
+    projectName: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProjectMinAggregateInputType = {
+    id?: true
+    projectName?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectMaxAggregateInputType = {
+    id?: true
+    projectName?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProjectCountAggregateInputType = {
+    id?: true
+    projectName?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProjectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Project to aggregate.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Projects
+    **/
+    _count?: true | ProjectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type GetProjectAggregateType<T extends ProjectAggregateArgs> = {
+        [P in keyof T & keyof AggregateProject]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProject[P]>
+      : GetScalarType<T[P], AggregateProject[P]>
+  }
+
+
+
+
+  export type ProjectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithAggregationInput | ProjectOrderByWithAggregationInput[]
+    by: ProjectScalarFieldEnum[] | ProjectScalarFieldEnum
+    having?: ProjectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectCountAggregateInputType | true
+    _min?: ProjectMinAggregateInputType
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type ProjectGroupByOutputType = {
+    id: string
+    projectName: string
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ProjectCountAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectName?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    cards?: boolean | Project$cardsArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectName?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectName?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectScalar = {
+    id?: boolean
+    projectName?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectName" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    cards?: boolean | Project$cardsArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Project"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      cards: Prisma.$ProjectCardPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectName: string
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["project"]>
+    composites: {}
+  }
+
+  type ProjectGetPayload<S extends boolean | null | undefined | ProjectDefaultArgs> = $Result.GetResult<Prisma.$ProjectPayload, S>
+
+  type ProjectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectCountAggregateInputType | true
+    }
+
+  export interface ProjectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Project'], meta: { name: 'Project' } }
+    /**
+     * Find zero or one Project that matches the filter.
+     * @param {ProjectFindUniqueArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFindUniqueArgs>(args: SelectSubset<T, ProjectFindUniqueArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Project that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectFindUniqueOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Project that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFindFirstArgs>(args?: SelectSubset<T, ProjectFindFirstArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Project that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Projects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Projects
+     * const projects = await prisma.project.findMany()
+     * 
+     * // Get first 10 Projects
+     * const projects = await prisma.project.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectWithIdOnly = await prisma.project.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFindManyArgs>(args?: SelectSubset<T, ProjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Project.
+     * @param {ProjectCreateArgs} args - Arguments to create a Project.
+     * @example
+     * // Create one Project
+     * const Project = await prisma.project.create({
+     *   data: {
+     *     // ... data to create a Project
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectCreateArgs>(args: SelectSubset<T, ProjectCreateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Projects.
+     * @param {ProjectCreateManyArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectCreateManyArgs>(args?: SelectSubset<T, ProjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Projects and returns the data saved in the database.
+     * @param {ProjectCreateManyAndReturnArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Projects and only return the `id`
+     * const projectWithIdOnly = await prisma.project.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Project.
+     * @param {ProjectDeleteArgs} args - Arguments to delete one Project.
+     * @example
+     * // Delete one Project
+     * const Project = await prisma.project.delete({
+     *   where: {
+     *     // ... filter to delete one Project
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectDeleteArgs>(args: SelectSubset<T, ProjectDeleteArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Project.
+     * @param {ProjectUpdateArgs} args - Arguments to update one Project.
+     * @example
+     * // Update one Project
+     * const project = await prisma.project.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectUpdateArgs>(args: SelectSubset<T, ProjectUpdateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Projects.
+     * @param {ProjectDeleteManyArgs} args - Arguments to filter Projects to delete.
+     * @example
+     * // Delete a few Projects
+     * const { count } = await prisma.project.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectDeleteManyArgs>(args?: SelectSubset<T, ProjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Projects
+     * const project = await prisma.project.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectUpdateManyArgs>(args: SelectSubset<T, ProjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Projects and returns the data updated in the database.
+     * @param {ProjectUpdateManyAndReturnArgs} args - Arguments to update many Projects.
+     * @example
+     * // Update many Projects
+     * const project = await prisma.project.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Projects and only return the `id`
+     * const projectWithIdOnly = await prisma.project.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Project.
+     * @param {ProjectUpsertArgs} args - Arguments to update or create a Project.
+     * @example
+     * // Update or create a Project
+     * const project = await prisma.project.upsert({
+     *   create: {
+     *     // ... data to create a Project
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Project we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectUpsertArgs>(args: SelectSubset<T, ProjectUpsertArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCountArgs} args - Arguments to filter Projects to count.
+     * @example
+     * // Count the number of Projects
+     * const count = await prisma.project.count({
+     *   where: {
+     *     // ... the filter for the Projects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectCountArgs>(
+      args?: Subset<T, ProjectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectAggregateArgs>(args: Subset<T, ProjectAggregateArgs>): Prisma.PrismaPromise<GetProjectAggregateType<T>>
+
+    /**
+     * Group by Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Project model
+   */
+  readonly fields: ProjectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Project.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cards<T extends Project$cardsArgs<ExtArgs> = {}>(args?: Subset<T, Project$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Project model
+   */
+  interface ProjectFieldRefs {
+    readonly id: FieldRef<"Project", 'String'>
+    readonly projectName: FieldRef<"Project", 'String'>
+    readonly userId: FieldRef<"Project", 'String'>
+    readonly createdAt: FieldRef<"Project", 'DateTime'>
+    readonly updatedAt: FieldRef<"Project", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Project findUnique
+   */
+  export type ProjectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findUniqueOrThrow
+   */
+  export type ProjectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findFirst
+   */
+  export type ProjectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findFirstOrThrow
+   */
+  export type ProjectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findMany
+   */
+  export type ProjectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Projects to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project create
+   */
+  export type ProjectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Project.
+     */
+    data: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+  }
+
+  /**
+   * Project createMany
+   */
+  export type ProjectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Project createManyAndReturn
+   */
+  export type ProjectCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Project update
+   */
+  export type ProjectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Project.
+     */
+    data: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+    /**
+     * Choose, which Project to update.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project updateMany
+   */
+  export type ProjectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Projects.
+     */
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which Projects to update
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Project updateManyAndReturn
+   */
+  export type ProjectUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * The data used to update Projects.
+     */
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which Projects to update
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Project upsert
+   */
+  export type ProjectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Project to update in case it exists.
+     */
+    where: ProjectWhereUniqueInput
+    /**
+     * In case the Project found by the `where` argument doesn't exist, create a new Project with this data.
+     */
+    create: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+    /**
+     * In case the Project was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+  }
+
+  /**
+   * Project delete
+   */
+  export type ProjectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter which Project to delete.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project deleteMany
+   */
+  export type ProjectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Projects to delete
+     */
+    where?: ProjectWhereInput
+    /**
+     * Limit how many Projects to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Project.cards
+   */
+  export type Project$cardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    where?: ProjectCardWhereInput
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    cursor?: ProjectCardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectCardScalarFieldEnum | ProjectCardScalarFieldEnum[]
+  }
+
+  /**
+   * Project without action
+   */
+  export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Card
+   */
+
+  export type AggregateCard = {
+    _count: CardCountAggregateOutputType | null
+    _avg: CardAvgAggregateOutputType | null
+    _sum: CardSumAggregateOutputType | null
+    _min: CardMinAggregateOutputType | null
+    _max: CardMaxAggregateOutputType | null
+  }
+
+  export type CardAvgAggregateOutputType = {
+    plain: number | null
+    numberToPrint: number | null
+  }
+
+  export type CardSumAggregateOutputType = {
+    plain: number | null
+    numberToPrint: number | null
+  }
+
+  export type CardMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    type: string | null
+    level: string | null
+    traits: string | null
+    actions: string | null
+    body: string | null
+    tags: string | null
+    plain: number | null
+    numberToPrint: number | null
+    public: boolean | null
+    url: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CardMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    type: string | null
+    level: string | null
+    traits: string | null
+    actions: string | null
+    body: string | null
+    tags: string | null
+    plain: number | null
+    numberToPrint: number | null
+    public: boolean | null
+    url: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CardCountAggregateOutputType = {
+    id: number
+    name: number
+    type: number
+    level: number
+    traits: number
+    actions: number
+    body: number
+    tags: number
+    plain: number
+    numberToPrint: number
+    public: number
+    url: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CardAvgAggregateInputType = {
+    plain?: true
+    numberToPrint?: true
+  }
+
+  export type CardSumAggregateInputType = {
+    plain?: true
+    numberToPrint?: true
+  }
+
+  export type CardMinAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    level?: true
+    traits?: true
+    actions?: true
+    body?: true
+    tags?: true
+    plain?: true
+    numberToPrint?: true
+    public?: true
+    url?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CardMaxAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    level?: true
+    traits?: true
+    actions?: true
+    body?: true
+    tags?: true
+    plain?: true
+    numberToPrint?: true
+    public?: true
+    url?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CardCountAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    level?: true
+    traits?: true
+    actions?: true
+    body?: true
+    tags?: true
+    plain?: true
+    numberToPrint?: true
+    public?: true
+    url?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CardAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Card to aggregate.
+     */
+    where?: CardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cards to fetch.
+     */
+    orderBy?: CardOrderByWithRelationInput | CardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Cards
+    **/
+    _count?: true | CardCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CardAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CardSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CardMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CardMaxAggregateInputType
+  }
+
+  export type GetCardAggregateType<T extends CardAggregateArgs> = {
+        [P in keyof T & keyof AggregateCard]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCard[P]>
+      : GetScalarType<T[P], AggregateCard[P]>
+  }
+
+
+
+
+  export type CardGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CardWhereInput
+    orderBy?: CardOrderByWithAggregationInput | CardOrderByWithAggregationInput[]
+    by: CardScalarFieldEnum[] | CardScalarFieldEnum
+    having?: CardScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CardCountAggregateInputType | true
+    _avg?: CardAvgAggregateInputType
+    _sum?: CardSumAggregateInputType
+    _min?: CardMinAggregateInputType
+    _max?: CardMaxAggregateInputType
+  }
+
+  export type CardGroupByOutputType = {
+    id: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags: string | null
+    plain: number | null
+    numberToPrint: number
+    public: boolean
+    url: string | null
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CardCountAggregateOutputType | null
+    _avg: CardAvgAggregateOutputType | null
+    _sum: CardSumAggregateOutputType | null
+    _min: CardMinAggregateOutputType | null
+    _max: CardMaxAggregateOutputType | null
+  }
+
+  type GetCardGroupByPayload<T extends CardGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CardGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CardGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CardGroupByOutputType[P]>
+            : GetScalarType<T[P], CardGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    level?: boolean
+    traits?: boolean
+    actions?: boolean
+    body?: boolean
+    tags?: boolean
+    plain?: boolean
+    numberToPrint?: boolean
+    public?: boolean
+    url?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    projects?: boolean | Card$projectsArgs<ExtArgs>
+    _count?: boolean | CardCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["card"]>
+
+  export type CardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    level?: boolean
+    traits?: boolean
+    actions?: boolean
+    body?: boolean
+    tags?: boolean
+    plain?: boolean
+    numberToPrint?: boolean
+    public?: boolean
+    url?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["card"]>
+
+  export type CardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    level?: boolean
+    traits?: boolean
+    actions?: boolean
+    body?: boolean
+    tags?: boolean
+    plain?: boolean
+    numberToPrint?: boolean
+    public?: boolean
+    url?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["card"]>
+
+  export type CardSelectScalar = {
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    level?: boolean
+    traits?: boolean
+    actions?: boolean
+    body?: boolean
+    tags?: boolean
+    plain?: boolean
+    numberToPrint?: boolean
+    public?: boolean
+    url?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "level" | "traits" | "actions" | "body" | "tags" | "plain" | "numberToPrint" | "public" | "url" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["card"]>
+  export type CardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    projects?: boolean | Card$projectsArgs<ExtArgs>
+    _count?: boolean | CardCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Card"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      projects: Prisma.$ProjectCardPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      type: string
+      level: string
+      traits: string
+      actions: string
+      body: string
+      tags: string | null
+      plain: number | null
+      numberToPrint: number
+      public: boolean
+      url: string | null
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["card"]>
+    composites: {}
+  }
+
+  type CardGetPayload<S extends boolean | null | undefined | CardDefaultArgs> = $Result.GetResult<Prisma.$CardPayload, S>
+
+  type CardCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CardFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CardCountAggregateInputType | true
+    }
+
+  export interface CardDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Card'], meta: { name: 'Card' } }
+    /**
+     * Find zero or one Card that matches the filter.
+     * @param {CardFindUniqueArgs} args - Arguments to find a Card
+     * @example
+     * // Get one Card
+     * const card = await prisma.card.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CardFindUniqueArgs>(args: SelectSubset<T, CardFindUniqueArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Card that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CardFindUniqueOrThrowArgs} args - Arguments to find a Card
+     * @example
+     * // Get one Card
+     * const card = await prisma.card.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CardFindUniqueOrThrowArgs>(args: SelectSubset<T, CardFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Card that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardFindFirstArgs} args - Arguments to find a Card
+     * @example
+     * // Get one Card
+     * const card = await prisma.card.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CardFindFirstArgs>(args?: SelectSubset<T, CardFindFirstArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Card that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardFindFirstOrThrowArgs} args - Arguments to find a Card
+     * @example
+     * // Get one Card
+     * const card = await prisma.card.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CardFindFirstOrThrowArgs>(args?: SelectSubset<T, CardFindFirstOrThrowArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Cards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Cards
+     * const cards = await prisma.card.findMany()
+     * 
+     * // Get first 10 Cards
+     * const cards = await prisma.card.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cardWithIdOnly = await prisma.card.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CardFindManyArgs>(args?: SelectSubset<T, CardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Card.
+     * @param {CardCreateArgs} args - Arguments to create a Card.
+     * @example
+     * // Create one Card
+     * const Card = await prisma.card.create({
+     *   data: {
+     *     // ... data to create a Card
+     *   }
+     * })
+     * 
+     */
+    create<T extends CardCreateArgs>(args: SelectSubset<T, CardCreateArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Cards.
+     * @param {CardCreateManyArgs} args - Arguments to create many Cards.
+     * @example
+     * // Create many Cards
+     * const card = await prisma.card.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CardCreateManyArgs>(args?: SelectSubset<T, CardCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Cards and returns the data saved in the database.
+     * @param {CardCreateManyAndReturnArgs} args - Arguments to create many Cards.
+     * @example
+     * // Create many Cards
+     * const card = await prisma.card.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Cards and only return the `id`
+     * const cardWithIdOnly = await prisma.card.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CardCreateManyAndReturnArgs>(args?: SelectSubset<T, CardCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Card.
+     * @param {CardDeleteArgs} args - Arguments to delete one Card.
+     * @example
+     * // Delete one Card
+     * const Card = await prisma.card.delete({
+     *   where: {
+     *     // ... filter to delete one Card
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CardDeleteArgs>(args: SelectSubset<T, CardDeleteArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Card.
+     * @param {CardUpdateArgs} args - Arguments to update one Card.
+     * @example
+     * // Update one Card
+     * const card = await prisma.card.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CardUpdateArgs>(args: SelectSubset<T, CardUpdateArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Cards.
+     * @param {CardDeleteManyArgs} args - Arguments to filter Cards to delete.
+     * @example
+     * // Delete a few Cards
+     * const { count } = await prisma.card.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CardDeleteManyArgs>(args?: SelectSubset<T, CardDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Cards
+     * const card = await prisma.card.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CardUpdateManyArgs>(args: SelectSubset<T, CardUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cards and returns the data updated in the database.
+     * @param {CardUpdateManyAndReturnArgs} args - Arguments to update many Cards.
+     * @example
+     * // Update many Cards
+     * const card = await prisma.card.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Cards and only return the `id`
+     * const cardWithIdOnly = await prisma.card.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CardUpdateManyAndReturnArgs>(args: SelectSubset<T, CardUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Card.
+     * @param {CardUpsertArgs} args - Arguments to update or create a Card.
+     * @example
+     * // Update or create a Card
+     * const card = await prisma.card.upsert({
+     *   create: {
+     *     // ... data to create a Card
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Card we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CardUpsertArgs>(args: SelectSubset<T, CardUpsertArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Cards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardCountArgs} args - Arguments to filter Cards to count.
+     * @example
+     * // Count the number of Cards
+     * const count = await prisma.card.count({
+     *   where: {
+     *     // ... the filter for the Cards we want to count
+     *   }
+     * })
+    **/
+    count<T extends CardCountArgs>(
+      args?: Subset<T, CardCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CardCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Card.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CardAggregateArgs>(args: Subset<T, CardAggregateArgs>): Prisma.PrismaPromise<GetCardAggregateType<T>>
+
+    /**
+     * Group by Card.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CardGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CardGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CardGroupByArgs['orderBy'] }
+        : { orderBy?: CardGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CardGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCardGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Card model
+   */
+  readonly fields: CardFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Card.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projects<T extends Card$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Card$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Card model
+   */
+  interface CardFieldRefs {
+    readonly id: FieldRef<"Card", 'String'>
+    readonly name: FieldRef<"Card", 'String'>
+    readonly type: FieldRef<"Card", 'String'>
+    readonly level: FieldRef<"Card", 'String'>
+    readonly traits: FieldRef<"Card", 'String'>
+    readonly actions: FieldRef<"Card", 'String'>
+    readonly body: FieldRef<"Card", 'String'>
+    readonly tags: FieldRef<"Card", 'String'>
+    readonly plain: FieldRef<"Card", 'Int'>
+    readonly numberToPrint: FieldRef<"Card", 'Int'>
+    readonly public: FieldRef<"Card", 'Boolean'>
+    readonly url: FieldRef<"Card", 'String'>
+    readonly userId: FieldRef<"Card", 'String'>
+    readonly createdAt: FieldRef<"Card", 'DateTime'>
+    readonly updatedAt: FieldRef<"Card", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Card findUnique
+   */
+  export type CardFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter, which Card to fetch.
+     */
+    where: CardWhereUniqueInput
+  }
+
+  /**
+   * Card findUniqueOrThrow
+   */
+  export type CardFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter, which Card to fetch.
+     */
+    where: CardWhereUniqueInput
+  }
+
+  /**
+   * Card findFirst
+   */
+  export type CardFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter, which Card to fetch.
+     */
+    where?: CardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cards to fetch.
+     */
+    orderBy?: CardOrderByWithRelationInput | CardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cards.
+     */
+    cursor?: CardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cards.
+     */
+    distinct?: CardScalarFieldEnum | CardScalarFieldEnum[]
+  }
+
+  /**
+   * Card findFirstOrThrow
+   */
+  export type CardFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter, which Card to fetch.
+     */
+    where?: CardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cards to fetch.
+     */
+    orderBy?: CardOrderByWithRelationInput | CardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cards.
+     */
+    cursor?: CardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cards.
+     */
+    distinct?: CardScalarFieldEnum | CardScalarFieldEnum[]
+  }
+
+  /**
+   * Card findMany
+   */
+  export type CardFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter, which Cards to fetch.
+     */
+    where?: CardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cards to fetch.
+     */
+    orderBy?: CardOrderByWithRelationInput | CardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Cards.
+     */
+    cursor?: CardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cards.
+     */
+    skip?: number
+    distinct?: CardScalarFieldEnum | CardScalarFieldEnum[]
+  }
+
+  /**
+   * Card create
+   */
+  export type CardCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Card.
+     */
+    data: XOR<CardCreateInput, CardUncheckedCreateInput>
+  }
+
+  /**
+   * Card createMany
+   */
+  export type CardCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Cards.
+     */
+    data: CardCreateManyInput | CardCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Card createManyAndReturn
+   */
+  export type CardCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * The data used to create many Cards.
+     */
+    data: CardCreateManyInput | CardCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Card update
+   */
+  export type CardUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Card.
+     */
+    data: XOR<CardUpdateInput, CardUncheckedUpdateInput>
+    /**
+     * Choose, which Card to update.
+     */
+    where: CardWhereUniqueInput
+  }
+
+  /**
+   * Card updateMany
+   */
+  export type CardUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Cards.
+     */
+    data: XOR<CardUpdateManyMutationInput, CardUncheckedUpdateManyInput>
+    /**
+     * Filter which Cards to update
+     */
+    where?: CardWhereInput
+    /**
+     * Limit how many Cards to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Card updateManyAndReturn
+   */
+  export type CardUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * The data used to update Cards.
+     */
+    data: XOR<CardUpdateManyMutationInput, CardUncheckedUpdateManyInput>
+    /**
+     * Filter which Cards to update
+     */
+    where?: CardWhereInput
+    /**
+     * Limit how many Cards to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Card upsert
+   */
+  export type CardUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Card to update in case it exists.
+     */
+    where: CardWhereUniqueInput
+    /**
+     * In case the Card found by the `where` argument doesn't exist, create a new Card with this data.
+     */
+    create: XOR<CardCreateInput, CardUncheckedCreateInput>
+    /**
+     * In case the Card was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CardUpdateInput, CardUncheckedUpdateInput>
+  }
+
+  /**
+   * Card delete
+   */
+  export type CardDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+    /**
+     * Filter which Card to delete.
+     */
+    where: CardWhereUniqueInput
+  }
+
+  /**
+   * Card deleteMany
+   */
+  export type CardDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Cards to delete
+     */
+    where?: CardWhereInput
+    /**
+     * Limit how many Cards to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Card.projects
+   */
+  export type Card$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    where?: ProjectCardWhereInput
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    cursor?: ProjectCardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectCardScalarFieldEnum | ProjectCardScalarFieldEnum[]
+  }
+
+  /**
+   * Card without action
+   */
+  export type CardDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Card
+     */
+    select?: CardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Card
+     */
+    omit?: CardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CardInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectCard
+   */
+
+  export type AggregateProjectCard = {
+    _count: ProjectCardCountAggregateOutputType | null
+    _min: ProjectCardMinAggregateOutputType | null
+    _max: ProjectCardMaxAggregateOutputType | null
+  }
+
+  export type ProjectCardMinAggregateOutputType = {
+    projectId: string | null
+    cardId: string | null
+    addedAt: Date | null
+  }
+
+  export type ProjectCardMaxAggregateOutputType = {
+    projectId: string | null
+    cardId: string | null
+    addedAt: Date | null
+  }
+
+  export type ProjectCardCountAggregateOutputType = {
+    projectId: number
+    cardId: number
+    addedAt: number
+    _all: number
+  }
+
+
+  export type ProjectCardMinAggregateInputType = {
+    projectId?: true
+    cardId?: true
+    addedAt?: true
+  }
+
+  export type ProjectCardMaxAggregateInputType = {
+    projectId?: true
+    cardId?: true
+    addedAt?: true
+  }
+
+  export type ProjectCardCountAggregateInputType = {
+    projectId?: true
+    cardId?: true
+    addedAt?: true
+    _all?: true
+  }
+
+  export type ProjectCardAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectCard to aggregate.
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectCards to fetch.
+     */
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectCards
+    **/
+    _count?: true | ProjectCardCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectCardMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectCardMaxAggregateInputType
+  }
+
+  export type GetProjectCardAggregateType<T extends ProjectCardAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectCard]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectCard[P]>
+      : GetScalarType<T[P], AggregateProjectCard[P]>
+  }
+
+
+
+
+  export type ProjectCardGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectCardWhereInput
+    orderBy?: ProjectCardOrderByWithAggregationInput | ProjectCardOrderByWithAggregationInput[]
+    by: ProjectCardScalarFieldEnum[] | ProjectCardScalarFieldEnum
+    having?: ProjectCardScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectCardCountAggregateInputType | true
+    _min?: ProjectCardMinAggregateInputType
+    _max?: ProjectCardMaxAggregateInputType
+  }
+
+  export type ProjectCardGroupByOutputType = {
+    projectId: string
+    cardId: string
+    addedAt: Date
+    _count: ProjectCardCountAggregateOutputType | null
+    _min: ProjectCardMinAggregateOutputType | null
+    _max: ProjectCardMaxAggregateOutputType | null
+  }
+
+  type GetProjectCardGroupByPayload<T extends ProjectCardGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectCardGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectCardGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectCardGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectCardGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectCardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    cardId?: boolean
+    addedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectCard"]>
+
+  export type ProjectCardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    cardId?: boolean
+    addedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectCard"]>
+
+  export type ProjectCardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    cardId?: boolean
+    addedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectCard"]>
+
+  export type ProjectCardSelectScalar = {
+    projectId?: boolean
+    cardId?: boolean
+    addedAt?: boolean
+  }
+
+  export type ProjectCardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"projectId" | "cardId" | "addedAt", ExtArgs["result"]["projectCard"]>
+  export type ProjectCardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }
+  export type ProjectCardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }
+  export type ProjectCardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    card?: boolean | CardDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectCardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectCard"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      card: Prisma.$CardPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      projectId: string
+      cardId: string
+      addedAt: Date
+    }, ExtArgs["result"]["projectCard"]>
+    composites: {}
+  }
+
+  type ProjectCardGetPayload<S extends boolean | null | undefined | ProjectCardDefaultArgs> = $Result.GetResult<Prisma.$ProjectCardPayload, S>
+
+  type ProjectCardCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectCardFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectCardCountAggregateInputType | true
+    }
+
+  export interface ProjectCardDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectCard'], meta: { name: 'ProjectCard' } }
+    /**
+     * Find zero or one ProjectCard that matches the filter.
+     * @param {ProjectCardFindUniqueArgs} args - Arguments to find a ProjectCard
+     * @example
+     * // Get one ProjectCard
+     * const projectCard = await prisma.projectCard.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectCardFindUniqueArgs>(args: SelectSubset<T, ProjectCardFindUniqueArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectCard that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectCardFindUniqueOrThrowArgs} args - Arguments to find a ProjectCard
+     * @example
+     * // Get one ProjectCard
+     * const projectCard = await prisma.projectCard.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectCardFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectCardFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectCard that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardFindFirstArgs} args - Arguments to find a ProjectCard
+     * @example
+     * // Get one ProjectCard
+     * const projectCard = await prisma.projectCard.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectCardFindFirstArgs>(args?: SelectSubset<T, ProjectCardFindFirstArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectCard that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardFindFirstOrThrowArgs} args - Arguments to find a ProjectCard
+     * @example
+     * // Get one ProjectCard
+     * const projectCard = await prisma.projectCard.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectCardFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectCardFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectCards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectCards
+     * const projectCards = await prisma.projectCard.findMany()
+     * 
+     * // Get first 10 ProjectCards
+     * const projectCards = await prisma.projectCard.findMany({ take: 10 })
+     * 
+     * // Only select the `projectId`
+     * const projectCardWithProjectIdOnly = await prisma.projectCard.findMany({ select: { projectId: true } })
+     * 
+     */
+    findMany<T extends ProjectCardFindManyArgs>(args?: SelectSubset<T, ProjectCardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectCard.
+     * @param {ProjectCardCreateArgs} args - Arguments to create a ProjectCard.
+     * @example
+     * // Create one ProjectCard
+     * const ProjectCard = await prisma.projectCard.create({
+     *   data: {
+     *     // ... data to create a ProjectCard
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectCardCreateArgs>(args: SelectSubset<T, ProjectCardCreateArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectCards.
+     * @param {ProjectCardCreateManyArgs} args - Arguments to create many ProjectCards.
+     * @example
+     * // Create many ProjectCards
+     * const projectCard = await prisma.projectCard.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectCardCreateManyArgs>(args?: SelectSubset<T, ProjectCardCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectCards and returns the data saved in the database.
+     * @param {ProjectCardCreateManyAndReturnArgs} args - Arguments to create many ProjectCards.
+     * @example
+     * // Create many ProjectCards
+     * const projectCard = await prisma.projectCard.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectCards and only return the `projectId`
+     * const projectCardWithProjectIdOnly = await prisma.projectCard.createManyAndReturn({
+     *   select: { projectId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectCardCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectCardCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectCard.
+     * @param {ProjectCardDeleteArgs} args - Arguments to delete one ProjectCard.
+     * @example
+     * // Delete one ProjectCard
+     * const ProjectCard = await prisma.projectCard.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectCard
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectCardDeleteArgs>(args: SelectSubset<T, ProjectCardDeleteArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectCard.
+     * @param {ProjectCardUpdateArgs} args - Arguments to update one ProjectCard.
+     * @example
+     * // Update one ProjectCard
+     * const projectCard = await prisma.projectCard.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectCardUpdateArgs>(args: SelectSubset<T, ProjectCardUpdateArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectCards.
+     * @param {ProjectCardDeleteManyArgs} args - Arguments to filter ProjectCards to delete.
+     * @example
+     * // Delete a few ProjectCards
+     * const { count } = await prisma.projectCard.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectCardDeleteManyArgs>(args?: SelectSubset<T, ProjectCardDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectCards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectCards
+     * const projectCard = await prisma.projectCard.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectCardUpdateManyArgs>(args: SelectSubset<T, ProjectCardUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectCards and returns the data updated in the database.
+     * @param {ProjectCardUpdateManyAndReturnArgs} args - Arguments to update many ProjectCards.
+     * @example
+     * // Update many ProjectCards
+     * const projectCard = await prisma.projectCard.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectCards and only return the `projectId`
+     * const projectCardWithProjectIdOnly = await prisma.projectCard.updateManyAndReturn({
+     *   select: { projectId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectCardUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectCardUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectCard.
+     * @param {ProjectCardUpsertArgs} args - Arguments to update or create a ProjectCard.
+     * @example
+     * // Update or create a ProjectCard
+     * const projectCard = await prisma.projectCard.upsert({
+     *   create: {
+     *     // ... data to create a ProjectCard
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectCard we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectCardUpsertArgs>(args: SelectSubset<T, ProjectCardUpsertArgs<ExtArgs>>): Prisma__ProjectCardClient<$Result.GetResult<Prisma.$ProjectCardPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectCards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardCountArgs} args - Arguments to filter ProjectCards to count.
+     * @example
+     * // Count the number of ProjectCards
+     * const count = await prisma.projectCard.count({
+     *   where: {
+     *     // ... the filter for the ProjectCards we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectCardCountArgs>(
+      args?: Subset<T, ProjectCardCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectCardCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectCard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectCardAggregateArgs>(args: Subset<T, ProjectCardAggregateArgs>): Prisma.PrismaPromise<GetProjectCardAggregateType<T>>
+
+    /**
+     * Group by ProjectCard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCardGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectCardGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectCardGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectCardGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectCardGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectCardGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectCard model
+   */
+  readonly fields: ProjectCardFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectCard.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectCardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    card<T extends CardDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CardDefaultArgs<ExtArgs>>): Prisma__CardClient<$Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectCard model
+   */
+  interface ProjectCardFieldRefs {
+    readonly projectId: FieldRef<"ProjectCard", 'String'>
+    readonly cardId: FieldRef<"ProjectCard", 'String'>
+    readonly addedAt: FieldRef<"ProjectCard", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectCard findUnique
+   */
+  export type ProjectCardFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectCard to fetch.
+     */
+    where: ProjectCardWhereUniqueInput
+  }
+
+  /**
+   * ProjectCard findUniqueOrThrow
+   */
+  export type ProjectCardFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectCard to fetch.
+     */
+    where: ProjectCardWhereUniqueInput
+  }
+
+  /**
+   * ProjectCard findFirst
+   */
+  export type ProjectCardFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectCard to fetch.
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectCards to fetch.
+     */
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectCards.
+     */
+    cursor?: ProjectCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectCards.
+     */
+    distinct?: ProjectCardScalarFieldEnum | ProjectCardScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectCard findFirstOrThrow
+   */
+  export type ProjectCardFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectCard to fetch.
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectCards to fetch.
+     */
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectCards.
+     */
+    cursor?: ProjectCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectCards.
+     */
+    distinct?: ProjectCardScalarFieldEnum | ProjectCardScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectCard findMany
+   */
+  export type ProjectCardFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectCards to fetch.
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectCards to fetch.
+     */
+    orderBy?: ProjectCardOrderByWithRelationInput | ProjectCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectCards.
+     */
+    cursor?: ProjectCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectCards.
+     */
+    skip?: number
+    distinct?: ProjectCardScalarFieldEnum | ProjectCardScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectCard create
+   */
+  export type ProjectCardCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectCard.
+     */
+    data: XOR<ProjectCardCreateInput, ProjectCardUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectCard createMany
+   */
+  export type ProjectCardCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectCards.
+     */
+    data: ProjectCardCreateManyInput | ProjectCardCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectCard createManyAndReturn
+   */
+  export type ProjectCardCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectCards.
+     */
+    data: ProjectCardCreateManyInput | ProjectCardCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCard update
+   */
+  export type ProjectCardUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectCard.
+     */
+    data: XOR<ProjectCardUpdateInput, ProjectCardUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectCard to update.
+     */
+    where: ProjectCardWhereUniqueInput
+  }
+
+  /**
+   * ProjectCard updateMany
+   */
+  export type ProjectCardUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectCards.
+     */
+    data: XOR<ProjectCardUpdateManyMutationInput, ProjectCardUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectCards to update
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * Limit how many ProjectCards to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectCard updateManyAndReturn
+   */
+  export type ProjectCardUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectCards.
+     */
+    data: XOR<ProjectCardUpdateManyMutationInput, ProjectCardUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectCards to update
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * Limit how many ProjectCards to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCard upsert
+   */
+  export type ProjectCardUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectCard to update in case it exists.
+     */
+    where: ProjectCardWhereUniqueInput
+    /**
+     * In case the ProjectCard found by the `where` argument doesn't exist, create a new ProjectCard with this data.
+     */
+    create: XOR<ProjectCardCreateInput, ProjectCardUncheckedCreateInput>
+    /**
+     * In case the ProjectCard was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectCardUpdateInput, ProjectCardUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectCard delete
+   */
+  export type ProjectCardDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectCard to delete.
+     */
+    where: ProjectCardWhereUniqueInput
+  }
+
+  /**
+   * ProjectCard deleteMany
+   */
+  export type ProjectCardDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectCards to delete
+     */
+    where?: ProjectCardWhereInput
+    /**
+     * Limit how many ProjectCards to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectCard without action
+   */
+  export type ProjectCardDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCard
+     */
+    select?: ProjectCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectCard
+     */
+    omit?: ProjectCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectCardInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5592,6 +9385,47 @@ export namespace Prisma {
   };
 
   export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+  export const ProjectScalarFieldEnum: {
+    id: 'id',
+    projectName: 'projectName',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+  export const CardScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    type: 'type',
+    level: 'level',
+    traits: 'traits',
+    actions: 'actions',
+    body: 'body',
+    tags: 'tags',
+    plain: 'plain',
+    numberToPrint: 'numberToPrint',
+    public: 'public',
+    url: 'url',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CardScalarFieldEnum = (typeof CardScalarFieldEnum)[keyof typeof CardScalarFieldEnum]
+
+
+  export const ProjectCardScalarFieldEnum: {
+    projectId: 'projectId',
+    cardId: 'cardId',
+    addedAt: 'addedAt'
+  };
+
+  export type ProjectCardScalarFieldEnum = (typeof ProjectCardScalarFieldEnum)[keyof typeof ProjectCardScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5666,6 +9500,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5695,6 +9536,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
+    projects?: ProjectListRelationFilter
+    cards?: CardListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5707,6 +9550,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    projects?: ProjectOrderByRelationAggregateInput
+    cards?: CardOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5722,6 +9567,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
+    projects?: ProjectListRelationFilter
+    cards?: CardListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -5946,6 +9793,224 @@ export namespace Prisma {
     expires?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
   }
 
+  export type ProjectWhereInput = {
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    id?: StringFilter<"Project"> | string
+    projectName?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    cards?: ProjectCardListRelationFilter
+  }
+
+  export type ProjectOrderByWithRelationInput = {
+    id?: SortOrder
+    projectName?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    cards?: ProjectCardOrderByRelationAggregateInput
+  }
+
+  export type ProjectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_projectName?: ProjectUserIdProjectNameCompoundUniqueInput
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    projectName?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    cards?: ProjectCardListRelationFilter
+  }, "id" | "userId_projectName">
+
+  export type ProjectOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectName?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProjectCountOrderByAggregateInput
+    _max?: ProjectMaxOrderByAggregateInput
+    _min?: ProjectMinOrderByAggregateInput
+  }
+
+  export type ProjectScalarWhereWithAggregatesInput = {
+    AND?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    OR?: ProjectScalarWhereWithAggregatesInput[]
+    NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Project"> | string
+    projectName?: StringWithAggregatesFilter<"Project"> | string
+    userId?: StringWithAggregatesFilter<"Project"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+  }
+
+  export type CardWhereInput = {
+    AND?: CardWhereInput | CardWhereInput[]
+    OR?: CardWhereInput[]
+    NOT?: CardWhereInput | CardWhereInput[]
+    id?: StringFilter<"Card"> | string
+    name?: StringFilter<"Card"> | string
+    type?: StringFilter<"Card"> | string
+    level?: StringFilter<"Card"> | string
+    traits?: StringFilter<"Card"> | string
+    actions?: StringFilter<"Card"> | string
+    body?: StringFilter<"Card"> | string
+    tags?: StringNullableFilter<"Card"> | string | null
+    plain?: IntNullableFilter<"Card"> | number | null
+    numberToPrint?: IntFilter<"Card"> | number
+    public?: BoolFilter<"Card"> | boolean
+    url?: StringNullableFilter<"Card"> | string | null
+    userId?: StringFilter<"Card"> | string
+    createdAt?: DateTimeFilter<"Card"> | Date | string
+    updatedAt?: DateTimeFilter<"Card"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    projects?: ProjectCardListRelationFilter
+  }
+
+  export type CardOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    level?: SortOrder
+    traits?: SortOrder
+    actions?: SortOrder
+    body?: SortOrder
+    tags?: SortOrderInput | SortOrder
+    plain?: SortOrderInput | SortOrder
+    numberToPrint?: SortOrder
+    public?: SortOrder
+    url?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    projects?: ProjectCardOrderByRelationAggregateInput
+  }
+
+  export type CardWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CardWhereInput | CardWhereInput[]
+    OR?: CardWhereInput[]
+    NOT?: CardWhereInput | CardWhereInput[]
+    name?: StringFilter<"Card"> | string
+    type?: StringFilter<"Card"> | string
+    level?: StringFilter<"Card"> | string
+    traits?: StringFilter<"Card"> | string
+    actions?: StringFilter<"Card"> | string
+    body?: StringFilter<"Card"> | string
+    tags?: StringNullableFilter<"Card"> | string | null
+    plain?: IntNullableFilter<"Card"> | number | null
+    numberToPrint?: IntFilter<"Card"> | number
+    public?: BoolFilter<"Card"> | boolean
+    url?: StringNullableFilter<"Card"> | string | null
+    userId?: StringFilter<"Card"> | string
+    createdAt?: DateTimeFilter<"Card"> | Date | string
+    updatedAt?: DateTimeFilter<"Card"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    projects?: ProjectCardListRelationFilter
+  }, "id">
+
+  export type CardOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    level?: SortOrder
+    traits?: SortOrder
+    actions?: SortOrder
+    body?: SortOrder
+    tags?: SortOrderInput | SortOrder
+    plain?: SortOrderInput | SortOrder
+    numberToPrint?: SortOrder
+    public?: SortOrder
+    url?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CardCountOrderByAggregateInput
+    _avg?: CardAvgOrderByAggregateInput
+    _max?: CardMaxOrderByAggregateInput
+    _min?: CardMinOrderByAggregateInput
+    _sum?: CardSumOrderByAggregateInput
+  }
+
+  export type CardScalarWhereWithAggregatesInput = {
+    AND?: CardScalarWhereWithAggregatesInput | CardScalarWhereWithAggregatesInput[]
+    OR?: CardScalarWhereWithAggregatesInput[]
+    NOT?: CardScalarWhereWithAggregatesInput | CardScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Card"> | string
+    name?: StringWithAggregatesFilter<"Card"> | string
+    type?: StringWithAggregatesFilter<"Card"> | string
+    level?: StringWithAggregatesFilter<"Card"> | string
+    traits?: StringWithAggregatesFilter<"Card"> | string
+    actions?: StringWithAggregatesFilter<"Card"> | string
+    body?: StringWithAggregatesFilter<"Card"> | string
+    tags?: StringNullableWithAggregatesFilter<"Card"> | string | null
+    plain?: IntNullableWithAggregatesFilter<"Card"> | number | null
+    numberToPrint?: IntWithAggregatesFilter<"Card"> | number
+    public?: BoolWithAggregatesFilter<"Card"> | boolean
+    url?: StringNullableWithAggregatesFilter<"Card"> | string | null
+    userId?: StringWithAggregatesFilter<"Card"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Card"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Card"> | Date | string
+  }
+
+  export type ProjectCardWhereInput = {
+    AND?: ProjectCardWhereInput | ProjectCardWhereInput[]
+    OR?: ProjectCardWhereInput[]
+    NOT?: ProjectCardWhereInput | ProjectCardWhereInput[]
+    projectId?: StringFilter<"ProjectCard"> | string
+    cardId?: StringFilter<"ProjectCard"> | string
+    addedAt?: DateTimeFilter<"ProjectCard"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    card?: XOR<CardScalarRelationFilter, CardWhereInput>
+  }
+
+  export type ProjectCardOrderByWithRelationInput = {
+    projectId?: SortOrder
+    cardId?: SortOrder
+    addedAt?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    card?: CardOrderByWithRelationInput
+  }
+
+  export type ProjectCardWhereUniqueInput = Prisma.AtLeast<{
+    projectId_cardId?: ProjectCardProjectIdCardIdCompoundUniqueInput
+    AND?: ProjectCardWhereInput | ProjectCardWhereInput[]
+    OR?: ProjectCardWhereInput[]
+    NOT?: ProjectCardWhereInput | ProjectCardWhereInput[]
+    projectId?: StringFilter<"ProjectCard"> | string
+    cardId?: StringFilter<"ProjectCard"> | string
+    addedAt?: DateTimeFilter<"ProjectCard"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    card?: XOR<CardScalarRelationFilter, CardWhereInput>
+  }, "projectId_cardId">
+
+  export type ProjectCardOrderByWithAggregationInput = {
+    projectId?: SortOrder
+    cardId?: SortOrder
+    addedAt?: SortOrder
+    _count?: ProjectCardCountOrderByAggregateInput
+    _max?: ProjectCardMaxOrderByAggregateInput
+    _min?: ProjectCardMinOrderByAggregateInput
+  }
+
+  export type ProjectCardScalarWhereWithAggregatesInput = {
+    AND?: ProjectCardScalarWhereWithAggregatesInput | ProjectCardScalarWhereWithAggregatesInput[]
+    OR?: ProjectCardScalarWhereWithAggregatesInput[]
+    NOT?: ProjectCardScalarWhereWithAggregatesInput | ProjectCardScalarWhereWithAggregatesInput[]
+    projectId?: StringWithAggregatesFilter<"ProjectCard"> | string
+    cardId?: StringWithAggregatesFilter<"ProjectCard"> | string
+    addedAt?: DateTimeWithAggregatesFilter<"ProjectCard"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -5956,6 +10021,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    cards?: CardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5968,6 +10035,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    cards?: CardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5980,6 +10049,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    cards?: CardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5992,6 +10063,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    cards?: CardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6232,6 +10305,234 @@ export namespace Prisma {
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProjectCreateInput = {
+    id?: string
+    projectName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProjectsInput
+    cards?: ProjectCardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateInput = {
+    id?: string
+    projectName: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cards?: ProjectCardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProjectsNestedInput
+    cards?: ProjectCardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cards?: ProjectCardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateManyInput = {
+    id?: string
+    projectName: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CardCreateInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCardsInput
+    projects?: ProjectCardCreateNestedManyWithoutCardInput
+  }
+
+  export type CardUncheckedCreateInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCardUncheckedCreateNestedManyWithoutCardInput
+  }
+
+  export type CardUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCardsNestedInput
+    projects?: ProjectCardUpdateManyWithoutCardNestedInput
+  }
+
+  export type CardUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectCardUncheckedUpdateManyWithoutCardNestedInput
+  }
+
+  export type CardCreateManyInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CardUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CardUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardCreateInput = {
+    addedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutCardsInput
+    card: CardCreateNestedOneWithoutProjectsInput
+  }
+
+  export type ProjectCardUncheckedCreateInput = {
+    projectId: string
+    cardId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardUpdateInput = {
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutCardsNestedInput
+    card?: CardUpdateOneRequiredWithoutProjectsNestedInput
+  }
+
+  export type ProjectCardUncheckedUpdateInput = {
+    projectId?: StringFieldUpdateOperationsInput | string
+    cardId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardCreateManyInput = {
+    projectId: string
+    cardId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardUpdateManyMutationInput = {
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardUncheckedUpdateManyInput = {
+    projectId?: StringFieldUpdateOperationsInput | string
+    cardId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6296,6 +10597,18 @@ export namespace Prisma {
     none?: SessionWhereInput
   }
 
+  export type ProjectListRelationFilter = {
+    every?: ProjectWhereInput
+    some?: ProjectWhereInput
+    none?: ProjectWhereInput
+  }
+
+  export type CardListRelationFilter = {
+    every?: CardWhereInput
+    some?: CardWhereInput
+    none?: CardWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -6306,6 +10619,14 @@ export namespace Prisma {
   }
 
   export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CardOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6543,6 +10864,182 @@ export namespace Prisma {
     expires?: SortOrder
   }
 
+  export type ProjectCardListRelationFilter = {
+    every?: ProjectCardWhereInput
+    some?: ProjectCardWhereInput
+    none?: ProjectCardWhereInput
+  }
+
+  export type ProjectCardOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectUserIdProjectNameCompoundUniqueInput = {
+    userId: string
+    projectName: string
+  }
+
+  export type ProjectCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectName?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectName?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectName?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type CardCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    level?: SortOrder
+    traits?: SortOrder
+    actions?: SortOrder
+    body?: SortOrder
+    tags?: SortOrder
+    plain?: SortOrder
+    numberToPrint?: SortOrder
+    public?: SortOrder
+    url?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CardAvgOrderByAggregateInput = {
+    plain?: SortOrder
+    numberToPrint?: SortOrder
+  }
+
+  export type CardMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    level?: SortOrder
+    traits?: SortOrder
+    actions?: SortOrder
+    body?: SortOrder
+    tags?: SortOrder
+    plain?: SortOrder
+    numberToPrint?: SortOrder
+    public?: SortOrder
+    url?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CardMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    level?: SortOrder
+    traits?: SortOrder
+    actions?: SortOrder
+    body?: SortOrder
+    tags?: SortOrder
+    plain?: SortOrder
+    numberToPrint?: SortOrder
+    public?: SortOrder
+    url?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CardSumOrderByAggregateInput = {
+    plain?: SortOrder
+    numberToPrint?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type ProjectScalarRelationFilter = {
+    is?: ProjectWhereInput
+    isNot?: ProjectWhereInput
+  }
+
+  export type CardScalarRelationFilter = {
+    is?: CardWhereInput
+    isNot?: CardWhereInput
+  }
+
+  export type ProjectCardProjectIdCardIdCompoundUniqueInput = {
+    projectId: string
+    cardId: string
+  }
+
+  export type ProjectCardCountOrderByAggregateInput = {
+    projectId?: SortOrder
+    cardId?: SortOrder
+    addedAt?: SortOrder
+  }
+
+  export type ProjectCardMaxOrderByAggregateInput = {
+    projectId?: SortOrder
+    cardId?: SortOrder
+    addedAt?: SortOrder
+  }
+
+  export type ProjectCardMinOrderByAggregateInput = {
+    projectId?: SortOrder
+    cardId?: SortOrder
+    addedAt?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -6557,6 +11054,20 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
+  export type ProjectCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type CardCreateNestedManyWithoutUserInput = {
+    create?: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput> | CardCreateWithoutUserInput[] | CardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CardCreateOrConnectWithoutUserInput | CardCreateOrConnectWithoutUserInput[]
+    createMany?: CardCreateManyUserInputEnvelope
+    connect?: CardWhereUniqueInput | CardWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -6569,6 +11080,20 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type CardUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput> | CardCreateWithoutUserInput[] | CardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CardCreateOrConnectWithoutUserInput | CardCreateOrConnectWithoutUserInput[]
+    createMany?: CardCreateManyUserInputEnvelope
+    connect?: CardWhereUniqueInput | CardWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6615,6 +11140,34 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
+  export type ProjectUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type CardUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput> | CardCreateWithoutUserInput[] | CardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CardCreateOrConnectWithoutUserInput | CardCreateOrConnectWithoutUserInput[]
+    upsert?: CardUpsertWithWhereUniqueWithoutUserInput | CardUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CardCreateManyUserInputEnvelope
+    set?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    disconnect?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    delete?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    connect?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    update?: CardUpdateWithWhereUniqueWithoutUserInput | CardUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CardUpdateManyWithWhereWithoutUserInput | CardUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CardScalarWhereInput | CardScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -6641,6 +11194,34 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type CardUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput> | CardCreateWithoutUserInput[] | CardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CardCreateOrConnectWithoutUserInput | CardCreateOrConnectWithoutUserInput[]
+    upsert?: CardUpsertWithWhereUniqueWithoutUserInput | CardUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CardCreateManyUserInputEnvelope
+    set?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    disconnect?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    delete?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    connect?: CardWhereUniqueInput | CardWhereUniqueInput[]
+    update?: CardUpdateWithWhereUniqueWithoutUserInput | CardUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CardUpdateManyWithWhereWithoutUserInput | CardUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CardScalarWhereInput | CardScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -6677,6 +11258,158 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutSessionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCardCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput> | ProjectCardCreateWithoutProjectInput[] | ProjectCardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutProjectInput | ProjectCardCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectCardCreateManyProjectInputEnvelope
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+  }
+
+  export type ProjectCardUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput> | ProjectCardCreateWithoutProjectInput[] | ProjectCardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutProjectInput | ProjectCardCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectCardCreateManyProjectInputEnvelope
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
+    create?: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectsInput
+    upsert?: UserUpsertWithoutProjectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectsInput, UserUpdateWithoutProjectsInput>, UserUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type ProjectCardUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput> | ProjectCardCreateWithoutProjectInput[] | ProjectCardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutProjectInput | ProjectCardCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectCardUpsertWithWhereUniqueWithoutProjectInput | ProjectCardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectCardCreateManyProjectInputEnvelope
+    set?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    disconnect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    delete?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    update?: ProjectCardUpdateWithWhereUniqueWithoutProjectInput | ProjectCardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectCardUpdateManyWithWhereWithoutProjectInput | ProjectCardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+  }
+
+  export type ProjectCardUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput> | ProjectCardCreateWithoutProjectInput[] | ProjectCardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutProjectInput | ProjectCardCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectCardUpsertWithWhereUniqueWithoutProjectInput | ProjectCardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectCardCreateManyProjectInputEnvelope
+    set?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    disconnect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    delete?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    update?: ProjectCardUpdateWithWhereUniqueWithoutProjectInput | ProjectCardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectCardUpdateManyWithWhereWithoutProjectInput | ProjectCardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCardsInput = {
+    create?: XOR<UserCreateWithoutCardsInput, UserUncheckedCreateWithoutCardsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCardsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCardCreateNestedManyWithoutCardInput = {
+    create?: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput> | ProjectCardCreateWithoutCardInput[] | ProjectCardUncheckedCreateWithoutCardInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutCardInput | ProjectCardCreateOrConnectWithoutCardInput[]
+    createMany?: ProjectCardCreateManyCardInputEnvelope
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+  }
+
+  export type ProjectCardUncheckedCreateNestedManyWithoutCardInput = {
+    create?: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput> | ProjectCardCreateWithoutCardInput[] | ProjectCardUncheckedCreateWithoutCardInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutCardInput | ProjectCardCreateOrConnectWithoutCardInput[]
+    createMany?: ProjectCardCreateManyCardInputEnvelope
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutCardsNestedInput = {
+    create?: XOR<UserCreateWithoutCardsInput, UserUncheckedCreateWithoutCardsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCardsInput
+    upsert?: UserUpsertWithoutCardsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCardsInput, UserUpdateWithoutCardsInput>, UserUncheckedUpdateWithoutCardsInput>
+  }
+
+  export type ProjectCardUpdateManyWithoutCardNestedInput = {
+    create?: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput> | ProjectCardCreateWithoutCardInput[] | ProjectCardUncheckedCreateWithoutCardInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutCardInput | ProjectCardCreateOrConnectWithoutCardInput[]
+    upsert?: ProjectCardUpsertWithWhereUniqueWithoutCardInput | ProjectCardUpsertWithWhereUniqueWithoutCardInput[]
+    createMany?: ProjectCardCreateManyCardInputEnvelope
+    set?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    disconnect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    delete?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    update?: ProjectCardUpdateWithWhereUniqueWithoutCardInput | ProjectCardUpdateWithWhereUniqueWithoutCardInput[]
+    updateMany?: ProjectCardUpdateManyWithWhereWithoutCardInput | ProjectCardUpdateManyWithWhereWithoutCardInput[]
+    deleteMany?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+  }
+
+  export type ProjectCardUncheckedUpdateManyWithoutCardNestedInput = {
+    create?: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput> | ProjectCardCreateWithoutCardInput[] | ProjectCardUncheckedCreateWithoutCardInput[]
+    connectOrCreate?: ProjectCardCreateOrConnectWithoutCardInput | ProjectCardCreateOrConnectWithoutCardInput[]
+    upsert?: ProjectCardUpsertWithWhereUniqueWithoutCardInput | ProjectCardUpsertWithWhereUniqueWithoutCardInput[]
+    createMany?: ProjectCardCreateManyCardInputEnvelope
+    set?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    disconnect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    delete?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    connect?: ProjectCardWhereUniqueInput | ProjectCardWhereUniqueInput[]
+    update?: ProjectCardUpdateWithWhereUniqueWithoutCardInput | ProjectCardUpdateWithWhereUniqueWithoutCardInput[]
+    updateMany?: ProjectCardUpdateManyWithWhereWithoutCardInput | ProjectCardUpdateManyWithWhereWithoutCardInput[]
+    deleteMany?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+  }
+
+  export type ProjectCreateNestedOneWithoutCardsInput = {
+    create?: XOR<ProjectCreateWithoutCardsInput, ProjectUncheckedCreateWithoutCardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutCardsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type CardCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<CardCreateWithoutProjectsInput, CardUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: CardCreateOrConnectWithoutProjectsInput
+    connect?: CardWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutCardsNestedInput = {
+    create?: XOR<ProjectCreateWithoutCardsInput, ProjectUncheckedCreateWithoutCardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutCardsInput
+    upsert?: ProjectUpsertWithoutCardsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutCardsInput, ProjectUpdateWithoutCardsInput>, ProjectUncheckedUpdateWithoutCardsInput>
+  }
+
+  export type CardUpdateOneRequiredWithoutProjectsNestedInput = {
+    create?: XOR<CardCreateWithoutProjectsInput, CardUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: CardCreateOrConnectWithoutProjectsInput
+    upsert?: CardUpsertWithoutProjectsInput
+    connect?: CardWhereUniqueInput
+    update?: XOR<XOR<CardUpdateToOneWithWhereWithoutProjectsInput, CardUpdateWithoutProjectsInput>, CardUncheckedUpdateWithoutProjectsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6840,6 +11573,46 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type AccountCreateWithoutUserInput = {
     type: string
     provider: string
@@ -6901,6 +11674,78 @@ export namespace Prisma {
 
   export type SessionCreateManyUserInputEnvelope = {
     data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectCreateWithoutUserInput = {
+    id?: string
+    projectName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cards?: ProjectCardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutUserInput = {
+    id?: string
+    projectName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cards?: ProjectCardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectCreateManyUserInputEnvelope = {
+    data: ProjectCreateManyUserInput | ProjectCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CardCreateWithoutUserInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCardCreateNestedManyWithoutCardInput
+  }
+
+  export type CardUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCardUncheckedCreateNestedManyWithoutCardInput
+  }
+
+  export type CardCreateOrConnectWithoutUserInput = {
+    where: CardWhereUniqueInput
+    create: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput>
+  }
+
+  export type CardCreateManyUserInputEnvelope = {
+    data: CardCreateManyUserInput | CardCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -6966,6 +11811,70 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
 
+  export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
+    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutUserInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProjectScalarWhereInput = {
+    AND?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    OR?: ProjectScalarWhereInput[]
+    NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    id?: StringFilter<"Project"> | string
+    projectName?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    updatedAt?: DateTimeFilter<"Project"> | Date | string
+  }
+
+  export type CardUpsertWithWhereUniqueWithoutUserInput = {
+    where: CardWhereUniqueInput
+    update: XOR<CardUpdateWithoutUserInput, CardUncheckedUpdateWithoutUserInput>
+    create: XOR<CardCreateWithoutUserInput, CardUncheckedCreateWithoutUserInput>
+  }
+
+  export type CardUpdateWithWhereUniqueWithoutUserInput = {
+    where: CardWhereUniqueInput
+    data: XOR<CardUpdateWithoutUserInput, CardUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CardUpdateManyWithWhereWithoutUserInput = {
+    where: CardScalarWhereInput
+    data: XOR<CardUpdateManyMutationInput, CardUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CardScalarWhereInput = {
+    AND?: CardScalarWhereInput | CardScalarWhereInput[]
+    OR?: CardScalarWhereInput[]
+    NOT?: CardScalarWhereInput | CardScalarWhereInput[]
+    id?: StringFilter<"Card"> | string
+    name?: StringFilter<"Card"> | string
+    type?: StringFilter<"Card"> | string
+    level?: StringFilter<"Card"> | string
+    traits?: StringFilter<"Card"> | string
+    actions?: StringFilter<"Card"> | string
+    body?: StringFilter<"Card"> | string
+    tags?: StringNullableFilter<"Card"> | string | null
+    plain?: IntNullableFilter<"Card"> | number | null
+    numberToPrint?: IntFilter<"Card"> | number
+    public?: BoolFilter<"Card"> | boolean
+    url?: StringNullableFilter<"Card"> | string | null
+    userId?: StringFilter<"Card"> | string
+    createdAt?: DateTimeFilter<"Card"> | Date | string
+    updatedAt?: DateTimeFilter<"Card"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -6975,6 +11884,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    cards?: CardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -6986,6 +11897,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    cards?: CardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -7013,6 +11926,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    cards?: CardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -7024,6 +11939,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    cards?: CardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -7035,6 +11952,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    cards?: CardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -7046,6 +11965,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    cards?: CardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -7073,6 +11994,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    cards?: CardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -7084,6 +12007,361 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    cards?: CardUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutProjectsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    cards?: CardCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProjectsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    cards?: CardUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProjectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+  }
+
+  export type ProjectCardCreateWithoutProjectInput = {
+    addedAt?: Date | string
+    card: CardCreateNestedOneWithoutProjectsInput
+  }
+
+  export type ProjectCardUncheckedCreateWithoutProjectInput = {
+    cardId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardCreateOrConnectWithoutProjectInput = {
+    where: ProjectCardWhereUniqueInput
+    create: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectCardCreateManyProjectInputEnvelope = {
+    data: ProjectCardCreateManyProjectInput | ProjectCardCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutProjectsInput = {
+    update: XOR<UserUpdateWithoutProjectsInput, UserUncheckedUpdateWithoutProjectsInput>
+    create: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProjectsInput, UserUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type UserUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    cards?: CardUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    cards?: CardUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProjectCardUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectCardWhereUniqueInput
+    update: XOR<ProjectCardUpdateWithoutProjectInput, ProjectCardUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectCardCreateWithoutProjectInput, ProjectCardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectCardUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectCardWhereUniqueInput
+    data: XOR<ProjectCardUpdateWithoutProjectInput, ProjectCardUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectCardUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectCardScalarWhereInput
+    data: XOR<ProjectCardUpdateManyMutationInput, ProjectCardUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectCardScalarWhereInput = {
+    AND?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+    OR?: ProjectCardScalarWhereInput[]
+    NOT?: ProjectCardScalarWhereInput | ProjectCardScalarWhereInput[]
+    projectId?: StringFilter<"ProjectCard"> | string
+    cardId?: StringFilter<"ProjectCard"> | string
+    addedAt?: DateTimeFilter<"ProjectCard"> | Date | string
+  }
+
+  export type UserCreateWithoutCardsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCardsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCardsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCardsInput, UserUncheckedCreateWithoutCardsInput>
+  }
+
+  export type ProjectCardCreateWithoutCardInput = {
+    addedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutCardsInput
+  }
+
+  export type ProjectCardUncheckedCreateWithoutCardInput = {
+    projectId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardCreateOrConnectWithoutCardInput = {
+    where: ProjectCardWhereUniqueInput
+    create: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput>
+  }
+
+  export type ProjectCardCreateManyCardInputEnvelope = {
+    data: ProjectCardCreateManyCardInput | ProjectCardCreateManyCardInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutCardsInput = {
+    update: XOR<UserUpdateWithoutCardsInput, UserUncheckedUpdateWithoutCardsInput>
+    create: XOR<UserCreateWithoutCardsInput, UserUncheckedCreateWithoutCardsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCardsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCardsInput, UserUncheckedUpdateWithoutCardsInput>
+  }
+
+  export type UserUpdateWithoutCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProjectCardUpsertWithWhereUniqueWithoutCardInput = {
+    where: ProjectCardWhereUniqueInput
+    update: XOR<ProjectCardUpdateWithoutCardInput, ProjectCardUncheckedUpdateWithoutCardInput>
+    create: XOR<ProjectCardCreateWithoutCardInput, ProjectCardUncheckedCreateWithoutCardInput>
+  }
+
+  export type ProjectCardUpdateWithWhereUniqueWithoutCardInput = {
+    where: ProjectCardWhereUniqueInput
+    data: XOR<ProjectCardUpdateWithoutCardInput, ProjectCardUncheckedUpdateWithoutCardInput>
+  }
+
+  export type ProjectCardUpdateManyWithWhereWithoutCardInput = {
+    where: ProjectCardScalarWhereInput
+    data: XOR<ProjectCardUpdateManyMutationInput, ProjectCardUncheckedUpdateManyWithoutCardInput>
+  }
+
+  export type ProjectCreateWithoutCardsInput = {
+    id?: string
+    projectName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProjectsInput
+  }
+
+  export type ProjectUncheckedCreateWithoutCardsInput = {
+    id?: string
+    projectName: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectCreateOrConnectWithoutCardsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutCardsInput, ProjectUncheckedCreateWithoutCardsInput>
+  }
+
+  export type CardCreateWithoutProjectsInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCardsInput
+  }
+
+  export type CardUncheckedCreateWithoutProjectsInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CardCreateOrConnectWithoutProjectsInput = {
+    where: CardWhereUniqueInput
+    create: XOR<CardCreateWithoutProjectsInput, CardUncheckedCreateWithoutProjectsInput>
+  }
+
+  export type ProjectUpsertWithoutCardsInput = {
+    update: XOR<ProjectUpdateWithoutCardsInput, ProjectUncheckedUpdateWithoutCardsInput>
+    create: XOR<ProjectCreateWithoutCardsInput, ProjectUncheckedCreateWithoutCardsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutCardsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutCardsInput, ProjectUncheckedUpdateWithoutCardsInput>
+  }
+
+  export type ProjectUpdateWithoutCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProjectsNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CardUpsertWithoutProjectsInput = {
+    update: XOR<CardUpdateWithoutProjectsInput, CardUncheckedUpdateWithoutProjectsInput>
+    create: XOR<CardCreateWithoutProjectsInput, CardUncheckedCreateWithoutProjectsInput>
+    where?: CardWhereInput
+  }
+
+  export type CardUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: CardWhereInput
+    data: XOR<CardUpdateWithoutProjectsInput, CardUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type CardUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCardsNestedInput
+  }
+
+  export type CardUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -7104,6 +12382,30 @@ export namespace Prisma {
   export type SessionCreateManyUserInput = {
     sessionToken: string
     expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectCreateManyUserInput = {
+    id?: string
+    projectName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CardCreateManyUserInput = {
+    id?: string
+    name: string
+    type: string
+    level: string
+    traits: string
+    actions: string
+    body: string
+    tags?: string | null
+    plain?: number | null
+    numberToPrint?: number
+    public?: boolean
+    url?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7172,6 +12474,122 @@ export namespace Prisma {
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cards?: ProjectCardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cards?: ProjectCardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CardUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectCardUpdateManyWithoutCardNestedInput
+  }
+
+  export type CardUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectCardUncheckedUpdateManyWithoutCardNestedInput
+  }
+
+  export type CardUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    traits?: StringFieldUpdateOperationsInput | string
+    actions?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    tags?: NullableStringFieldUpdateOperationsInput | string | null
+    plain?: NullableIntFieldUpdateOperationsInput | number | null
+    numberToPrint?: IntFieldUpdateOperationsInput | number
+    public?: BoolFieldUpdateOperationsInput | boolean
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardCreateManyProjectInput = {
+    cardId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardUpdateWithoutProjectInput = {
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    card?: CardUpdateOneRequiredWithoutProjectsNestedInput
+  }
+
+  export type ProjectCardUncheckedUpdateWithoutProjectInput = {
+    cardId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardUncheckedUpdateManyWithoutProjectInput = {
+    cardId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardCreateManyCardInput = {
+    projectId: string
+    addedAt?: Date | string
+  }
+
+  export type ProjectCardUpdateWithoutCardInput = {
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutCardsNestedInput
+  }
+
+  export type ProjectCardUncheckedUpdateWithoutCardInput = {
+    projectId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCardUncheckedUpdateManyWithoutCardInput = {
+    projectId?: StringFieldUpdateOperationsInput | string
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
