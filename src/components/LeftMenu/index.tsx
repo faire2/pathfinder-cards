@@ -22,6 +22,7 @@ export default function LeftMenu() {
 			<PrimaryLink href={Pages.home}>Project</PrimaryLink>
 			<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
 			<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
+			<PrimaryLink href={Pages.allCards}>All cards</PrimaryLink>
 			<PrimaryButton onClick={() => showLoadProjectOverlay()}>
 				Switch project
 			</PrimaryButton>

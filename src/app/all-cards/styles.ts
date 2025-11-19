@@ -1,0 +1,57 @@
+import { Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
+import { styled } from 'styled-components'
+
+
+export const PageContainer = styled.div`
+	padding: 20px;
+	width: 100%;
+`
+
+export const PageTitle = styled.h1`
+	${doNotPrint}
+	${fontGoodRegular}
+	text-align: center;
+	font-weight: bold;
+	color: ${Colors.DarkRed};
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+`
+
+export const CurrentProjectInfo = styled.p`
+	${doNotPrint}
+	${fontGoodRegular}
+	text-align: center;
+	color: ${Colors.DarkRed};
+	margin-bottom: 20px;
+	font-style: italic;
+`
+
+export const CardGrid = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: flex-start;
+`
+
+export const CardItem = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+`
+
+export const CardActions = styled.div`
+	${doNotPrint}
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+`
+
+export const EmptyMessage = styled.p`
+	${fontGoodRegular}
+	text-align: center;
+	color: ${Colors.DarkRed};
+	font-size: 18px;
+	margin-top: 40px;
+`

@@ -5,4 +5,5 @@ export const Pages = {
 	importCard: '/import-card',
 	printView: '/print-cards',
 	singlePage: '/single-card',
+	allCards: '/all-cards',
 } as const
