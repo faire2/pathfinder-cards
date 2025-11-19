@@ -7,7 +7,7 @@ import {
 	PrimaryButton,
 } from '@/styles/commonStyledComponents'
 import { emptyCard } from '@/data/emptyCard'
-import { useProjectActions } from '@/stores/projectStore'
+import { useProjectActionsV2, useCurrentProject } from '@/stores/projectStoreV2'
 import { isCardData } from '@/utils/cardUtils'
 
 import * as S from './styles'
@@ -23,7 +23,8 @@ interface Props {
 
 export default function CardEdit({ initialCard, cardIndex }: Props) {
 	const [cardData, setCardData] = useState<CardData>(initialCard)
-	const { addCard, saveCardByIndex, removeCardByIndex } = useProjectActions()
+	const { updateCard, createCard, addCardToProject, removeCardFromProject } = useProjectActionsV2()
+	const currentProject = useCurrentProject()
 
 	const jsonValue = JSON.stringify(cardData)
 	const transformData = (stringifiedNewCard: string) => {
@@ -39,14 +40,33 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 		}
 	}
 
-	const handleOnSaveClick = () => {
-		if (cardData) {
-			if (cardIndex) {
-				saveCardByIndex(cardData, cardIndex)
+	const handleOnSaveClick = async () => {
+		if (!cardData || !currentProject) return
+
+		try {
+			if (cardData.id) {
+				// Editing existing card - update it
+				await updateCard(cardData.id, cardData)
+				// Don't reset when editing - keep the current card data
 			} else {
-				addCard(cardData)
+				// Creating new card - create and add to project
+				const newCard = await createCard(cardData)
+				await addCardToProject(currentProject.id, newCard.id)
+				// Reset form after creating new card
+				setCardData(emptyCard)
 			}
-			setCardData(emptyCard)
+		} catch (error) {
+			console.error('Failed to save card:', error)
+		}
+	}
+
+	const handleRemoveFromProject = async () => {
+		if (!currentProject || !cardData.id) return
+
+		try {
+			await removeCardFromProject(currentProject.id, cardData.id)
+		} catch (error) {
+			console.error('Failed to remove card from project:', error)
 		}
 	}
 
@@ -67,9 +87,9 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 				<PrimaryButton disabled={!cardData} onClick={handleOnSaveClick}>
 					Save Card
 				</PrimaryButton>
-				{typeof cardIndex === 'number' && (
-					<PrimaryButton onClick={() => removeCardByIndex(cardIndex)}>
-						Remove Card
+				{cardData.id && (
+					<PrimaryButton onClick={handleRemoveFromProject}>
+						Remove from Project
 					</PrimaryButton>
 				)}
 			</PageColumn>

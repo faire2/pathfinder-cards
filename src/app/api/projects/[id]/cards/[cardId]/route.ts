@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 // DELETE /api/projects/[id]/cards/[cardId] - Remove a card from a project
 export async function DELETE(
 	request: Request,
-	{ params }: { params: { id: string; cardId: string } }
+	{ params }: { params: Promise<{ id: string; cardId: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -15,9 +15,11 @@ export async function DELETE(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id, cardId } = await params
+
 		// Verify project exists and user owns it
 		const project = await prisma.project.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!project) {
@@ -32,8 +34,8 @@ export async function DELETE(
 		const projectCard = await prisma.projectCard.findUnique({
 			where: {
 				projectId_cardId: {
-					projectId: params.id,
-					cardId: params.cardId,
+					projectId: id,
+					cardId: cardId,
 				},
 			},
 		})
@@ -49,8 +51,8 @@ export async function DELETE(
 		await prisma.projectCard.delete({
 			where: {
 				projectId_cardId: {
-					projectId: params.id,
-					cardId: params.cardId,
+					projectId: id,
+					cardId: cardId,
 				},
 			},
 		})

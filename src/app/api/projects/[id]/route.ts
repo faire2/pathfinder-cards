@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 // GET /api/projects/[id] - Get a single project
 export async function GET(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -15,9 +15,11 @@ export async function GET(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const project = await prisma.project.findUnique({
 			where: {
-				id: params.id,
+				id,
 			},
 			include: {
 				cards: {
@@ -49,7 +51,7 @@ export async function GET(
 // PUT /api/projects/[id] - Update a project
 export async function PUT(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -57,8 +59,10 @@ export async function PUT(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const existingProject = await prisma.project.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!existingProject) {
@@ -81,7 +85,7 @@ export async function PUT(
 
 		const project = await prisma.project.update({
 			where: {
-				id: params.id,
+				id,
 			},
 			data: {
 				projectName,
@@ -115,7 +119,7 @@ export async function PUT(
 // DELETE /api/projects/[id] - Delete a project
 export async function DELETE(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -123,8 +127,10 @@ export async function DELETE(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const existingProject = await prisma.project.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!existingProject) {
@@ -138,7 +144,7 @@ export async function DELETE(
 		// Delete project (cascade deletes ProjectCard rows, but NOT the cards themselves)
 		await prisma.project.delete({
 			where: {
-				id: params.id,
+				id,
 			},
 		})
 

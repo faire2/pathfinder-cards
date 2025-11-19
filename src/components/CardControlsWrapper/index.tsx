@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { Pages } from '@/enums/pages'
-import { useProjectActions, useNumberToPrint } from '@/stores/projectStore'
+import { useProjectActionsV2, useCurrentProject } from '@/stores/projectStoreV2'
 import {
 	FlexColumn,
 	FlexRow,
@@ -18,19 +18,24 @@ interface Props {
 
 export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 	const router = useRouter()
-	const { changeNumberToPrint, removeCardByIndex } =
-		useProjectActions()
-	const numberToPrint = useNumberToPrint(cardIndex)
+	const { updateCard, removeCardFromProject } = useProjectActionsV2()
+	const currentProject = useCurrentProject()
+	const card = currentProject?.cards?.[cardIndex]
+	const numberToPrint = card?.numberToPrint || 0
 
-	const handleIncreaseNumber = () => {
+	const handleIncreaseNumber = async () => {
+		if (!card) return
+
 		/* Originally projects did not have number of cards to print. If that
 		is the case here, let's follow user's most likely intent and increase
 		the number of prints to 1. */
 		const finalNumber = isNumber(numberToPrint) ? numberToPrint + 1 : 1
-		changeNumberToPrint(cardIndex, finalNumber)
+		await updateCard(card.id, { numberToPrint: finalNumber })
 	}
 
-	const handleDecreaseNumber = () => {
+	const handleDecreaseNumber = async () => {
+		if (!card) return
+
 		/* See previous note, this time the most probable intent is to not
 		print the card. */
 		const finalNumber = !isNumber(numberToPrint)
@@ -38,7 +43,12 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 			: numberToPrint > 0
 				? numberToPrint - 1
 				: 0
-		changeNumberToPrint(cardIndex, finalNumber)
+		await updateCard(card.id, { numberToPrint: finalNumber })
+	}
+
+	const handleRemoveFromProject = async () => {
+		if (!card || !currentProject) return
+		await removeCardFromProject(currentProject.id, card.id)
 	}
 
 	return (
@@ -66,10 +76,10 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 					</PrimaryButtonRound>
 				</FlexRow>
 				<PrimaryButton
-					title="Delete this card"
-					onClick={() => removeCardByIndex(cardIndex)}
+					title="Remove card from this project"
+					onClick={handleRemoveFromProject}
 				>
-					Delete
+					Remove
 				</PrimaryButton>
 			</S.ButtonsRow>
 		</FlexColumn>

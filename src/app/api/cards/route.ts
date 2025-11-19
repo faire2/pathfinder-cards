@@ -62,9 +62,9 @@ export async function POST(request: Request) {
 		} = body
 
 		// Validate required fields
-		if (!name || !type || !level || !traits || !actions || !cardBody) {
+		if (!name) {
 			return NextResponse.json(
-				{ error: 'Missing required fields: name, type, level, traits, actions, body' },
+				{ error: 'Card name is required' },
 				{ status: 400 }
 			)
 		}
@@ -72,11 +72,11 @@ export async function POST(request: Request) {
 		const card = await prisma.card.create({
 			data: {
 				name,
-				type,
-				level,
-				traits,
-				actions,
-				body: cardBody,
+				type: type || '',
+				level: level || '',
+				traits: traits || '',
+				actions: actions || '',
+				body: cardBody || '',
 				tags,
 				plain: plain ?? 0,
 				numberToPrint: numberToPrint ?? 1,

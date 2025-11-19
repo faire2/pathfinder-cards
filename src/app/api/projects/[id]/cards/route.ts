@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 // GET /api/projects/[id]/cards - List all cards in a project
 export async function GET(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -15,8 +15,10 @@ export async function GET(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const project = await prisma.project.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!project) {
@@ -29,7 +31,7 @@ export async function GET(
 
 		const projectCards = await prisma.projectCard.findMany({
 			where: {
-				projectId: params.id,
+				projectId: id,
 			},
 			include: {
 				card: true,
@@ -55,7 +57,7 @@ export async function GET(
 // POST /api/projects/[id]/cards - Add an existing card to a project
 export async function POST(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -63,9 +65,11 @@ export async function POST(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		// Verify project exists and user owns it
 		const project = await prisma.project.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!project) {
@@ -105,7 +109,7 @@ export async function POST(
 		// Create the association (will fail if already exists due to composite key)
 		const projectCard = await prisma.projectCard.create({
 			data: {
-				projectId: params.id,
+				projectId: id,
 				cardId: cardId,
 			},
 			include: {

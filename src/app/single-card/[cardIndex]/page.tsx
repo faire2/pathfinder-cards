@@ -1,23 +1,26 @@
 'use client'
 
+import { use } from 'react'
 import Card from '@/components/Card'
 import { PrimaryLink } from '@/styles/commonStyledComponents'
-import { useCards } from '@/stores/projectStore'
+import { useCurrentProject } from '@/stores/projectStoreV2'
 import { Pages } from '@/enums/pages'
 
 import * as S from './styles'
 
 
 interface Props {
-	params: {
+	params: Promise<{
 		cardIndex: number
-	}
+	}>
 }
 
 
 export default function CardEdiSingleCardViewtView({ params }: Props) {
-	const cards = useCards()
-	const numericCardIndex = Number(params.cardIndex)
+	const { cardIndex } = use(params)
+	const currentProject = useCurrentProject()
+	const cards = currentProject?.cards || []
+	const numericCardIndex = Number(cardIndex)
 
 	return (
 		<div>

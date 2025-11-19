@@ -2,15 +2,16 @@
 
 import { PrimaryButton, PrimaryLink } from '@/styles/commonStyledComponents'
 import { Pages } from '@/enums/pages'
-import { useProjectActions, useProjectName } from '@/stores/projectStore'
+import { useCurrentProject, useProjectActionsV2 } from '@/stores/projectStoreV2'
 import { useOverlayActions } from '@/stores/overlayStore'
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 
 export default function LeftMenu() {
-	const projectNameExists = !!useProjectName()
+	const currentProject = useCurrentProject()
+	const projectNameExists = !!currentProject
 
-	const { saveProject } = useProjectActions()
+	const { loadProjects } = useProjectActionsV2()
 	const { showLoadProjectOverlay, showSaveProjectAsOverlay } = useOverlayActions()
 
 	const { data: session } = useSession();
@@ -21,12 +22,8 @@ export default function LeftMenu() {
 			<PrimaryLink href={Pages.home}>Project</PrimaryLink>
 			<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
 			<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
-			<PrimaryButton onClick={saveProject}>Save project</PrimaryButton>
-			<PrimaryButton onClick={() => showSaveProjectAsOverlay()}>
-				Save project as
-			</PrimaryButton>
 			<PrimaryButton onClick={() => showLoadProjectOverlay()}>
-				Load project
+				Switch project
 			</PrimaryButton>
 			<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
 			<PrimaryButton onClick={() => signOut()}>Log out</PrimaryButton>

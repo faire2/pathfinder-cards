@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 // GET /api/cards/[id] - Get a single card
 export async function GET(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -15,9 +15,11 @@ export async function GET(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const card = await prisma.card.findUnique({
 			where: {
-				id: params.id,
+				id,
 			},
 			include: {
 				projects: {
@@ -49,7 +51,7 @@ export async function GET(
 // PUT /api/cards/[id] - Update a card
 export async function PUT(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -57,8 +59,10 @@ export async function PUT(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const existingCard = await prisma.card.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!existingCard) {
@@ -70,45 +74,35 @@ export async function PUT(
 		}
 
 		const body = await request.json()
-		const {
-			name,
-			type,
-			level,
-			traits,
-			actions,
-			body: cardBody,
-			tags,
-			plain,
-			numberToPrint,
-			public: isPublic,
-			url,
-		} = body
 
-		// Validate required fields
-		if (!name || !type || !level || !traits || !actions || !cardBody) {
-			return NextResponse.json(
-				{ error: 'Missing required fields: name, type, level, traits, actions, body' },
-				{ status: 400 }
-			)
+		// Build update object with only provided fields (partial updates)
+		const updateData: any = {}
+
+		if (body.name !== undefined) {
+			if (!body.name) {
+				return NextResponse.json(
+					{ error: 'Card name cannot be empty' },
+					{ status: 400 }
+				)
+			}
+			updateData.name = body.name
 		}
+		if (body.type !== undefined) updateData.type = body.type
+		if (body.level !== undefined) updateData.level = body.level
+		if (body.traits !== undefined) updateData.traits = body.traits
+		if (body.actions !== undefined) updateData.actions = body.actions
+		if (body.body !== undefined) updateData.body = body.body
+		if (body.tags !== undefined) updateData.tags = body.tags
+		if (body.plain !== undefined) updateData.plain = body.plain
+		if (body.numberToPrint !== undefined) updateData.numberToPrint = body.numberToPrint
+		if (body.public !== undefined) updateData.public = body.public
+		if (body.url !== undefined) updateData.url = body.url
 
 		const card = await prisma.card.update({
 			where: {
-				id: params.id,
+				id,
 			},
-			data: {
-				name,
-				type,
-				level,
-				traits,
-				actions,
-				body: cardBody,
-				tags,
-				plain: plain ?? 0,
-				numberToPrint: numberToPrint ?? 1,
-				public: isPublic ?? false,
-				url,
-			},
+			data: updateData,
 			include: {
 				projects: {
 					include: {
@@ -131,7 +125,7 @@ export async function PUT(
 // DELETE /api/cards/[id] - Delete a card
 export async function DELETE(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
 		const session = await auth()
@@ -139,8 +133,10 @@ export async function DELETE(
 			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
+		const { id } = await params
+
 		const existingCard = await prisma.card.findUnique({
-			where: { id: params.id },
+			where: { id },
 		})
 
 		if (!existingCard) {
@@ -154,7 +150,7 @@ export async function DELETE(
 		// Delete card (cascade deletes all ProjectCard associations)
 		await prisma.card.delete({
 			where: {
-				id: params.id,
+				id,
 			},
 		})
 
