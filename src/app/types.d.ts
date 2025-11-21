@@ -1,4 +1,5 @@
 interface Project {
+	id: string
 	projectName: string
 	cards: CardData[]
 }

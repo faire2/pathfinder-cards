@@ -2,7 +2,9 @@ import { czechKeywords, czechNumericKeywords, keywords, numericKeywords } from '
 import { Hr, Paragraph } from '@/styles/commonStyledComponents'
 import { actionIcons, createActionIcon } from './createActionIcon'
 
-export default function renderEnrichedText(text: string, cardWidth?: number) {
+export default function renderEnrichedText(text: string | undefined, cardWidth?: number) {
+	if (!text) return <></>
+
 	const emphasizeWords = (paragraph: string) => {
 		const words = paragraph.split(' ')
 		const actionIndex = words.findIndex((word) =>

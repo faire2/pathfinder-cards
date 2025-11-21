@@ -1,20 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Card from '@/components/Card'
 import CardEditFields from '@/components/CardEdit/CardEditFields'
 import { PageColumn, PrimaryButton } from '@/styles/commonStyledComponents'
 import { emptyCard } from '@/data/emptyCard'
-import { useProjectActionsV2, useCurrentProject, useProjectLoading, useProjectError } from '@/stores/projectStoreV2'
+import { useAddCardToProject, useCurrentProject } from '@/hooks/useProject';
+import { Pages } from '@/enums/pages'
 
 import * as S from './styles'
+import { useCreateCard } from '@/hooks/useCards';
+
 
 export default function CreateCard() {
+	const router = useRouter()
 	const [cardData, setCardData] = useState<CardData>(emptyCard)
-	const { createCard, addCardToProject } = useProjectActionsV2()
-	const currentProject = useCurrentProject()
-	const isLoading = useProjectLoading()
-	const error = useProjectError()
+	const { data: currentProject } = useCurrentProject()
+	const createCardMutation = useCreateCard()
+	const addCardToProjectMutation = useAddCardToProject()
 
 	const handleAddCard = async () => {
 		if (!currentProject) {
@@ -28,19 +32,20 @@ export default function CreateCard() {
 			return
 		}
 
-		try {
-			// Step 1: Create card in library (returns the created card with ID)
-			const newCard = await createCard(cardData)
 
-			// Step 2: Add the card to the current project
-			await addCardToProject(currentProject.id, newCard.id)
-
-			// Reset form
-			setCardData(emptyCard)
-		} catch (err) {
-			console.error('Failed to create card:', err)
-			alert('Failed to create card. Please try again.')
-		}
+		// Step 1: Create card in library (returns the created card with ID)
+		createCardMutation.mutate(cardData, {
+			onSuccess: ({ id }) => {
+				// Step 2: Add the card to the current project
+				addCardToProjectMutation.mutate({ cardId: id, projectId: currentProject.id }, {
+					onSuccess: () => {
+						// Reset form and redirect to project page
+						setCardData(emptyCard)
+						router.push(Pages.home)
+					}
+				})
+			}
+		})
 	}
 
 	return (

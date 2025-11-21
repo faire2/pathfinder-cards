@@ -6,10 +6,10 @@ export default function Traits() {
 	const { traits } = useContext(CardDataCtx)
 
 	const styledTraits = traits
-		.split(',')
-		.map((trait, index) => <Trait trait={trait} key={index} />)
+		? traits.split(',').map((trait, index) => <Trait trait={trait} key={index} />)
+		: null
 
-	return <S.Traits>{traits ? styledTraits : null}</S.Traits>
+	return <S.Traits>{styledTraits}</S.Traits>
 }
 
 

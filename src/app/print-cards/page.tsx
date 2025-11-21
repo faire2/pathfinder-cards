@@ -2,13 +2,13 @@
 
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
-import { useCurrentProject } from '@/stores/projectStoreV2'
+import { useCurrentProject } from '@/hooks/useProject'
 import Card from '@/components/Card'
 
 import * as S from './styles'
 
 export default function Home() {
-	const currentProject = useCurrentProject()
+	const { data: currentProject } = useCurrentProject()
 	const cards = currentProject?.cards || []
 	const cardsToPrint = cards.reduce<CardData[]>((collection, card) => {
 		for (let i = 0; i < card.numberToPrint; i++) {

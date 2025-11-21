@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { Pages } from '@/enums/pages'
-import { useProjectActionsV2, useCurrentProject } from '@/stores/projectStoreV2'
+import { useCurrentProject, useRemoveCardFromProject } from '@/hooks/useProject'
+import { useUpdateCard } from '@/hooks/useCards'
 import {
 	FlexColumn,
 	FlexRow,
@@ -18,22 +19,23 @@ interface Props {
 
 export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 	const router = useRouter()
-	const { updateCard, removeCardFromProject } = useProjectActionsV2()
-	const currentProject = useCurrentProject()
+	const updateCardMutation = useUpdateCard()
+	const removeCardFromProjectMutation = useRemoveCardFromProject()
+	const { data: currentProject } = useCurrentProject()
 	const card = currentProject?.cards?.[cardIndex]
 	const numberToPrint = card?.numberToPrint || 0
 
-	const handleIncreaseNumber = async () => {
+	const handleIncreaseNumber = () => {
 		if (!card) return
 
 		/* Originally projects did not have number of cards to print. If that
 		is the case here, let's follow user's most likely intent and increase
 		the number of prints to 1. */
 		const finalNumber = isNumber(numberToPrint) ? numberToPrint + 1 : 1
-		await updateCard(card.id, { numberToPrint: finalNumber })
+		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber })
 	}
 
-	const handleDecreaseNumber = async () => {
+	const handleDecreaseNumber = () => {
 		if (!card) return
 
 		/* See previous note, this time the most probable intent is to not
@@ -43,12 +45,12 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 			: numberToPrint > 0
 				? numberToPrint - 1
 				: 0
-		await updateCard(card.id, { numberToPrint: finalNumber })
+		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber })
 	}
 
-	const handleRemoveFromProject = async () => {
+	const handleRemoveFromProject = () => {
 		if (!card || !currentProject) return
-		await removeCardFromProject(currentProject.id, card.id)
+		removeCardFromProjectMutation.mutate({ cardId: card.id, projectId: currentProject.id })
 	}
 
 	return (

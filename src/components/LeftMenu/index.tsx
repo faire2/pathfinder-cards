@@ -2,22 +2,23 @@
 
 import { PrimaryButton, PrimaryLink } from '@/styles/commonStyledComponents'
 import { Pages } from '@/enums/pages'
-import { useCurrentProject, useProjectActionsV2 } from '@/stores/projectStoreV2'
 import { useOverlayActions } from '@/stores/overlayStore'
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { useCurrentProject } from '@/hooks/useProject'
 
 
 export default function LeftMenu() {
-	const currentProject = useCurrentProject()
-	const projectNameExists = !!currentProject
+	const { data: currentProject, isLoading } = useCurrentProject()
+	const { showLoadProjectOverlay } = useOverlayActions()
 
-	const { loadProjects } = useProjectActionsV2()
-	const { showLoadProjectOverlay, showSaveProjectAsOverlay } = useOverlayActions()
+	const { data: session } = useSession()
+	const isLoggedIn = !!session
 
-	const { data: session } = useSession();
-	const isLoggedIn = !!session;
+	if (isLoading) {
+		return <PrimaryButton disabled>Loading...</PrimaryButton>
+	}
 
-	const projectButtons = projectNameExists ?
+	const projectButtons = !!currentProject ?
 		<>
 			<PrimaryLink href={Pages.home}>Project</PrimaryLink>
 			<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>

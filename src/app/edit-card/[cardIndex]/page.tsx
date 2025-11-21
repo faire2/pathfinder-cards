@@ -3,7 +3,7 @@
 import { use } from 'react'
 import CardEdit from '@/components/CardEdit/CardEdit'
 import { emptyCard } from '@/data/emptyCard'
-import { useCurrentProject } from '@/stores/projectStoreV2'
+import { useCurrentProject } from '@/hooks/useProject';
 
 interface Props {
 	params: Promise<{
@@ -15,7 +15,7 @@ interface Props {
 // export default function EditCard({ cardIndex }: Props) {
 export default function EditCard({ params }: Props) {
 	const { cardIndex } = use(params)
-	const currentProject = useCurrentProject()
+	const { data: currentProject } = useCurrentProject()
 	const cards = currentProject?.cards || []
 	const numericCardIndex = Number(cardIndex) ?? undefined
 	const card = cards[numericCardIndex]

@@ -1,18 +1,21 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import {
 	PageColumn,
 	Label,
 	PrimaryButton,
 } from '@/styles/commonStyledComponents'
 import { emptyCard } from '@/data/emptyCard'
-import { useProjectActionsV2, useCurrentProject } from '@/stores/projectStoreV2'
 import { isCardData } from '@/utils/cardUtils'
+import { Pages } from '@/enums/pages'
 
 import * as S from './styles'
 import Card from '../Card'
 import CardEditFields from './CardEditFields'
+import {useAddCardToProject, useCurrentProject, useRemoveCardFromProject} from "@/hooks/useProject";
+import {useCreateCard, useUpdateCard} from "@/hooks/useCards";
 
 
 interface Props {
@@ -22,9 +25,13 @@ interface Props {
 
 
 export default function CardEdit({ initialCard, cardIndex }: Props) {
+	const router = useRouter()
 	const [cardData, setCardData] = useState<CardData>(initialCard)
-	const { updateCard, createCard, addCardToProject, removeCardFromProject } = useProjectActionsV2()
-	const currentProject = useCurrentProject()
+	const { data: currentProject } = useCurrentProject()
+	const updateCardMutation = useUpdateCard()
+	const createCardMutation = useCreateCard()
+	const addCardToProjectMutation = useAddCardToProject()
+	const removeCardFromProjectMutation = useRemoveCardFromProject()
 
 	const jsonValue = JSON.stringify(cardData)
 	const transformData = (stringifiedNewCard: string) => {
@@ -40,34 +47,46 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 		}
 	}
 
-	const handleOnSaveClick = async () => {
+	const handleOnSaveClick = () => {
 		if (!cardData || !currentProject) return
 
-		try {
-			if (cardData.id) {
-				// Editing existing card - update it
-				await updateCard(cardData.id, cardData)
-				// Don't reset when editing - keep the current card data
-			} else {
-				// Creating new card - create and add to project
-				const newCard = await createCard(cardData)
-				await addCardToProject(currentProject.id, newCard.id)
-				// Reset form after creating new card
-				setCardData(emptyCard)
-			}
-		} catch (error) {
-			console.error('Failed to save card:', error)
+		if (cardData.id) {
+			// Editing existing card - update it and redirect to home
+			updateCardMutation.mutate(cardData, {
+				onSuccess: () => {
+					router.push(Pages.home)
+				}
+			})
+		} else {
+			// Creating new card - create and add to project
+			createCardMutation.mutate(cardData, {
+				onSuccess: ({ id }) => {
+					addCardToProjectMutation.mutate({
+						cardId: id,
+						projectId: currentProject.id
+					}, {
+						onSuccess: () => {
+							// Reset form and redirect after creating new card
+							setCardData(emptyCard)
+							router.push(Pages.home)
+						}
+					})
+				}
+			})
 		}
 	}
 
-	const handleRemoveFromProject = async () => {
+	const handleRemoveFromProject = () => {
 		if (!currentProject || !cardData.id) return
 
-		try {
-			await removeCardFromProject(currentProject.id, cardData.id)
-		} catch (error) {
-			console.error('Failed to remove card from project:', error)
-		}
+		removeCardFromProjectMutation.mutate({
+			cardId: cardData.id,
+			projectId: currentProject.id
+		}, {
+			onSuccess: () => {
+				router.push(Pages.home)
+			}
+		})
 	}
 
 	return (
