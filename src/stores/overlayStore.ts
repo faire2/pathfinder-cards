@@ -1,7 +1,5 @@
 import { projectPrefix } from '@/utils/localStorage'
 import { create } from 'zustand'
-import { loadProjectAsAction, saveProjectAsAction } from './projectStore'
-
 
 interface OverlayStore extends OverlayData {
 	actions: OverlayActions
@@ -9,7 +7,6 @@ interface OverlayStore extends OverlayData {
 
 interface OverlayActions {
 	hideOverlay: () => void
-	showSaveProjectAsOverlay: () => void
 	showLoadProjectOverlay: () => void
 }
 
@@ -20,40 +17,30 @@ const initialState: OverlayData = {
 	onFinish: null,
 }
 
-const useOverlayStore = create<OverlayStore>((set, get) => ({
+// Helper to get localStorage project names
+export function getLocalStorageProjectNames(): string[] {
+	if (typeof window === 'undefined') return []
+	const items = { ...localStorage }
+	const prefixLength = projectPrefix.length
+	const projects = Object.keys(items).filter(
+		(key) => key.slice(0, prefixLength) === projectPrefix
+	)
+	return projects.map((project) => project.slice(prefixLength))
+}
+
+const useOverlayStore = create<OverlayStore>((set) => ({
 	...initialState,
 
 	actions: {
 		hideOverlay: () =>
 			set(() => ({ ...initialState })),
-		showSaveProjectAsOverlay: () =>
-			set(() => {
-				console.log('settin overlay')
-				return {
-					label: 'Save Project As',
-					data: null,
-					overlayType: 'input',
-					onFinish: saveProjectAsAction
-				}
-			}),
 		showLoadProjectOverlay: () =>
-			set(() => {
-				const items = { ...localStorage }
-				const prefixLength = projectPrefix.length
-				const projects = Object.keys(items).filter(
-					(key) => key.slice(0, prefixLength) === projectPrefix
-				)
-				const projectNames = projects.map((project) =>
-					project.slice(prefixLength)
-				)
-
-				return {
-					label: 'Load Project',
-					data: projectNames,
-					overlayType: 'listChoice',
-					onFinish: loadProjectAsAction,
-				}
-			})
+			set(() => ({
+				label: 'Switch Project',
+				data: null,
+				overlayType: 'projectSwitcher',
+				onFinish: null,
+			}))
 	},
 }))
 

@@ -183,3 +183,48 @@ export function useRemoveCardFromProject() {
 		}
 	})
 }
+
+// Import a project from localStorage to the database
+export function useImportProjectFromLocalStorage() {
+	const queryClient = useQueryClient()
+
+	return useMutation({
+		mutationFn: async (localStorageProject: { projectName: string, cards: CardData[] }) => {
+			// Step 1: Create the project
+			const projectResponse = await fetch(dbRoutes.allProjects, createRequestInit('POST', {
+				projectName: localStorageProject.projectName
+			}))
+			if (!projectResponse.ok) {
+				const errorData = await projectResponse.json()
+				throw new Error(errorData.error || `Failed to create project ${localStorageProject.projectName}`)
+			}
+			const createdProject = await projectResponse.json() as PrismaProject
+			const projectId = createdProject.id
+
+			// Step 2: Create each card and add to project
+			for (const card of localStorageProject.cards) {
+				// Create the card (without id)
+				const { id: _, ...cardWithoutId } = card
+				const cardResponse = await fetch('/api/cards', createRequestInit('POST', cardWithoutId))
+				if (!cardResponse.ok) {
+					console.error(`Failed to create card ${card.name}`)
+					continue
+				}
+				const createdCard = await cardResponse.json() as CardData
+
+				// Add card to project
+				const addResponse = await fetch(dbRoutes.projectCards(projectId), createRequestInit('POST', {
+					cardId: createdCard.id
+				}))
+				if (!addResponse.ok) {
+					console.error(`Failed to add card ${card.name} to project`)
+				}
+			}
+
+			return transformProject(createdProject)
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: projectKeys.all })
+		}
+	})
+}
