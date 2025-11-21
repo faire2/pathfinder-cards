@@ -14,8 +14,8 @@ import { Pages } from '@/enums/pages'
 import * as S from './styles'
 import Card from '../Card'
 import CardEditFields from './CardEditFields'
-import {useAddCardToProject, useCurrentProject, useRemoveCardFromProject} from "@/hooks/useProject";
-import {useCreateCard, useUpdateCard} from "@/hooks/useCards";
+import { useAddCardToProject, useCurrentProject, useRemoveCardFromProject } from '@/hooks/useProject'
+import { useCreateCard, useUpdateCard } from '@/hooks/useCards'
 
 
 interface Props {

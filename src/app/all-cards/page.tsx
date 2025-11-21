@@ -8,7 +8,7 @@ import { PrimaryButton } from '@/styles/commonStyledComponents'
 
 import * as S from './styles'
 import { useAddCardToProject, useAllProjects, useCurrentProject, useRemoveCardFromProject } from '@/hooks/useProject';
-import {useCardLibrary, useDeleteCard} from "@/hooks/useCards";
+import { useCardLibrary, useDeleteCard } from '@/hooks/useCards'
 
 
 export default function AllCards() {

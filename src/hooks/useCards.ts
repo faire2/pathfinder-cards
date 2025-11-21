@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
-import {createRequestInit} from "@/api";
+import { createRequestInit } from '@/api'
 import { projectKeys } from './useProject'
 
 export const cardKeys = {
