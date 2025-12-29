@@ -32,6 +32,13 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0;
 	}
 
+	@media print {
+		body {
+			-webkit-print-color-adjust: exact !important;
+			print-color-adjust: exact !important;
+		}
+	}
+
 	@page {
 	}
 
