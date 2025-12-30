@@ -28,7 +28,7 @@ interface CardDimensions {
 	height: number
 }
 
-type OverlayType = 'input' | 'listChoice' | 'projectSwitcher'
+type OverlayType = 'input' | 'listChoice' | 'projectSwitcher' | 'projectImporter'
 
 interface OverlayData {
 	label: string | null

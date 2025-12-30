@@ -7,7 +7,8 @@ interface OverlayStore extends OverlayData {
 
 interface OverlayActions {
 	hideOverlay: () => void
-	showLoadProjectOverlay: () => void
+	showSwitchProjectOverlay: () => void
+	showImportProjectOverlay: () => void
 }
 
 const initialState: OverlayData = {
@@ -34,13 +35,20 @@ const useOverlayStore = create<OverlayStore>((set) => ({
 	actions: {
 		hideOverlay: () =>
 			set(() => ({ ...initialState })),
-		showLoadProjectOverlay: () =>
+		showSwitchProjectOverlay: () =>
 			set(() => ({
 				label: 'Switch Project',
 				data: null,
 				overlayType: 'projectSwitcher',
 				onFinish: null,
-			}))
+			})),
+		showImportProjectOverlay: () =>
+			set(() => ({
+				label: 'Import Project',
+				data: null,
+				overlayType: 'projectImporter',
+				onFinish: null,
+			})),
 	},
 }))
 

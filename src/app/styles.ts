@@ -28,7 +28,7 @@ export const MenuWrapper = styled.div`
 
 const leftMenuWidth = 170
 export const ViewWrapper = styled.div`
-	max-width: calc(100% - ${leftMenuWidth}px);
+	width: calc(100% - ${leftMenuWidth}px);
 `
 
 export const LeftMenuWrapper = styled.div`

@@ -6,4 +6,5 @@ export const Pages = {
 	printView: '/print-cards',
 	singlePage: '/single-card',
 	allCards: '/all-cards',
+	projects: '/projects',
 } as const

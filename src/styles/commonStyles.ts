@@ -5,6 +5,8 @@ import { createGlobalStyle, css, styled } from 'styled-components'
 export const Colors = {
 	DarkRed: '#5d0000',
 	DarkRedDisabled: '#bda0a0',
+	Gold: '#d8c384',
+	Beige: '#f5f0e1',
 } as const
 
 
@@ -55,5 +57,5 @@ export const traitStyle = css`
 	text-shadow: 0 0 0 #fff;
 	text-align: center;
 	background: ${Colors.DarkRed};
-	border: 2px solid #d8c384;
+	border: 2px solid ${Colors.Gold};
 `

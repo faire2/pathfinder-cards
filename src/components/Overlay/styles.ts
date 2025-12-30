@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { Colors } from '@/styles/commonStyles'
 
 export const InputWrapper = styled.div`
 	position: relative;
@@ -6,7 +7,7 @@ export const InputWrapper = styled.div`
 	background-color: white;
 	padding: 10px;
 	box-shadow: grey 0 5px 10px;
-	border: 2px solid #d8c384;
+	border: 2px solid ${Colors.Gold};
 `
 
 export const Header = styled.div`
@@ -29,7 +30,7 @@ export const Column = styled.div`
 export const ColumnTitle = styled.h3`
 	margin: 0 0 10px 0;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #d8c384;
+	border-bottom: 1px solid ${Colors.Gold};
 `
 
 export const ProjectItem = styled.div`
@@ -38,7 +39,7 @@ export const ProjectItem = styled.div`
 	border-radius: 4px;
 
 	&:hover {
-		background-color: #f5f0e1;
+		background-color: ${Colors.Beige};
 	}
 `
 

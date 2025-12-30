@@ -8,7 +8,7 @@ import * as S from './styles'
 import { useOverlayActions, useOverlayData, getLocalStorageProjectNames } from '@/stores/overlayStore'
 import { useAllProjects, useImportProjectFromLocalStorage } from '@/hooks/useProject'
 import { useSetCurrentProjectId } from '@/stores/projectStoreV2'
-import { loadProjectFromLs } from '@/utils/localStorage'
+import { loadProjectFromLs, removeProjectFromLs } from '@/utils/localStorage'
 
 
 export default function Overlay() {
@@ -44,6 +44,8 @@ export default function Overlay() {
 		if (project) {
 			importMutation.mutate(project, {
 				onSuccess: (importedProject) => {
+					removeProjectFromLs(projectName)
+					setLsProjectNames(prev => prev.filter(name => name !== projectName))
 					setCurrentProjectId(importedProject.id)
 					hideOverlay()
 				}
@@ -72,32 +74,29 @@ export default function Overlay() {
 						</div>
 					))
 				) : overlayType === 'projectSwitcher' ? (
-					<S.TwoColumnLayout>
-						<S.Column>
-							<S.ColumnTitle>Load Project</S.ColumnTitle>
-							{dbProjects?.length ? (
-								dbProjects.map((project) => (
-									<S.ProjectItem key={project.id} onClick={() => handleSelectDbProject(project.id)}>
-										{project.projectName}
-									</S.ProjectItem>
-								))
-							) : (
-								<S.EmptyMessage>No projects yet</S.EmptyMessage>
-							)}
-						</S.Column>
-						<S.Column>
-							<S.ColumnTitle>Import from Local Storage</S.ColumnTitle>
-							{lsProjectNames.length ? (
-								lsProjectNames.map((name, index) => (
-									<S.ProjectItem key={index} onClick={() => handleImportFromLs(name)}>
-										{name}
-									</S.ProjectItem>
-								))
-							) : (
-								<S.EmptyMessage>No local projects found</S.EmptyMessage>
-							)}
-						</S.Column>
-					</S.TwoColumnLayout>
+					<S.Column>
+						{dbProjects?.length ? (
+							dbProjects.map((project) => (
+								<S.ProjectItem key={project.id} onClick={() => handleSelectDbProject(project.id)}>
+									{project.projectName}
+								</S.ProjectItem>
+							))
+						) : (
+							<S.EmptyMessage>No projects yet</S.EmptyMessage>
+						)}
+					</S.Column>
+				) : overlayType === 'projectImporter' ? (
+					<S.Column>
+						{lsProjectNames.length ? (
+							lsProjectNames.map((name, index) => (
+								<S.ProjectItem key={index} onClick={() => handleImportFromLs(name)}>
+									{name}
+								</S.ProjectItem>
+							))
+						) : (
+							<S.EmptyMessage>No local projects found</S.EmptyMessage>
+						)}
+					</S.Column>
 				) : (
 					''
 				)}

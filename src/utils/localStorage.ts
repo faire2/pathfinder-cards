@@ -47,3 +47,11 @@ export function saveCurrentProjectNameToLs(currentProjectName: string): void {
 		console.error('Error saving current project name:', error)
 	}
 }
+
+export function removeProjectFromLs(projectName: string): void {
+	try {
+		localStorage.removeItem(projectPrefix + projectName)
+	} catch (error) {
+		console.error('Error removing project from local storage:', error)
+	}
+}
