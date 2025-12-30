@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { useAllProjects, useDeleteProject } from '@/hooks/useProject'
 import { useSetCurrentProjectId, useCurrentProjectId } from '@/stores/projectStoreV2'
 import { PrimaryButton } from '@/styles/commonStyledComponents'
+import SpinnerButton from '@/components/SpinnerButton'
 import * as S from './styles'
 
 export default function ProjectsPage() {
@@ -10,6 +12,7 @@ export default function ProjectsPage() {
 	const deleteProject = useDeleteProject()
 	const setCurrentProjectId = useSetCurrentProjectId()
 	const currentProjectId = useCurrentProjectId()
+	const [deletingProjectId, setDeletingProjectId] = useState<string | null>(null)
 
 	const handleSwitchToProject = (projectId: string) => {
 		setCurrentProjectId(projectId)
@@ -17,7 +20,12 @@ export default function ProjectsPage() {
 
 	const handleDeleteProject = (projectId: string, projectName: string) => {
 		if (confirm(`Are you sure you want to delete "${projectName}"?`)) {
-			deleteProject.mutate(projectId)
+			setDeletingProjectId(projectId)
+			deleteProject.mutate(projectId, {
+				onSettled: () => {
+					setDeletingProjectId(null)
+				}
+			})
 		}
 	}
 
@@ -48,11 +56,13 @@ export default function ProjectsPage() {
 								>
 									Switch to project
 								</PrimaryButton>
-								<PrimaryButton
+								<SpinnerButton
 									onClick={() => handleDeleteProject(project.id, project.projectName)}
+									isLoading={deletingProjectId === project.id}
+									disabled={deletingProjectId !== null}
 								>
 									Delete project
-								</PrimaryButton>
+								</SpinnerButton>
 							</S.ProjectActions>
 						</S.ProjectRow>
 					))}

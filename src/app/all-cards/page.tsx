@@ -1,18 +1,21 @@
 'use client'
 
+import { useState } from 'react'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
 
 import Card from '@/components/Card'
-import { PrimaryButton } from '@/styles/commonStyledComponents'
+import SpinnerButton from '@/components/SpinnerButton'
 
 import * as S from './styles'
-import { useAddCardToProject, useAllProjects, useCurrentProject, useRemoveCardFromProject } from '@/hooks/useProject';
+import { useAddCardToProject, useCurrentProject, useRemoveCardFromProject } from '@/hooks/useProject';
 import { useCardLibrary, useDeleteCard } from '@/hooks/useCards'
 
 
 export default function AllCards() {
 	const { data: currentProject } = useCurrentProject()
+	const [loadingCardId, setLoadingCardId] = useState<string | null>(null)
+	const [loadingAction, setLoadingAction] = useState<'add' | 'remove' | 'delete' | null>(null)
 
 	const isCardInCurrentProject = (cardId: string) => {
 		if (!currentProject) return false
@@ -25,13 +28,27 @@ export default function AllCards() {
 			alert('Please select a project first')
 			return
 		}
-		addCardMutation.mutate({ cardId, projectId: currentProject.id })
+		setLoadingCardId(cardId)
+		setLoadingAction('add')
+		addCardMutation.mutate({ cardId, projectId: currentProject.id }, {
+			onSettled: () => {
+				setLoadingCardId(null)
+				setLoadingAction(null)
+			}
+		})
 	}
 
 	const removeCardMutation = useRemoveCardFromProject()
 	const handleRemoveFromProject = async (cardId: string) => {
 		if (!currentProject) return
-		removeCardMutation.mutate({ cardId, projectId: currentProject.id })
+		setLoadingCardId(cardId)
+		setLoadingAction('remove')
+		removeCardMutation.mutate({ cardId, projectId: currentProject.id }, {
+			onSettled: () => {
+				setLoadingCardId(null)
+				setLoadingAction(null)
+			}
+		})
 	}
 
 	const deleteCardMutation = useDeleteCard()
@@ -40,7 +57,14 @@ export default function AllCards() {
 			`Are you sure you want to permanently delete "${cardName}"? This will remove it from all projects and cannot be undone.`
 		)
 		if (!confirmed) return
-		deleteCardMutation.mutate(cardId)
+		setLoadingCardId(cardId)
+		setLoadingAction('delete')
+		deleteCardMutation.mutate(cardId, {
+			onSettled: () => {
+				setLoadingCardId(null)
+				setLoadingAction(null)
+			}
+		})
 	}
 
 	const { data: cardLibrary } = useCardLibrary()
@@ -58,17 +82,29 @@ export default function AllCards() {
 									<Card cardData={card} />
 									<S.CardActions>
 										{inCurrentProject ? (
-											<PrimaryButton onClick={() => handleRemoveFromProject(card.id)}>
+											<SpinnerButton
+												onClick={() => handleRemoveFromProject(card.id)}
+												isLoading={loadingCardId === card.id && loadingAction === 'remove'}
+												disabled={loadingCardId !== null}
+											>
 												Remove
-											</PrimaryButton>
+											</SpinnerButton>
 										) : (
-											<PrimaryButton onClick={() => handleAddToProject(card.id)}>
+											<SpinnerButton
+												onClick={() => handleAddToProject(card.id)}
+												isLoading={loadingCardId === card.id && loadingAction === 'add'}
+												disabled={loadingCardId !== null}
+											>
 												Add to project
-											</PrimaryButton>
+											</SpinnerButton>
 										)}
-										<PrimaryButton onClick={() => handleDeleteCard(card.id, card.name)}>
+										<SpinnerButton
+											onClick={() => handleDeleteCard(card.id, card.name)}
+											isLoading={loadingCardId === card.id && loadingAction === 'delete'}
+											disabled={loadingCardId !== null}
+										>
 											Delete card
-										</PrimaryButton>
+										</SpinnerButton>
 									</S.CardActions>
 								</S.CardItem>
 							)

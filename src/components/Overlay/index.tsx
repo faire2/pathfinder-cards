@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { CancelButton, Label, OverlayWrapper } from '@/styles/commonStyledComponents'
 
 import Input from '../Input'
+import SpinnerButton from '../SpinnerButton'
 import * as S from './styles'
 import { useOverlayActions, useOverlayData, getLocalStorageProjectNames } from '@/stores/overlayStore'
 import { useAllProjects, useImportProjectFromLocalStorage } from '@/hooks/useProject'
@@ -14,6 +15,7 @@ import { loadProjectFromLs, removeProjectFromLs } from '@/utils/localStorage'
 export default function Overlay() {
 	const [inputValue, setInputValue] = useState('')
 	const [lsProjectNames, setLsProjectNames] = useState<string[]>([])
+	const [importingProject, setImportingProject] = useState<string | null>(null)
 	const { hideOverlay } = useOverlayActions()
 	const { label, data, overlayType, onFinish } = useOverlayData()
 	const { data: dbProjects } = useAllProjects()
@@ -42,12 +44,17 @@ export default function Overlay() {
 	const handleImportFromLs = (projectName: string) => {
 		const project = loadProjectFromLs(projectName)
 		if (project) {
+			setImportingProject(projectName)
 			importMutation.mutate(project, {
 				onSuccess: (importedProject) => {
 					removeProjectFromLs(projectName)
 					setLsProjectNames(prev => prev.filter(name => name !== projectName))
 					setCurrentProjectId(importedProject.id)
+					setImportingProject(null)
 					hideOverlay()
+				},
+				onError: () => {
+					setImportingProject(null)
 				}
 			})
 		}
@@ -89,9 +96,14 @@ export default function Overlay() {
 					<S.Column>
 						{lsProjectNames.length ? (
 							lsProjectNames.map((name, index) => (
-								<S.ProjectItem key={index} onClick={() => handleImportFromLs(name)}>
+								<SpinnerButton
+									key={index}
+									onClick={() => handleImportFromLs(name)}
+									isLoading={importingProject === name}
+									disabled={importingProject !== null}
+								>
 									{name}
-								</S.ProjectItem>
+								</SpinnerButton>
 							))
 						) : (
 							<S.EmptyMessage>No local projects found</S.EmptyMessage>

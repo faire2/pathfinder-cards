@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import {
 	PageColumn,
 	Label,
-	PrimaryButton,
 } from '@/styles/commonStyledComponents'
+import SpinnerButton from '../SpinnerButton'
 import { emptyCard } from '@/data/emptyCard'
 import { isCardData } from '@/utils/cardUtils'
 import { Pages } from '@/enums/pages'
@@ -27,6 +27,8 @@ interface Props {
 export default function CardEdit({ initialCard, cardIndex }: Props) {
 	const router = useRouter()
 	const [cardData, setCardData] = useState<CardData>(initialCard)
+	const [isSaving, setIsSaving] = useState(false)
+	const [isRemoving, setIsRemoving] = useState(false)
 	const { data: currentProject } = useCurrentProject()
 	const updateCardMutation = useUpdateCard()
 	const createCardMutation = useCreateCard()
@@ -50,11 +52,15 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 	const handleOnSaveClick = () => {
 		if (!cardData || !currentProject) return
 
+		setIsSaving(true)
 		if (cardData.id) {
 			// Editing existing card - update it and redirect to home
 			updateCardMutation.mutate(cardData, {
 				onSuccess: () => {
 					router.push(Pages.home)
+				},
+				onSettled: () => {
+					setIsSaving(false)
 				}
 			})
 		} else {
@@ -69,8 +75,14 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 							// Reset form and redirect after creating new card
 							setCardData(emptyCard)
 							router.push(Pages.home)
+						},
+						onSettled: () => {
+							setIsSaving(false)
 						}
 					})
+				},
+				onError: () => {
+					setIsSaving(false)
 				}
 			})
 		}
@@ -79,12 +91,16 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 	const handleRemoveFromProject = () => {
 		if (!currentProject || !cardData.id) return
 
+		setIsRemoving(true)
 		removeCardFromProjectMutation.mutate({
 			cardId: cardData.id,
 			projectId: currentProject.id
 		}, {
 			onSuccess: () => {
 				router.push(Pages.home)
+			},
+			onSettled: () => {
+				setIsRemoving(false)
 			}
 		})
 	}
@@ -103,13 +119,21 @@ export default function CardEdit({ initialCard, cardIndex }: Props) {
 			</PageColumn>
 			<PageColumn>
 				<Card cardData={cardData} />
-				<PrimaryButton disabled={!cardData} onClick={handleOnSaveClick}>
+				<SpinnerButton
+					disabled={!cardData || isRemoving}
+					onClick={handleOnSaveClick}
+					isLoading={isSaving}
+				>
 					Save Card
-				</PrimaryButton>
+				</SpinnerButton>
 				{cardData.id && (
-					<PrimaryButton onClick={handleRemoveFromProject}>
+					<SpinnerButton
+						onClick={handleRemoveFromProject}
+						isLoading={isRemoving}
+						disabled={isSaving}
+					>
 						Remove from Project
-					</PrimaryButton>
+					</SpinnerButton>
 				)}
 			</PageColumn>
 		</S.CardImport>
