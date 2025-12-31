@@ -28,6 +28,10 @@ export const fontgoodCondensedBold = css`
 	font-family: 'goodCondensedBold', 'Arial', sans-serif;
 `
 
+export const fontTangerine = css`
+	font-family: 'Tangerine', cursive;
+`
+
 export const GlobalStyle = createGlobalStyle`
 	body {
 		${fontGoodRegular}

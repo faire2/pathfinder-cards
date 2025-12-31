@@ -1,4 +1,18 @@
 @font-face {
+  font-family: 'Tangerine';
+  src: url('/fonts/Tangerine-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tangerine';
+  src: url('/fonts/Tangerine-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'goodCondensedBold';
   src: url('/fonts/FFGoodProXCond-Bold.ttf') format('truetype');
   font-weight: bold;

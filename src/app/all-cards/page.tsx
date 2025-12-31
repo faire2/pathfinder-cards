@@ -72,7 +72,6 @@ export default function AllCards() {
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
 			<S.PageContainer>
-				<S.PageTitle>All Cards ({cardLibrary?.length || 0})</S.PageTitle>
 				{ cardLibrary?.length ? (
 					<S.CardGrid>
 						{cardLibrary.map((card) => {

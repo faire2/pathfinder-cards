@@ -1,4 +1,4 @@
-import { Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
+import { Colors, doNotPrint, fontTangerine } from '@/styles/commonStyles'
 import { styled } from 'styled-components'
 
 
@@ -40,9 +40,11 @@ export const LeftMenuWrapper = styled.div`
 
 export const ProjectName = styled.h1`
 	${doNotPrint}
-	${fontGoodRegular}
+	${fontTangerine}
 	text-align: center;
-	font-weight: bold;
+	font-weight: 700;
+	font-size: 52px;
 	color: ${Colors.DarkRed};
-	letter-spacing: 1px;
+	letter-spacing: 2px;
+	margin: 10px 0;
 `

@@ -40,7 +40,6 @@ export default function ProjectsPage() {
 
 	return (
 		<S.PageContainer>
-			<S.PageTitle>Projects</S.PageTitle>
 			{projects?.length ? (
 				<S.ProjectList>
 					{projects.map((project) => (
