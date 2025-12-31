@@ -1,4 +1,4 @@
-import { createGlobalStyle, css, styled } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 
 /* COLORS */

@@ -71,58 +71,52 @@ export default function ProjectsPage() {
 	}
 
 	if (isLoading) {
-		return (
-			<S.PageContainer>
-				<S.EmptyMessage>Loading...</S.EmptyMessage>
-			</S.PageContainer>
-		)
+		return <S.EmptyMessage>Loading...</S.EmptyMessage>
 	}
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			<S.PageContainer>
-				{projects?.length ? (
-					<S.CardGrid>
-						{projects.map((project) => {
-							const isCurrentProject = project.id === currentProjectId
-							return (
-								<S.CardItem key={project.id}>
-									<S.CardWrapper
-										$isActive={isCurrentProject}
-										onClick={() => handleSwitchToProject(project.id)}
+			{projects?.length ? (
+				<S.CardGrid>
+					{projects.map((project) => {
+						const isCurrentProject = project.id === currentProjectId
+						return (
+							<S.CardItem key={project.id}>
+								<S.CardWrapper
+									$isActive={isCurrentProject}
+									onClick={() => handleSwitchToProject(project.id)}
+								>
+									<Card cardData={projectToCardData(project)} />
+								</S.CardWrapper>
+								<S.CardActions>
+									<SpinnerButton
+										onClick={(e) => {
+											e.stopPropagation()
+											handleRenameProject(project.id, project.projectName)
+										}}
+										isLoading={loadingProjectId === project.id && loadingAction === 'rename'}
+										disabled={loadingProjectId !== null}
 									>
-										<Card cardData={projectToCardData(project)} />
-									</S.CardWrapper>
-									<S.CardActions>
-										<SpinnerButton
-											onClick={(e) => {
-												e.stopPropagation()
-												handleRenameProject(project.id, project.projectName)
-											}}
-											isLoading={loadingProjectId === project.id && loadingAction === 'rename'}
-											disabled={loadingProjectId !== null}
-										>
 											Rename
-										</SpinnerButton>
-										<SpinnerButton
-											onClick={(e) => {
-												e.stopPropagation()
-												handleDeleteProject(project.id, project.projectName)
-											}}
-											isLoading={loadingProjectId === project.id && loadingAction === 'delete'}
-											disabled={loadingProjectId !== null}
-										>
+									</SpinnerButton>
+									<SpinnerButton
+										onClick={(e) => {
+											e.stopPropagation()
+											handleDeleteProject(project.id, project.projectName)
+										}}
+										isLoading={loadingProjectId === project.id && loadingAction === 'delete'}
+										disabled={loadingProjectId !== null}
+									>
 											Delete
-										</SpinnerButton>
-									</S.CardActions>
-								</S.CardItem>
-							)
-						})}
-					</S.CardGrid>
-				) : (
-					<S.EmptyMessage>No projects yet</S.EmptyMessage>
-				)}
-			</S.PageContainer>
+									</SpinnerButton>
+								</S.CardActions>
+							</S.CardItem>
+						)
+					})}
+				</S.CardGrid>
+			) : (
+				<S.EmptyMessage>No projects yet</S.EmptyMessage>
+			)}
 		</CardDimensionsCtx.Provider>
 	)
 }

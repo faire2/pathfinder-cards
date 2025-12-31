@@ -71,52 +71,50 @@ export default function AllCards() {
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			<S.PageContainer>
-				{ cardLibrary?.length ? (
-					<S.CardGrid>
-						{cardLibrary.map((card) => {
-							const inCurrentProject = isCardInCurrentProject(card.id)
-							return (
-								<S.CardItem key={card.id}>
-									<S.CardWrapper>
-										<Card cardData={card} />
-									</S.CardWrapper>
-									<S.CardActions>
-										{inCurrentProject ? (
-											<SpinnerButton
-												onClick={() => handleRemoveFromProject(card.id)}
-												isLoading={loadingCardId === card.id && loadingAction === 'remove'}
-												disabled={loadingCardId !== null}
-											>
-												Remove
-											</SpinnerButton>
-										) : (
-											<SpinnerButton
-												onClick={() => handleAddToProject(card.id)}
-												isLoading={loadingCardId === card.id && loadingAction === 'add'}
-												disabled={loadingCardId !== null}
-											>
-												Add to project
-											</SpinnerButton>
-										)}
+			{cardLibrary?.length ? (
+				<S.CardGrid>
+					{cardLibrary.map((card) => {
+						const inCurrentProject = isCardInCurrentProject(card.id)
+						return (
+							<S.CardItem key={card.id}>
+								<S.CardWrapper>
+									<Card cardData={card} />
+								</S.CardWrapper>
+								<S.CardActions>
+									{inCurrentProject ? (
 										<SpinnerButton
-											onClick={() => handleDeleteCard(card.id, card.name)}
-											isLoading={loadingCardId === card.id && loadingAction === 'delete'}
+											onClick={() => handleRemoveFromProject(card.id)}
+											isLoading={loadingCardId === card.id && loadingAction === 'remove'}
 											disabled={loadingCardId !== null}
 										>
-											Delete card
+												Remove
 										</SpinnerButton>
-									</S.CardActions>
-								</S.CardItem>
-							)
-						})}
-					</S.CardGrid>
-				) : (
-					<S.EmptyMessage>
-						No cards in your library yet. Create your first card!
-					</S.EmptyMessage>
-				)}
-			</S.PageContainer>
+									) : (
+										<SpinnerButton
+											onClick={() => handleAddToProject(card.id)}
+											isLoading={loadingCardId === card.id && loadingAction === 'add'}
+											disabled={loadingCardId !== null}
+										>
+												Add to project
+										</SpinnerButton>
+									)}
+									<SpinnerButton
+										onClick={() => handleDeleteCard(card.id, card.name)}
+										isLoading={loadingCardId === card.id && loadingAction === 'delete'}
+										disabled={loadingCardId !== null}
+									>
+											Delete card
+									</SpinnerButton>
+								</S.CardActions>
+							</S.CardItem>
+						)
+					})}
+				</S.CardGrid>
+			) : (
+				<S.EmptyMessage>
+					No cards in your library yet. Create your first card!
+				</S.EmptyMessage>
+			)}
 		</CardDimensionsCtx.Provider>
 	)
 }

@@ -2,30 +2,6 @@ import { cardHoverZoom, Colors, doNotPrint, fontGoodRegular } from '@/styles/com
 import { styled } from 'styled-components'
 
 
-export const PageContainer = styled.div`
-	padding: 20px;
-	width: 100%;
-`
-
-export const PageTitle = styled.h1`
-	${doNotPrint}
-	${fontGoodRegular}
-	text-align: center;
-	font-weight: bold;
-	color: ${Colors.DarkRed};
-	letter-spacing: 1px;
-	margin-bottom: 10px;
-`
-
-export const CurrentProjectInfo = styled.p`
-	${doNotPrint}
-	${fontGoodRegular}
-	text-align: center;
-	color: ${Colors.DarkRed};
-	margin-bottom: 20px;
-	font-style: italic;
-`
-
 export const CardGrid = styled.div`
 	display: flex;
 	flex-wrap: wrap;

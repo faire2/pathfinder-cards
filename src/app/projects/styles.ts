@@ -2,11 +2,6 @@ import { cardHoverZoom, Colors, doNotPrint, fontGoodRegular } from '@/styles/com
 import { styled } from 'styled-components'
 
 
-export const PageContainer = styled.div`
-	padding: 20px;
-	width: 100%;
-`
-
 export const CardGrid = styled.div`
 	display: flex;
 	flex-wrap: wrap;
