@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { PrimaryButton, PrimaryLink } from '@/styles/commonStyledComponents'
 import { Pages } from '@/enums/pages'
 import { useOverlayActions, getLocalStorageProjectNames } from '@/stores/overlayStore'
@@ -9,6 +10,7 @@ import { useCurrentProject } from '@/hooks/useProject'
 
 
 export default function LeftMenu() {
+	const pathname = usePathname()
 	const { data: currentProject, isLoading } = useCurrentProject()
 	const { showSwitchProjectOverlay, showImportProjectOverlay } = useOverlayActions()
 	const [hasLsProjects, setHasLsProjects] = useState(false)
@@ -46,17 +48,17 @@ export default function LeftMenu() {
 
 	return (
 		<>
-			<PrimaryLink href={Pages.createCard}>Create a new card</PrimaryLink>
-			<PrimaryLink href={Pages.importCard}>Import a new card</PrimaryLink>
-			<PrimaryLink href={Pages.home}>Project cards</PrimaryLink>
-			<PrimaryLink href={Pages.allCards}>All cards</PrimaryLink>
-			<PrimaryLink href={Pages.projects}>Projects</PrimaryLink>
+			<PrimaryLink href={Pages.createCard} $isActive={pathname === Pages.createCard}>Create a new card</PrimaryLink>
+			<PrimaryLink href={Pages.importCard} $isActive={pathname === Pages.importCard}>Import a new card</PrimaryLink>
+			<PrimaryLink href={Pages.home} $isActive={pathname === Pages.home}>Project cards</PrimaryLink>
+			<PrimaryLink href={Pages.allCards} $isActive={pathname === Pages.allCards}>All cards</PrimaryLink>
+			<PrimaryLink href={Pages.projects} $isActive={pathname === Pages.projects}>Projects</PrimaryLink>
 			{hasLsProjects && (
 				<PrimaryButton onClick={() => showImportProjectOverlay()}>
 					Import project
 				</PrimaryButton>
 			)}
-			<PrimaryLink href={Pages.printView}>Print view</PrimaryLink>
+			<PrimaryLink href={Pages.printView} $isActive={pathname === Pages.printView}>Print view</PrimaryLink>
 			<PrimaryButton onClick={() => signOut()}>Log out</PrimaryButton>
 		</>
 	)

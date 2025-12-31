@@ -20,12 +20,18 @@ const primaryStyle = css`
 	}
 `
 
+const activeLinkStyle = css`
+	background: ${Colors.Gold};
+	color: ${Colors.DarkRed};
+`
+
 export const PrimaryButton = styled.button`
 	${primaryStyle}
 `
 
-export const PrimaryLink = styled(Link)`
+export const PrimaryLink = styled(Link)<{ $isActive?: boolean }>`
 	${primaryStyle}
+	${({ $isActive }) => $isActive && activeLinkStyle}
 `
 
 export const PrimaryButtonRound = styled(PrimaryButton)`
