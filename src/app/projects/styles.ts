@@ -1,4 +1,4 @@
-import { Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
+import { cardHoverZoom, Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
 import { styled } from 'styled-components'
 
 
@@ -7,44 +7,42 @@ export const PageContainer = styled.div`
 	width: 100%;
 `
 
-export const PageTitle = styled.h1`
-	${doNotPrint}
-	${fontGoodRegular}
-	text-align: center;
-	font-weight: bold;
-	color: ${Colors.DarkRed};
-	letter-spacing: 1px;
-	margin-bottom: 20px;
+export const CardGrid = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: flex-start;
 `
 
-export const ProjectList = styled.div`
+export const CardItem = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	border-top: 1px solid ${Colors.Gold};
+	gap: 10px;
 `
 
-export const ProjectRow = styled.div`
-	${fontGoodRegular}
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 15px 20px;
-	border-bottom: 1px solid ${Colors.Gold};
+export const CardWrapper = styled.div<{ $isActive?: boolean }>`
+	${cardHoverZoom}
 
-	&:hover {
-		background-color: ${Colors.Beige};
+	/* Apply gold border to the Card itself */
+	> div {
+		${({ $isActive }) => $isActive && `
+			box-shadow: 0 0 0 3px ${Colors.Gold};
+		`}
+	}
+
+	/* Larger body text for project cards (Card > Body) */
+	> div > div:last-child {
+		font-size: 150%;
 	}
 `
 
-export const ProjectName = styled.span`
-	color: ${Colors.DarkRed};
-	font-size: 18px;
-`
-
-export const ProjectActions = styled.div`
+export const CardActions = styled.div`
+	${doNotPrint}
 	display: flex;
-	gap: 10px;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: -20px;
+	width: 100%;
 `
 
 export const EmptyMessage = styled.p`

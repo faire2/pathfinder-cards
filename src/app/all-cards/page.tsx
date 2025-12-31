@@ -78,7 +78,9 @@ export default function AllCards() {
 							const inCurrentProject = isCardInCurrentProject(card.id)
 							return (
 								<S.CardItem key={card.id}>
-									<Card cardData={card} />
+									<S.CardWrapper>
+										<Card cardData={card} />
+									</S.CardWrapper>
 									<S.CardActions>
 										{inCurrentProject ? (
 											<SpinnerButton

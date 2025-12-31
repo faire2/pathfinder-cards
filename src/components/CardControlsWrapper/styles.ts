@@ -1,4 +1,4 @@
-import { doNotPrint } from '@/styles/commonStyles'
+import { cardHoverZoom, doNotPrint } from '@/styles/commonStyles'
 import { styled } from 'styled-components'
 
 
@@ -7,13 +7,10 @@ interface DisabledCard {
 }
 
 export const CardWrapper = styled.div<DisabledCard>`
-	cursor: pointer;
-	transition: all 1s;
+	${cardHoverZoom}
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-	transform-origin: center bottom;
 
 	&:hover {
-		transform: scale(120%);
 		opacity: 1;
 	}
 `

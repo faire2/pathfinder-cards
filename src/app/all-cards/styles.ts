@@ -1,4 +1,4 @@
-import { Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
+import { cardHoverZoom, Colors, doNotPrint, fontGoodRegular } from '@/styles/commonStyles'
 import { styled } from 'styled-components'
 
 
@@ -37,6 +37,10 @@ export const CardItem = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+`
+
+export const CardWrapper = styled.div`
+	${cardHoverZoom}
 `
 
 export const CardActions = styled.div`

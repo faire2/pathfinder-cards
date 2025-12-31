@@ -32,6 +32,16 @@ export const fontTangerine = css`
 	font-family: 'Tangerine', cursive;
 `
 
+export const cardHoverZoom = css`
+	cursor: pointer;
+	transition: all 1s;
+	transform-origin: center bottom;
+
+	&:hover {
+		transform: scale(115%);
+	}
+`
+
 export const GlobalStyle = createGlobalStyle`
 	body {
 		${fontGoodRegular}
