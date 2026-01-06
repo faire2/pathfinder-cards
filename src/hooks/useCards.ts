@@ -42,10 +42,12 @@ export function useCreateCard() {
 	})
 }
 
+type UpdateCardVariables = Partial<CardData> & { id: string; projectId?: string }
+
 export function useUpdateCard() {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: async (cardData: Partial<CardData> & {'id': string}) => {
+		mutationFn: async (cardData: UpdateCardVariables) => {
 			const response = await fetch(dbRoutes.card(cardData.id), createRequestInit('PUT', cardData))
 			if (!response.ok) {
 				const errorData = await response.json()
@@ -53,9 +55,58 @@ export function useUpdateCard() {
 			}
 			return response.json() as Promise<CardData>
 		},
-		onSuccess: () => {
+		onMutate: async (newCardData) => {
+			// Cancel any outgoing refetches to avoid overwriting optimistic update
+			await queryClient.cancelQueries({ queryKey: cardKeys.all })
+			if (newCardData.projectId) {
+				await queryClient.cancelQueries({ queryKey: projectKeys.single(newCardData.projectId) })
+			}
+
+			// Snapshot previous values for rollback
+			const previousCards = queryClient.getQueryData<CardData[]>(cardKeys.all)
+			const previousProject = newCardData.projectId
+				? queryClient.getQueryData<Project>(projectKeys.single(newCardData.projectId))
+				: undefined
+
+			// Optimistically update card library
+			if (previousCards) {
+				queryClient.setQueryData<CardData[]>(cardKeys.all, (old) =>
+					old?.map((card) =>
+						card.id === newCardData.id ? { ...card, ...newCardData } : card
+					)
+				)
+			}
+
+			// Optimistically update project's cards
+			if (previousProject && newCardData.projectId) {
+				queryClient.setQueryData<Project>(projectKeys.single(newCardData.projectId), (old) => {
+					if (!old) return old
+					return {
+						...old,
+						cards: old.cards.map((card) =>
+							card.id === newCardData.id ? { ...card, ...newCardData } : card
+						),
+					}
+				})
+			}
+
+			return { previousCards, previousProject, projectId: newCardData.projectId }
+		},
+		onError: (_err, _newCardData, context) => {
+			// Roll back to previous state on error
+			if (context?.previousCards) {
+				queryClient.setQueryData(cardKeys.all, context.previousCards)
+			}
+			if (context?.previousProject && context?.projectId) {
+				queryClient.setQueryData(projectKeys.single(context.projectId), context.previousProject)
+			}
+		},
+		onSettled: (_data, _error, variables) => {
+			// Always refetch after mutation settles to ensure server state is in sync
 			queryClient.invalidateQueries({ queryKey: cardKeys.all })
-			queryClient.invalidateQueries({ queryKey: projectKeys.all })
+			if (variables.projectId) {
+				queryClient.invalidateQueries({ queryKey: projectKeys.single(variables.projectId) })
+			}
 		}
 	})
 }

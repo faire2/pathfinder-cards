@@ -26,17 +26,17 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 	const numberToPrint = card?.numberToPrint || 0
 
 	const handleIncreaseNumber = () => {
-		if (!card) return
+		if (!card || !currentProject) return
 
 		/* Originally projects did not have number of cards to print. If that
 		is the case here, let's follow user's most likely intent and increase
 		the number of prints to 1. */
 		const finalNumber = isNumber(numberToPrint) ? numberToPrint + 1 : 1
-		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber })
+		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber, projectId: currentProject.id })
 	}
 
 	const handleDecreaseNumber = () => {
-		if (!card) return
+		if (!card || !currentProject) return
 
 		/* See previous note, this time the most probable intent is to not
 		print the card. */
@@ -45,7 +45,7 @@ export const CardControlWrapper = ({ cardIndex, children }: Props) => {
 			: numberToPrint > 0
 				? numberToPrint - 1
 				: 0
-		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber })
+		updateCardMutation.mutate({ id: card.id, numberToPrint: finalNumber, projectId: currentProject.id })
 	}
 
 	const handleRemoveFromProject = () => {
