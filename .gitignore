@@ -32,6 +32,7 @@ yarn-error.log*
 .vercel
 
 /.claude
+/.omc
 /.idea/
 
 # typescript
