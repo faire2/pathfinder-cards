@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useAllProjects, useDeleteProject, useUpdateProject } from '@/hooks/useProject'
+import { useAllProjects, useDeleteProject, useUpdateProject, useCreateProject } from '@/hooks/useProject'
 import { useSetCurrentProjectId, useCurrentProjectId } from '@/stores/projectStoreV2'
 import { standardFFG } from '@/data/cardDimension'
 import { CardDimensionsCtx } from '@/components/Card/cardContexts'
@@ -36,8 +36,9 @@ export default function ProjectsPage() {
 	const updateProject = useUpdateProject()
 	const setCurrentProjectId = useSetCurrentProjectId()
 	const currentProjectId = useCurrentProjectId()
+	const createProject = useCreateProject()
 	const [loadingProjectId, setLoadingProjectId] = useState<string | null>(null)
-	const [loadingAction, setLoadingAction] = useState<'rename' | 'delete' | null>(null)
+	const [loadingAction, setLoadingAction] = useState<'rename' | 'delete' | 'create' | null>(null)
 
 	const handleSwitchToProject = (projectId: string) => {
 		setCurrentProjectId(projectId)
@@ -70,53 +71,91 @@ export default function ProjectsPage() {
 		}
 	}
 
+	const handleCreateProject = () => {
+		const projectName = prompt('Enter new project name:')
+		if (projectName) {
+			setLoadingProjectId('new')
+			setLoadingAction('create')
+			createProject.mutate({ projectName }, {
+				onSuccess: (newProject) => {
+					setCurrentProjectId(newProject.id)
+				},
+				onSettled: () => {
+					setLoadingProjectId(null)
+					setLoadingAction(null)
+				}
+			})
+		}
+	}
+
+	const newProjectCardData: CardData = {
+		id: 'new',
+		name: 'New Project',
+		type: '',
+		level: '',
+		traits: '',
+		actions: '',
+		body: 'Create a new project',
+		numberToPrint: 0,
+	}
+
 	if (isLoading) {
 		return <S.EmptyMessage>Loading...</S.EmptyMessage>
 	}
 
 	return (
 		<CardDimensionsCtx.Provider value={standardFFG}>
-			{projects?.length ? (
-				<S.CardGrid>
-					{projects.map((project) => {
-						const isCurrentProject = project.id === currentProjectId
-						return (
-							<S.CardItem key={project.id}>
-								<S.CardWrapper
-									$isActive={isCurrentProject}
-									onClick={() => handleSwitchToProject(project.id)}
+			<S.CardGrid>
+				{projects?.map((project) => {
+					const isCurrentProject = project.id === currentProjectId
+					return (
+						<S.CardItem key={project.id}>
+							<S.CardWrapper
+								$isActive={isCurrentProject}
+								onClick={() => handleSwitchToProject(project.id)}
+							>
+								<Card cardData={projectToCardData(project)} />
+							</S.CardWrapper>
+							<S.CardActions>
+								<SpinnerButton
+									onClick={(e) => {
+										e.stopPropagation()
+										handleRenameProject(project.id, project.projectName)
+									}}
+									isLoading={loadingProjectId === project.id && loadingAction === 'rename'}
+									disabled={loadingProjectId !== null}
 								>
-									<Card cardData={projectToCardData(project)} />
-								</S.CardWrapper>
-								<S.CardActions>
-									<SpinnerButton
-										onClick={(e) => {
-											e.stopPropagation()
-											handleRenameProject(project.id, project.projectName)
-										}}
-										isLoading={loadingProjectId === project.id && loadingAction === 'rename'}
-										disabled={loadingProjectId !== null}
-									>
-											Rename
-									</SpinnerButton>
-									<SpinnerButton
-										onClick={(e) => {
-											e.stopPropagation()
-											handleDeleteProject(project.id, project.projectName)
-										}}
-										isLoading={loadingProjectId === project.id && loadingAction === 'delete'}
-										disabled={loadingProjectId !== null}
-									>
-											Delete
-									</SpinnerButton>
-								</S.CardActions>
-							</S.CardItem>
-						)
-					})}
-				</S.CardGrid>
-			) : (
-				<S.EmptyMessage>No projects yet</S.EmptyMessage>
-			)}
+										Rename
+								</SpinnerButton>
+								<SpinnerButton
+									onClick={(e) => {
+										e.stopPropagation()
+										handleDeleteProject(project.id, project.projectName)
+									}}
+									isLoading={loadingProjectId === project.id && loadingAction === 'delete'}
+									disabled={loadingProjectId !== null}
+								>
+										Delete
+								</SpinnerButton>
+							</S.CardActions>
+						</S.CardItem>
+					)
+				})}
+				<S.CardItem>
+					<S.CardWrapper onClick={handleCreateProject}>
+						<Card cardData={newProjectCardData} />
+					</S.CardWrapper>
+					<S.CardActions>
+						<SpinnerButton
+							onClick={handleCreateProject}
+							isLoading={loadingProjectId === 'new' && loadingAction === 'create'}
+							disabled={loadingProjectId !== null}
+						>
+							Create
+						</SpinnerButton>
+					</S.CardActions>
+				</S.CardItem>
+			</S.CardGrid>
 		</CardDimensionsCtx.Provider>
 	)
 }
